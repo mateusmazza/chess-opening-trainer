@@ -29,6 +29,7 @@ import sys
 import chess
 
 import conf
+import explain
 import priority
 import verify_engine
 from repertoire import REPERTOIRE
@@ -267,6 +268,11 @@ def main():
     if reverify:
         verifier.cache = {}
         verifier.dirty = True
+    # Explanations: hand-written notes plus computed facts and engine threats.
+    # Never fatal -- a move without a note still gets its facts.
+    notes = explain.load_notes()
+    threats = explain.Threats(engine_path=engine_path, allow_engine=not no_engine)
+    missing_notes = 0
     n_cached = len(verifier.cache)
     print(f"Engine verdict cache: {n_cached} moves"
           + (f" · Stockfish at {engine_path}" if engine_path else " · no engine")
@@ -289,6 +295,7 @@ def main():
             print()
             continue
 
+        missing_notes += explain.annotate(root, notes, threats)
         my_moves, leaves = finalize(root)
         w = weights.get(course["id"], {})
         courses.append({
@@ -326,6 +333,13 @@ def main():
         any_error = True
 
     verifier.close()
+    threats.close()
+    if missing_notes:
+        print(f"\n{missing_notes} moves have no hand-written note in "
+              f"build/move_notes.json (they still get computed facts).")
+    if threats.misses:
+        print(f"{threats.misses} positions have no cached threat and no engine "
+              f"was available to compute one.")
 
     if any_error:
         print("\nBuild aborted: fix the repertoire lines above. "

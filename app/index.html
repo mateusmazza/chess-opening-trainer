@@ -40,6 +40,7 @@
 
     <button id="startBtn" class="big-btn">▶ Start today's training</button>
     <div id="dueSummary" class="due-summary"></div>
+    <div id="progressCard"></div>
 
     <h2 class="section-title">Your repertoire</h2>
     <div id="courseGrid" class="course-grid"></div>
@@ -67,6 +68,7 @@
       <div class="line-sub" id="lineSub"></div>
       <div class="turn-prompt" id="turnPrompt"></div>
       <div class="moves" id="moveList"></div>
+      <div class="explain" id="explain"></div>
       <div class="train-actions">
         <button id="hintBtn" class="ghost-btn">💡 Hint</button>
         <button id="revealBtn" class="ghost-btn">I forgot — show me</button>
@@ -115,6 +117,18 @@
   </section>
 </template>
 
+<!-- ====== PROGRESS TEMPLATE ====== -->
+<template id="tpl-progress">
+  <section class="view progress">
+    <button class="back" data-nav="home">‹ Back</button>
+    <h1>Are the mistakes going down?</h1>
+    <p class="muted summary">Three honest measures: how often you get a move right first
+      time in training, which moves keep slipping, and whether you play your
+      repertoire in real games.</p>
+    <div id="progressBody"></div>
+  </section>
+</template>
+
 <!-- ====== SESSION SUMMARY TEMPLATE ====== -->
 <template id="tpl-summary">
   <div class="modal-back" id="summaryModal">
@@ -126,6 +140,8 @@
         <div class="sum-stat"><b id="sumXp">+0</b><span>XP</span></div>
         <div class="sum-stat"><b id="sumStreak">0</b><span>🔥 streak</span></div>
       </div>
+      <p id="sumTrend" class="sum-trend"></p>
+      <div id="sumMissed" class="sum-missed"></div>
       <p id="sumNext" class="muted"></p>
       <button class="big-btn" data-nav="home">Done</button>
     </div>
@@ -135,11 +151,13 @@
 <div id="toastHost"></div>
 
 <script src="repertoire.js"></script>
-<!-- Generated from your chess.com games. Optional: if these two are absent the
+<!-- Generated from your chess.com games. Optional: if these are absent the
      app still runs as a pure opening trainer. coach.js must load before app.js,
      which calls into it during the first render. -->
 <script src="exercises.js"></script>
+<script src="mygames.js"></script>
 <script src="coach.js"></script>
+<script src="progress.js"></script>
 <script src="app.js"></script>
 </body>
 </html>

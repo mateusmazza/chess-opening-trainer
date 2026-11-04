@@ -85,8 +85,11 @@ No installation, no internet, no server.
    lines** (default 4/day — change it at the bottom of the home screen).
 3. For each line: make your move on the board (click the piece, then the
    destination square). ✓ = correct, ✗ = try again. The opponent's replies
-   play themselves.
-4. Forgot one? Use **💡 Hint** or **"I forgot — show me"**.
+   play themselves, and every move — yours and theirs — comes with **why it is
+   played** and what it threatens.
+4. Forgot one? The first ✗ (or **💡 Hint**) gives you the *idea* behind the
+   move; the second hint shows the piece; **"I forgot — show me"** gives the
+   answer.
 5. Then the tactics half: today's **two lessons**, with positions you have not
    seen before. Read the habit at the top of the lesson before you start — it is
    the thing you are practising, and the puzzles are only there to make it
@@ -98,6 +101,52 @@ weeks) when you get it right, and brings it back fast when you slip. A line is
 counted **"mastered"** once it survives to a 3-week interval; the **Mastery %**
 and ★ ratings climb gradually as you learn and strengthen each line, so progress
 shows from your very first session.
+
+### Learning from every move
+
+The trainer is built around a few well-established findings about how skills
+are learned, applied to the one thing you actually forget: a single move.
+
+* **Every move is explained.** Each of the 729 moves in the repertoire carries
+  a written note (`build/move_notes.json`: the plan behind it), facts computed
+  from the board (develops, attacks, pins, clears castling — `build/explain.py`,
+  pure geometry so never wrong), and, where there is one, the threat Stockfish
+  finds if it is ignored ("⚠ Watch out — they threaten …Bxf2+"). A move tied
+  to a reason can be rebuilt from the reason when the move itself slips.
+* **Hints climb a ladder.** The first hint is a *cue* — the idea, phrased so it
+  does not give the move away ("Attack the knight that is guarding f7"). Then
+  the piece. Only then the move. Each rung makes you do more of the
+  remembering, which is what makes it stick.
+* **Teach, then test.** The first time a line introduces a move you have never
+  seen, you are not asked to guess it: an arrow shows it, the note says why,
+  and you play it yourself. The line then comes back **later in the same
+  session** as a real test — study, a gap, then retrieval.
+* **Trouble spots.** Every one of your moves is tracked on its own, shared by
+  every line passing through that position. A move you miss becomes a trouble
+  spot and gets its own **focus drill**: the board jumps straight to that
+  position, the moves that led there are shown for context, and you play it
+  and the next two moves. It stays a trouble spot until you get it right first
+  time on **two different days after** the miss — right a minute after being
+  corrected is short-term memory, not learning. Moves missed 3+ times are
+  *stubborn* and go first. (*Trouble spots per day* at the bottom of the home
+  screen; default 4.)
+* **Fluency counts.** A correct move that took you more than ~10 seconds is
+  known but not yet automatic — in blitz, a move you have to dig for is a move
+  you may not find. It does not count toward fixing a trouble spot, and a clean
+  but hesitant line is graded *good* instead of *easy*.
+* **Immediate, specific feedback.** The session summary lists exactly the moves
+  you missed, with why each is played, and offers to drill just those again.
+  It also compares today's first-try accuracy with your recent average.
+* **Your real games are the test.** `build/game_moves.py` walks your chess.com
+  games through the repertoire and finds where *you* left it (not where your
+  opponent did). A recent slip in a real game becomes a trouble spot, and if a
+  wrong move you try in training is the one you keep playing in real games,
+  the trainer tells you.
+
+**See your progress ›** (on the home screen) answers "are the mistakes going
+down?" three ways: first-try accuracy per study day, the trouble spots open and
+fixed, and — month by month — the share of your real games in which you stayed
+on book as long as your opponent did.
 
 **Missed a few days?** No problem — reviews won't pile into an overwhelming wall.
 The app caps how many reviews land on any single day (**Reviews per day**,
@@ -204,8 +253,10 @@ chess-opening-trainer/
 │   ├── style.css
 │   ├── app.js            ← board, trainer engine, spaced repetition, gamification
 │   ├── coach.js          ← puzzle model, adaptive difficulty, weakness report
+│   ├── progress.js       ← the "are the mistakes going down?" view
 │   ├── repertoire.js     ← generated opening tree (DB-verified). Not hand-edited.
-│   └── exercises.js      ← generated from your games. Absent until you build it.
+│   ├── exercises.js      ← generated from your games. Absent until you build it.
+│   └── mygames.js        ← where your real games left the repertoire (gitignored)
 └── build/
     ├── eco/*.tsv         ← the Lichess ECO opening database (source of truth)
     ├── repertoire.py     ← the repertoire definition (edit this to change lines)
@@ -213,6 +264,10 @@ chess-opening-trainer/
     ├── priority.py       ←    how much practice each opening has earned
     ├── verify_engine.py  ←    Stockfish verification for non-ECO lines
     ├── engine_verified.json ← cached verdicts (TRACKED: no engine needed to clone)
+    ├── explain.py        ←    why each move: notes + computed facts + engine threats
+    ├── move_notes.json   ←    the written note and hint cue for every move
+    ├── engine_threats.json ← cached threats (TRACKED, like engine_verified.json)
+    ├── game_moves.py     ←    your repertoire checked against your real games
     ├── probe.py          ← asks the DB "what are the book replies after <line>?"
     ├── gaps.py           ← openings you meet that you have no answer for
     ├── derive_lines.py   ← turns a gap into lines (their moves, your answers)
@@ -397,6 +452,7 @@ python3 build/lessons.py                            # 3b prints your lessons
 python3 build/build_exercises.py                    # 4  writes app/exercises.js
 python3 build/gaps.py                               # 5  unanswered openings
 python3 build/generate.py                           # 6  re-weights the repertoire
+python3 build/game_moves.py                         # 7  where your games left it
 ```
 
 Stage 6 matters: course weights come out of the games analysed in stage 2, so a
@@ -485,6 +541,12 @@ isn't in the database, or if a position leaves you two different moves to play:
 ```bash
 python3 build/generate.py
 ```
+
+New moves also want a note: add an entry to `build/move_notes.json` keyed by
+the moves up to and including it (`"e4 e5 Nf3": {"note": "...", "cue": "..."}`;
+`cue` only for your own moves, and it must not name the move). `generate.py`
+reports how many moves have none — they still get their computed facts and
+threats, so nothing breaks in the meantime.
 
 Because every position is verified at build time, the app itself needs no chess
 engine at runtime — which is why it opens straight from a `file://` URL.
@@ -575,6 +637,7 @@ node build/test_tree.js       # opening move-tree integrity
 node build/test_ui.js         # opening trainer, driven in a real DOM
 node build/test_coach.js      # exercises load, solve, calculation mode, report
 node build/test_lessons.js    # retirement, freshness, focus, rung promotion
+node build/test_moves.js      # explanations, trouble spots, teach-then-test
 python3 build/test_themes.py  # tactical motif detection (SEE, forks, pins…)
 ```
 

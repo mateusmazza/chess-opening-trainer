@@ -19,6 +19,7 @@ Thumbs.db
 # your own game history -- not something to commit.
 data/
 app/exercises.js
+app/mygames.js
 
 # Your local settings (chess.com username, any overrides). The tracked
 # build/coach_config.json holds the shared defaults.

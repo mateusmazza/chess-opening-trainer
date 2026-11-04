@@ -1,0 +1,2332 @@
+{
+ "_comment": "Why each repertoire move is played. Key: the SAN moves from the start up to and including the move. note: the idea, in neutral White/Black voice. cue: for moves the player must find, a hint that points at the idea without naming the move. See build/explain.py.",
+ "Nf3": {
+  "note": "White develops a knight first, keeping options open. It controls e5 and d4 and waits to see Black's setup."
+ },
+ "b3": {
+  "note": "White prepares to fianchetto the dark bishop on b2, aiming at the centre from the side."
+ },
+ "c4": {
+  "note": "White starts on the flank, controlling d5 from the side and keeping the centre pawns flexible."
+ },
+ "d4": {
+  "note": "White puts a pawn in the centre, controls e5 and c5, and frees the queen and the dark-squared bishop.",
+  "cue": "Start by claiming the centre with a pawn — the queen's pawn this time."
+ },
+ "e3": {
+  "note": "White opens the f1-bishop with a modest pawn move, taking only a small share of the centre."
+ },
+ "e4": {
+  "note": "White grabs the centre with a pawn and opens lines for the queen and the f1-bishop, ready to develop quickly.",
+  "cue": "Claim the centre with a pawn and free your kingside bishop."
+ },
+ "Nf3 d5": {
+  "note": "Black takes a share of the centre right away with a pawn, instead of letting the flank opening dictate the game.",
+  "cue": "Occupy the centre with a pawn."
+ },
+ "b3 e5": {
+  "note": "Black takes the centre with a pawn. White will hit it with Bb2, but it is easy to defend.",
+  "cue": "Occupy the centre with a pawn."
+ },
+ "c4 e5": {
+  "note": "Black takes a big share of the centre right away instead of copying White's flank play.",
+  "cue": "Occupy the centre with a pawn that also frees a bishop."
+ },
+ "d4 Nf6": {
+  "note": "Black develops first, controls e4, and keeps the choice of pawn setup open."
+ },
+ "d4 d5": {
+  "note": "Black matches White in the centre, stopping White from playing e4 for free and opening a path for the light bishop.",
+  "cue": "Meet White's centre pawn with one of your own, side by side."
+ },
+ "e3 e5": {
+  "note": "Black takes the centre with a big pawn and frees the f8-bishop. Against a quiet first move, Black can claim the middle for free.",
+  "cue": "Grab the centre with a pawn that also frees a bishop."
+ },
+ "e4 c5": {
+  "note": "Black fights for the d4-square from the side instead of copying White's centre pawn. This leads to unbalanced positions."
+ },
+ "e4 c6": {
+  "note": "Black prepares ...d5 next, challenging e4 with a pawn backed up by the c-pawn. Solid, and the light-squared bishop stays free.",
+  "cue": "Prepare to strike the centre next move, using a pawn that will back it up."
+ },
+ "e4 d5": {
+  "note": "Black strikes at White's e4-pawn straight away, threatening to take it. White usually captures, and Black recaptures — even with the queen — to fight for the centre."
+ },
+ "e4 d6": {
+  "note": "Black controls e5 and frees the c8-bishop, letting White build a centre and planning to attack it later."
+ },
+ "e4 e5": {
+  "note": "Black claims an equal share of the centre and opens the way for the f8-bishop and the queen.",
+  "cue": "Answer White's central pawn with one of your own, side by side."
+ },
+ "e4 e6": {
+  "note": "Black prepares ...d5 to challenge White's centre with pawn support, and opens the f8-bishop."
+ },
+ "e4 g6": {
+  "note": "Black prepares to put the bishop on g7 and lets White build a centre, planning to attack it later with pieces and pawn breaks."
+ },
+ "Nf3 d5 d4": {
+  "note": "White heads into a normal queen's-pawn position, putting a second pawn in the centre."
+ },
+ "Nf3 d5 g3": {
+  "note": "White gets ready to put the bishop on g2, where it will aim down the long diagonal at the centre."
+ },
+ "b3 e5 Bb2": {
+  "note": "White develops the bishop with gain of time, attacking the e5-pawn."
+ },
+ "c4 e5 b4": {
+  "note": "A wing gambit: White offers the b-pawn to get Bb2 in quickly, aiming at e5. Black can take for free."
+ },
+ "d4 Nf6 Nf3": {
+  "note": "White develops and controls e5. The London setup (Bf4, e3, c3) works against almost anything Black does.",
+  "cue": "Develop a kingside piece toward the centre."
+ },
+ "d4 d5 Bf4": {
+  "note": "An early London: White brings the dark bishop out before e3 or Nf3."
+ },
+ "d4 d5 Nc3": {
+  "note": "White brings the knight out early (a Jobava-style setup), adding pressure on d5 and often following with Bf4 and Nb5 ideas."
+ },
+ "d4 d5 Nf3": {
+  "note": "White develops and controls e5, keeping options open for setups like Bf4/e3 or c4.",
+  "cue": "Develop a kingside piece toward the centre."
+ },
+ "d4 d5 c4": {
+  "note": "White offers the c-pawn to pull Black's d-pawn away from the centre; if Black takes, White can usually win the pawn back and build a big centre with e4.",
+  "cue": "Challenge Black's centre pawn from the side with a wing pawn."
+ },
+ "d4 d5 e3": {
+  "note": "A quiet setup (Colle-style): White supports d4 and frees the f1-bishop, but the c1-bishop is shut in."
+ },
+ "e3 e5 Qh5": {
+  "note": "An early queen raid: White threatens Qxe5+ and eyes f7. It breaks the rule of developing minor pieces first, and the queen will get chased."
+ },
+ "e4 c5 c3": {
+  "note": "White prepares to play d4 and build a full pawn centre; if Black exchanges on d4, the c-pawn recaptures and keeps two centre pawns.",
+  "cue": "Prepare to put a second pawn in the centre, so you can recapture with a pawn if it's taken."
+ },
+ "e4 c6 Bc4": {
+  "note": "White aims the bishop at f7 for a quick attack, but the bishop is exposed to ...d5."
+ },
+ "e4 c6 Nc3": {
+  "note": "White develops and keeps options open; Black still answers with ...d5."
+ },
+ "e4 c6 Nf3": {
+  "note": "White develops and leaves e4 to be defended later; Black continues with ...d5."
+ },
+ "e4 c6 Qf3": {
+  "note": "An early queen sortie eyeing f7, but f7 is safely guarded by the king. Black ignores it and takes the centre."
+ },
+ "e4 c6 d3": {
+  "note": "A passive start: White supports e4 and opens the c1-bishop, but gives Black a free hand in the centre."
+ },
+ "e4 c6 d4": {
+  "note": "White takes the full centre with two pawns side by side, the most natural reply.",
+  "cue": "Black hasn't challenged yet: grab more of the centre with a pawn."
+ },
+ "e4 d5 exd5": {
+  "note": "White takes the pawn that attacked e4. Black must now spend a move winning it back, often bringing the queen out early where it can be chased.",
+  "cue": "A pawn is attacking your e-pawn. Remove it."
+ },
+ "e4 d6 d4": {
+  "note": "White takes the centre with a second pawn and opens the c1-bishop.",
+  "cue": "Black is passive — take more central space with a pawn."
+ },
+ "e4 e5 Bc4": {
+  "note": "White develops the bishop to its active diagonal, aiming at f7, the weakest point near Black's king."
+ },
+ "e4 e5 Nc3": {
+  "note": "White develops a knight that guards e4 and eyes d5, keeping the f-pawn free to advance later.",
+  "cue": "Develop a queenside piece that protects your e-pawn."
+ },
+ "e4 e5 Nf3": {
+  "note": "White develops a knight with tempo: it attacks the e5-pawn, so Black must react, and it clears the way to castle.",
+  "cue": "Develop a kingside piece that also attacks the e5-pawn."
+ },
+ "e4 e5 Qf3": {
+  "note": "Another early queen move: White eyes f7 and plans Bc4 for a mating attack. It also blocks the g1-knight's natural square."
+ },
+ "e4 e5 Qh5": {
+  "note": "An early queen sortie: White attacks e5 (Qxe5+ is a threat) and eyes f7, hoping for a quick Scholar's Mate with Bc4. The queen will be chased with tempo."
+ },
+ "e4 e5 d3": {
+  "note": "A quiet, passive move: White guards e4 and frees the c1-bishop but gives up any claim to d4 for now. Black can take the centre freely."
+ },
+ "e4 e5 d4": {
+  "note": "White opens the centre right away, attacking e5. The catch: if Black takes, White's queen recaptures early and can be chased."
+ },
+ "e4 e5 f4": {
+  "note": "A gambit: White offers the f-pawn to deflect Black's e-pawn, hoping to build a centre with d4 and open the f-file."
+ },
+ "e4 e6 d4": {
+  "note": "White builds the ideal pawn centre while Black's move doesn't stop it.",
+  "cue": "Take more of the centre with your other central pawn."
+ },
+ "e4 g6 d4": {
+  "note": "White takes a full pawn centre while Black is not contesting it, and opens the c1-bishop.",
+  "cue": "Black isn't fighting for the centre. Take more central space with a pawn."
+ },
+ "Nf3 d5 d4 Nf6": {
+  "note": "Black develops the knight to its best square, guarding d5 and e4.",
+  "cue": "Develop a kingside piece that protects your centre pawn."
+ },
+ "Nf3 d5 g3 c5": {
+  "note": "Black grabs more space and controls d4, aiming for a broad centre with ...Nc6, ...Nf6 and ...e6.",
+  "cue": "Take more space with a wing pawn that also controls a key centre square."
+ },
+ "b3 e5 Bb2 Nc6": {
+  "note": "Black defends e5 by developing a piece.",
+  "cue": "Protect your attacked centre pawn by developing a piece."
+ },
+ "c4 e5 b4 Bxb4": {
+  "note": "Black takes the free pawn while developing the bishop. The pawn is safe and White has little to show for it.",
+  "cue": "White's offered pawn can be taken by a piece that wants to develop anyway."
+ },
+ "d4 Nf6 Nf3 d5": {
+  "note": "Black puts a pawn in the centre, blocking any early e4 by White."
+ },
+ "d4 Nf6 Nf3 g6": {
+  "note": "Black prepares to fianchetto the dark bishop on g7, a King's Indian-style setup."
+ },
+ "d4 d5 Bf4 c5": {
+  "note": "Black strikes at d4 right away, before White is comfortable. With the bishop gone from c1, b2 may become a target too.",
+  "cue": "Hit White's d-pawn with a wing pawn before they get comfortable."
+ },
+ "d4 d5 Nc3 Nc6": {
+  "note": "Black develops the knight to its natural square and hits d4 straight back.",
+  "cue": "Develop your queenside knight so it hits White's d-pawn."
+ },
+ "d4 d5 Nf3 Nf6": {
+  "note": "Black develops the knight to its natural square, guarding d5 and controlling e4.",
+  "cue": "Develop a kingside piece toward the centre."
+ },
+ "d4 d5 c4 c6": {
+  "note": "Black holds the d5-pawn with another pawn. Unlike ...e6, this keeps the c8-bishop free to come out to f5 or g4 later.",
+  "cue": "Support your centre pawn with a pawn — but keep your light bishop's diagonal open."
+ },
+ "d4 d5 c4 dxc4": {
+  "note": "Black takes the c4-pawn, giving up the centre for now but planning to hit back with ...c5 or ...e5. Black usually doesn't try to keep the pawn."
+ },
+ "d4 d5 c4 e6": {
+  "note": "Black supports d5 with the e-pawn: very solid, though the c8-bishop is now shut in for a while."
+ },
+ "d4 d5 e3 e6": {
+  "note": "Black mirrors with a solid setup, opening the f8-bishop and holding d5.",
+  "cue": "Answer quietly: free your dark bishop and back up your centre pawn."
+ },
+ "e3 e5 Qh5 Nc6": {
+  "note": "Black defends e5 by developing a piece. The queen out on h5 will soon become a target.",
+  "cue": "Protect your attacked centre pawn by developing a piece."
+ },
+ "e4 c5 c3 Nf6": {
+  "note": "Black attacks the e4-pawn right away. Because c3 took the knight's natural square, White can't defend it with Nc3."
+ },
+ "e4 c5 c3 d5": {
+  "note": "Black hits e4 at once, before White can play d4 and support it. Taking on d5 lets Black's queen recapture, since Nc3 is not available."
+ },
+ "e4 c6 Bc4 d5": {
+  "note": "The punishment: Black's d-pawn hits both the bishop and e4 at once, threatening dxc4.",
+  "cue": "Hit the bishop and the e4-pawn with one pawn move."
+ },
+ "e4 c6 Nc3 d5": {
+  "note": "Black follows the standard plan, attacking e4 with a pawn backed by c6.",
+  "cue": "Stick to the plan: challenge e4 with a supported pawn."
+ },
+ "e4 c6 Nf3 d5": {
+  "note": "Black hits e4 at once; it is not defended, so White must guard it, trade, or push.",
+  "cue": "Attack the e4-pawn with a pawn that the c6-pawn supports."
+ },
+ "e4 c6 Qf3 d5": {
+  "note": "Black takes the centre; the queen on f3 blocks White's natural knight square, so ...dxe4 can even gain time on it.",
+  "cue": "Ignore the queen and challenge e4 with a supported pawn."
+ },
+ "e4 c6 d3 d5": {
+  "note": "Black takes the centre as usual; against a slow d3 Black can aim for ...e5 too.",
+  "cue": "White played slowly — challenge e4 with a supported pawn."
+ },
+ "e4 c6 d4 d5": {
+  "note": "The point of 1...c6: Black hits e4, and if White trades on d5 the c-pawn recaptures, keeping a pawn in the centre.",
+  "cue": "Attack the e4-pawn with a pawn that the c6-pawn supports."
+ },
+ "e4 d5 exd5 Nf6": {
+  "note": "Black doesn't rush to take back with the queen; the knight will recapture on d5 instead, avoiding being chased around."
+ },
+ "e4 d5 exd5 Qxd5": {
+  "note": "Black wins the pawn back with the queen. It stands well in the centre for now, but an early queen is a target White can gain time against."
+ },
+ "e4 d6 d4 Nf6": {
+  "note": "Black develops and attacks e4, threatening to win it, so White needs to defend it."
+ },
+ "e4 e5 Bc4 Nf6": {
+  "note": "Black develops and hits the e4-pawn, which nothing protects, so ...Nxe4 is already a threat.",
+  "cue": "Develop a kingside piece that attacks White's undefended e-pawn."
+ },
+ "e4 e5 Nc3 Nf6": {
+  "note": "Black develops and puts pressure on e4, also eyeing ...d5 to free the position.",
+  "cue": "Develop a kingside piece that pressures White's e-pawn."
+ },
+ "e4 e5 Nf3 Bc5": {
+  "note": "Black develops the bishop toward f2 but leaves e5 undefended, so White can simply take a pawn."
+ },
+ "e4 e5 Nf3 Nc6": {
+  "note": "Black develops a knight and guards the e5-pawn that White's knight is attacking. The most natural reply: it fights for the centre and keeps options open."
+ },
+ "e4 e5 Nf3 Nf6": {
+  "note": "Instead of defending e5, Black counterattacks e4 with a developing move. This is the Petrov idea: symmetry and solidity.",
+  "cue": "Don't defend your pawn; develop a piece that hits White's e-pawn instead."
+ },
+ "e4 e5 Nf3 Qf6": {
+  "note": "Black defends e5 with the queen. It holds the pawn but takes the f6-square from Black's knight and puts the queen where it can be chased."
+ },
+ "e4 e5 Nf3 d5": {
+  "note": "The Elephant Gambit: Black counterattacks e4 instead of defending e5. It's risky — after exd5 Black is a pawn down and e5 is still under attack."
+ },
+ "e4 e5 Nf3 d6": {
+  "note": "Black defends e5 with a pawn — the Philidor Defence. Solid but passive: it shuts in the f8-bishop, so White should grab the centre and develop fast."
+ },
+ "e4 e5 Qf3 Nf6": {
+  "note": "Black develops, blocks the queen's f-file toward f7, and hits e4.",
+  "cue": "Develop a kingside piece that blocks the queen's line to f7."
+ },
+ "e4 e5 Qh5 Nc6": {
+  "note": "Black defends e5 with a developing move. The knight is better here than ...g6 at once, which would allow Qxe5+.",
+  "cue": "Your e-pawn is attacked: defend it while developing a piece."
+ },
+ "e4 e5 d3 Nf6": {
+  "note": "Black develops toward the centre and eyes e4, preparing ...d5 to grab more space.",
+  "cue": "Develop a kingside piece toward the centre, eyeing White's e-pawn."
+ },
+ "e4 e5 d4 exd4": {
+  "note": "Black takes the pawn. Now White has to recapture with the queen (or gambit it), and the queen in the centre becomes a target.",
+  "cue": "White's pawn is attacking yours: capture it."
+ },
+ "e4 e5 f4 exf4": {
+  "note": "Black accepts the pawn. It also threatens ...Qh4+, a nasty check now that the f-pawn is gone.",
+  "cue": "White offers a pawn: accept it."
+ },
+ "e4 e6 d4 d5": {
+  "note": "Black challenges e4 with the d-pawn, which is backed up by the e6-pawn. White must decide whether to defend, trade or push."
+ },
+ "e4 g6 d4 Bg7": {
+  "note": "Black fianchettoes the bishop, which presses on d4 along the long diagonal."
+ },
+ "Nf3 d5 d4 Nf6 Nc3": {
+  "note": "White develops the knight in front of the c-pawn and adds pressure on d5, often with ideas of Bf4 or Bg5."
+ },
+ "Nf3 d5 g3 c5 Bg2": {
+  "note": "White develops the bishop onto the long diagonal, where it puts pressure on d5 and the queenside, and gets ready to castle."
+ },
+ "b3 e5 Bb2 Nc6 g3": {
+  "note": "White plans a second fianchetto with Bg2, a slow, flank-based setup."
+ },
+ "c4 e5 b4 Bxb4 Bb2": {
+  "note": "White develops with gain of time, hitting the unprotected e5-pawn."
+ },
+ "d4 Nf6 Nf3 d5 Bf4": {
+  "note": "The London: White brings the dark bishop out before e3, so it is not stuck inside the pawn chain.",
+  "cue": "Develop your dark-squared bishop before your e-pawn blocks it in."
+ },
+ "d4 Nf6 Nf3 g6 Bf4": {
+  "note": "White sticks to the London plan: the dark bishop comes out before e3 can lock it in.",
+  "cue": "Get your dark bishop outside the pawn chain before playing your next pawn move."
+ },
+ "d4 d5 Bf4 c5 e3": {
+  "note": "White supports d4 with a pawn and opens the f1-bishop."
+ },
+ "d4 d5 Nc3 Nc6 Nf3": {
+  "note": "White develops and guards d4."
+ },
+ "d4 d5 Nf3 Nf6 Bf4": {
+  "note": "The London: White brings the dark bishop out before e3 locks it in, and gets ready to build the e3/c3 pawn chain.",
+  "cue": "Get your dark bishop out before your e-pawn closes it in."
+ },
+ "d4 d5 Nf3 Nf6 Nc3": {
+  "note": "White develops the knight in front of the c-pawn, adding pressure on d5 and hinting at e4 later."
+ },
+ "d4 d5 c4 c6 Nc3": {
+  "note": "White develops the queenside knight, adding pressure on d5 and getting ready for e4."
+ },
+ "d4 d5 c4 c6 Nf3": {
+  "note": "White develops, guards d4 and stops ...e5, keeping the pressure on the centre.",
+  "cue": "Bring out a kingside piece that also guards your d-pawn."
+ },
+ "d4 d5 c4 c6 cxd5": {
+  "note": "White goes for the Exchange Slav: a symmetrical, open c-file structure. Black has to recapture now, or dxc6 wins a pawn."
+ },
+ "d4 d5 c4 dxc4 Nf3": {
+  "note": "White develops and stops ...e5, which would challenge the centre, before winning back c4.",
+  "cue": "Develop a piece that stops Black from hitting back in the centre with the e-pawn."
+ },
+ "d4 d5 c4 e6 Nc3": {
+  "note": "White develops and adds pressure on d5, getting ready for Bg5 to pin the f6-knight.",
+  "cue": "Develop your queenside knight to add pressure on d5."
+ },
+ "d4 d5 e3 e6 Nf3": {
+  "note": "White develops and guards d4."
+ },
+ "e3 e5 Qh5 Nc6 Bc4": {
+  "note": "White adds the bishop to the queen and threatens Qxf7#, the classic beginner's mate."
+ },
+ "e4 c5 c3 Nf6 e5": {
+  "note": "White pushes the pawn forward with tempo, chasing the knight and gaining space. The pawn on e5 also keeps Black's pieces off f6 and d6.",
+  "cue": "Your e-pawn is attacked. Gain space by pushing it and attacking the knight."
+ },
+ "e4 c5 c3 d5 exd5": {
+  "note": "White takes the pawn. Black's queen will recapture, but with the c3-pawn in place it can't be chased by Nc3, so White plans d4 instead.",
+  "cue": "An enemy pawn is attacking your e-pawn. Capture it."
+ },
+ "e4 c6 Bc4 d5 exd5": {
+  "note": "White takes, removing the pawn that attacked the bishop and threatening dxc6."
+ },
+ "e4 c6 Nc3 d5 exd5": {
+  "note": "White trades on d5, threatening dxc6, and hopes for quick piece play."
+ },
+ "e4 c6 Nf3 d5 Nc3": {
+  "note": "White defends e4 by developing (the Two Knights set-up)."
+ },
+ "e4 c6 Qf3 d5 Bd3": {
+  "note": "White guards e4 with the bishop but blocks the d-pawn, so White's queenside stays stuck."
+ },
+ "e4 c6 d3 d5 Bd2": {
+  "note": "An odd developing move that doesn't fight for the centre, so Black grabs more space."
+ },
+ "e4 c6 d4 d5 Nc3": {
+  "note": "White defends e4 with a developing move — the main line. Black usually takes on e4 next."
+ },
+ "e4 c6 d4 d5 Nd2": {
+  "note": "White defends e4 with the knight, keeping the c-pawn free. Black usually takes on e4 next."
+ },
+ "e4 c6 d4 d5 e5": {
+  "note": "The Advance: White gains space and cramps Black's kingside knight, but gives up pressure on d5."
+ },
+ "e4 c6 d4 d5 exd5": {
+  "note": "The Exchange: White trades the centre pawns, aiming for quick, simple development. It also threatens dxc6.",
+  "cue": "Release the tension in the centre with a capture."
+ },
+ "e4 d5 exd5 Nf6 d4": {
+  "note": "White ignores the attack on d5 and builds the centre. Black can win the pawn back with the knight, but White is left with a strong pawn on d4.",
+  "cue": "Don't hang on to the extra pawn — build your centre and free your bishop."
+ },
+ "e4 d5 exd5 Qxd5 Nc3": {
+  "note": "White develops with tempo: the knight hits the undefended queen, which must move again, so White gets ahead in development.",
+  "cue": "Develop a piece that attacks the enemy queen in the centre."
+ },
+ "e4 d6 d4 Nf6 Nc3": {
+  "note": "White develops while guarding e4, the most natural way to meet the threat.",
+  "cue": "Your e-pawn is attacked. Defend it while developing a piece."
+ },
+ "e4 e5 Bc4 Nf6 Nf3": {
+  "note": "White develops and counterattacks e5 instead of defending e4. Both centre pawns are now loose, and White hopes the bishop on c4 gives play against f7."
+ },
+ "e4 e5 Bc4 Nf6 Qf3": {
+  "note": "White defends e4 with the queen and lines it up with the bishop against f7. The knight on f6 blocks that for now, but the early queen can be chased."
+ },
+ "e4 e5 Nc3 Nf6 Bc4": {
+  "note": "White aims the bishop at f7, keeping the option of f4 later.",
+  "cue": "Develop your kingside bishop to its most active diagonal."
+ },
+ "e4 e5 Nc3 Nf6 Nf3": {
+  "note": "White develops naturally, attacking e5 and clearing the way to castle."
+ },
+ "e4 e5 Nf3 Bc5 Nxe5": {
+  "note": "White takes the free pawn. The knight is strong on e5 and eyes f7.",
+  "cue": "Black's e5-pawn has no defender — take it."
+ },
+ "e4 e5 Nf3 Nc6 Bb5": {
+  "note": "White develops and attacks the c6-knight, the defender of e5. It's not an immediate threat, but the pressure on e5 lasts all game. The Ruy Lopez.",
+  "cue": "Develop a bishop so that it attacks the knight that guards Black's e5-pawn."
+ },
+ "e4 e5 Nf3 Nc6 Bc4": {
+  "note": "White develops the bishop to its best diagonal, aiming at f7 — the weakest point near Black's king — and gets ready to castle. The Italian Game.",
+  "cue": "Develop a bishop to a diagonal that aims at Black's weak f7-square."
+ },
+ "e4 e5 Nf3 Nc6 d4": {
+  "note": "White strikes the centre at once, attacking e5 a second time. The Scotch: White opens lines early and aims for quick, easy development.",
+  "cue": "Attack Black's e5-pawn again — with a pawn, right in the centre."
+ },
+ "e4 e5 Nf3 Nf6 Bc4": {
+  "note": "White develops the bishop toward f7 but leaves e4 undefended, so Black can take it."
+ },
+ "e4 e5 Nf3 Nf6 Nc3": {
+  "note": "White defends e4 with a developing move instead of grabbing on e5. It is a calm, natural set-up that avoids the sharp Petrov lines."
+ },
+ "e4 e5 Nf3 Nf6 Nxe5": {
+  "note": "White takes the pawn at once. The knight on e5 now eyes f7, and Black has to be careful how to win the pawn back.",
+  "cue": "Take the pawn that your opponent left undefended."
+ },
+ "e4 e5 Nf3 Nf6 d3": {
+  "note": "White simply defends e4. It is passive, but now Nxe5 really wins a pawn, since ...Nxe4 is no longer possible."
+ },
+ "e4 e5 Nf3 Nf6 d4": {
+  "note": "White opens the centre at once (the Steinitz idea): the d-pawn joins the fight for e5 and opens the queen's line."
+ },
+ "e4 e5 Nf3 Qf6 Bc4": {
+  "note": "White develops toward f7 and gets ready to castle. Black's queen on f6 isn't doing much, so White simply develops.",
+  "cue": "Develop a bishop toward f7 and get ready to castle."
+ },
+ "e4 e5 Nf3 d5 exd5": {
+  "note": "White simply takes the pawn. Black's e5-pawn is still attacked, so White is already doing well.",
+  "cue": "Black offered a pawn — take it."
+ },
+ "e4 e5 Nf3 d6 d4": {
+  "note": "White strikes the centre with a pawn, attacking e5 again. Keep the tension and develop; trading with dxe5 early usually helps Black.",
+  "cue": "Black's play is passive — challenge e5 with a pawn and claim the centre."
+ },
+ "e4 e5 Qf3 Nf6 Bc4": {
+  "note": "White adds the bishop to the pressure on f7, but the knight on f6 holds that line shut."
+ },
+ "e4 e5 Qh5 Nc6 Bc4": {
+  "note": "White adds the bishop to the attack on f7: Qxf7 is now checkmate unless Black does something."
+ },
+ "e4 e5 d3 Nf6 Bg5": {
+  "note": "White develops and pins the f6-knight to the queen. It is annoying but not dangerous; Black just keeps developing."
+ },
+ "e4 e5 d3 Nf6 Nh3": {
+  "note": "An odd square for the knight: from h3 it can jump to g5, but it is far from the centre and can be hit by the c8-bishop."
+ },
+ "e4 e5 d4 exd4 Qxd4": {
+  "note": "White wins back the pawn, but the queen comes out early and Black can gain time by attacking it with a developing move."
+ },
+ "e4 e5 d4 exd4 e5": {
+  "note": "White pushes past instead of recapturing, hoping to cramp Black's pieces, but this leaves e5 loose and lets Black keep the extra pawn for now."
+ },
+ "e4 e5 f4 exf4 Nf3": {
+  "note": "White develops and covers h4, stopping ...Qh4+. White plans to regain the f4-pawn later."
+ },
+ "e4 e6 d4 d5 e5": {
+  "note": "White pushes past to gain space. The e5-pawn takes the f6-square from Black's knight and cramps Black's kingside.",
+  "cue": "Your e-pawn is attacked. Gain space instead of trading or defending."
+ },
+ "e4 g6 d4 Bg7 Nf3": {
+  "note": "White develops the knight, guards d4 against the g7-bishop and prepares to castle.",
+  "cue": "Develop a piece that defends your d-pawn from the bishop's pressure."
+ },
+ "Nf3 d5 d4 Nf6 Nc3 g6": {
+  "note": "Black prepares to fianchetto the dark bishop on g7, where it will guard the castled king and aim at the centre along the long diagonal.",
+  "cue": "Make room for your dark bishop to go to the long diagonal."
+ },
+ "Nf3 d5 g3 c5 Bg2 Nf6": {
+  "note": "Black develops, defends d5 and prepares to castle.",
+  "cue": "Develop a kingside piece that defends your centre pawn."
+ },
+ "b3 e5 Bb2 Nc6 g3 d5": {
+  "note": "Black puts a second pawn in the centre, building a broad pawn centre while White sits on the flanks.",
+  "cue": "White is slow — build a full pawn centre."
+ },
+ "c4 e5 b4 Bxb4 Bb2 d6": {
+  "note": "Black solidly guards e5 with a pawn and opens the c8-bishop. Black stays a clean pawn up.",
+  "cue": "Your centre pawn is attacked — protect it with a pawn and free your light bishop."
+ },
+ "d4 Nf6 Nf3 d5 Bf4 c5": {
+  "note": "Black attacks d4 right away. This is the most testing plan against the London, aiming at b2 next with ...Qb6."
+ },
+ "d4 Nf6 Nf3 g6 Bf4 Bg7": {
+  "note": "Black finishes the fianchetto. The bishop sits on the long diagonal behind the f6-knight and comes alive once the centre opens."
+ },
+ "d4 d5 Bf4 c5 e3 cxd4": {
+  "note": "Black exchanges in the centre; White must recapture or lose a pawn.",
+  "cue": "Exchange pawns in the centre."
+ },
+ "d4 d5 Nc3 Nc6 Nf3 Nf6": {
+  "note": "Black develops the other knight, guarding d5 and controlling e4.",
+  "cue": "Develop your other knight, guarding your centre pawn."
+ },
+ "d4 d5 Nf3 Nf6 Bf4 Bf5": {
+  "note": "Black mirrors the London, bringing the light bishop out before ...e6 so it won't be shut in.",
+  "cue": "Copy White's idea: get your light bishop outside before your e-pawn moves."
+ },
+ "d4 d5 Nf3 Nf6 Bf4 c5": {
+  "note": "Black hits d4 at once, the most direct way to bother the London. The b2-pawn will be a target too."
+ },
+ "d4 d5 Nf3 Nf6 Nc3 g6": {
+  "note": "Black prepares a kingside fianchetto, so the bishop on g7 will guard Black's king and aim along the long diagonal at the centre.",
+  "cue": "Make room for your dark bishop on the long diagonal."
+ },
+ "d4 d5 c4 c6 Nc3 Nf6": {
+  "note": "Black develops the knight to its natural square, guarding d5 and keeping White from playing e4.",
+  "cue": "Develop a kingside piece that guards your centre pawn and watches e4."
+ },
+ "d4 d5 c4 c6 Nf3 Nf6": {
+  "note": "Black develops the knight to its best square, guarding d5 and the e4-square.",
+  "cue": "Develop the piece that also protects your centre pawn and watches e4."
+ },
+ "d4 d5 c4 c6 cxd5 cxd5": {
+  "note": "Black recaptures with the c-pawn, keeping a pawn on d5 and a symmetrical, rock-solid centre.",
+  "cue": "White took in the centre — recapture so you keep a pawn there."
+ },
+ "d4 d5 c4 dxc4 Nf3 Nf6": {
+  "note": "Black develops, controlling e4 and d5."
+ },
+ "d4 d5 c4 e6 Nc3 Nf6": {
+  "note": "Black develops and defends d5 again."
+ },
+ "d4 d5 e3 e6 Nf3 Nf6": {
+  "note": "Black develops, guarding d5 and controlling e4.",
+  "cue": "Develop a kingside piece toward the centre."
+ },
+ "e3 e5 Qh5 Nc6 Bc4 d5": {
+  "note": "Black blocks the bishop's diagonal to f7, so mate is off, and attacks the bishop at the same time, gaining space and opening the c8-bishop.",
+  "cue": "White is aiming at f7 — block the bishop's line with a pawn that also attacks it."
+ },
+ "e4 c5 c3 Nf6 e5 Nd5": {
+  "note": "The knight goes to the strong central d5-square. Since White's own pawn sits on c3, White can't kick it with c4 in one move, so White develops instead."
+ },
+ "e4 c5 c3 d5 exd5 Qxd5": {
+  "note": "Black recaptures with the queen, which is strong in the centre here because White's c3-pawn has taken the knight's best square."
+ },
+ "e4 c6 Bc4 d5 exd5 cxd5": {
+  "note": "Black recaptures and attacks the bishop again, now threatening dxc4. White has lost time with the bishop.",
+  "cue": "Recapture in a way that attacks White's bishop again."
+ },
+ "e4 c6 Nc3 d5 exd5 cxd5": {
+  "note": "Black recaptures with the pawn and keeps a strong pawn in the centre.",
+  "cue": "Recapture so that you keep a pawn in the centre."
+ },
+ "e4 c6 Nf3 d5 Nc3 Bg4": {
+  "note": "Black develops the light bishop actively, pinning the f3-knight to the queen and loosening White's grip on e5 and d4.",
+  "cue": "Develop your light bishop actively against the f3-knight."
+ },
+ "e4 c6 Qf3 d5 Bd3 e5": {
+  "note": "Black builds a big pawn centre and frees the dark bishop; White's awkward set-up can't challenge it.",
+  "cue": "White is passive — take more central space with a pawn."
+ },
+ "e4 c6 d3 d5 Bd2 e5": {
+  "note": "Black builds a big pawn centre and frees the f8-bishop. White's slow set-up has handed Black the middle.",
+  "cue": "White is passive — take more central space with a pawn."
+ },
+ "e4 c6 d4 d5 Nc3 dxe4": {
+  "note": "Black trades off White's e4-pawn, opening the way to develop the light bishop with tempo on the e4-knight.",
+  "cue": "Remove White's e4-pawn so you can free your pieces."
+ },
+ "e4 c6 d4 d5 Nd2 dxe4": {
+  "note": "Black removes the e4-pawn; with the knight on d2 blocking the queen, d4 is loose, so White must recapture at once.",
+  "cue": "Remove White's e4-pawn so you can free your pieces."
+ },
+ "e4 c6 d4 d5 e5 Bf5": {
+  "note": "Black brings the light bishop out BEFORE playing ...e6, so it isn't shut in behind the pawns. This is the key Caro-Kann idea.",
+  "cue": "Get your light-squared bishop outside the pawn chain before you lock it in."
+ },
+ "e4 c6 d4 d5 exd5 cxd5": {
+  "note": "Black recaptures with the c-pawn, keeping a strong pawn on d5 and opening the c-file for later.",
+  "cue": "Recapture so that you keep a pawn in the centre."
+ },
+ "e4 d5 exd5 Nf6 d4 Nxd5": {
+  "note": "Black regains the pawn with the knight, which stands centrally on d5 but can later be hit by c4."
+ },
+ "e4 d5 exd5 Qxd5 Nc3 Qa5": {
+  "note": "Black's queen escapes to a5, out of the way of White's pieces. From there it watches the c3-knight and the a5-e1 diagonal, and can combine with ...Bb4 later."
+ },
+ "e4 d5 exd5 Qxd5 Nc3 Qd6": {
+  "note": "Black's queen retreats to d6 instead. It stays central and eyes h2, but can be hit again by Nb5 or Bf4 later."
+ },
+ "e4 d6 d4 Nf6 Nc3 g6": {
+  "note": "Black prepares ...Bg7, where the bishop will press against White's centre on the long diagonal."
+ },
+ "e4 e5 Bc4 Nf6 Nf3 Nxe4": {
+  "note": "Black accepts and takes the pawn. The knight is active, and Black will answer White's Nxe5 with ...d5.",
+  "cue": "White left a centre pawn hanging: take it."
+ },
+ "e4 e5 Bc4 Nf6 Qf3 d5": {
+  "note": "Black hits back in the centre: the pawn attacks the c4-bishop, and opening lines suits Black, who is better developed than White's lone queen.",
+  "cue": "Attack White's bishop with a central pawn and open lines for your pieces."
+ },
+ "e4 e5 Nc3 Nf6 Bc4 Bc5": {
+  "note": "Black develops actively too, aiming at f2 and preparing to castle.",
+  "cue": "Develop your kingside bishop to the diagonal pointing at White's weak f-pawn."
+ },
+ "e4 e5 Nc3 Nf6 Bc4 Nc6": {
+  "note": "Black develops calmly and avoids the risky ...Nxe4 lines."
+ },
+ "e4 e5 Nc3 Nf6 Bc4 Nxe4": {
+  "note": "Black grabs e4 with the 'fork trick' idea: if Nxe4, then ...d5 forks bishop and knight and wins the piece back. But it lets White's queen into the game."
+ },
+ "e4 e5 Nc3 Nf6 Nf3 Nc6": {
+  "note": "Black defends e5 with a developing move. All four knights are out: the Four Knights Game.",
+  "cue": "Your e-pawn is attacked: defend it while developing."
+ },
+ "e4 e5 Nf3 Bc5 Nxe5 Qh4": {
+  "note": "Black's queen hunts for counterplay: it threatens Qxf2 mate (with the bishop's help) and also attacks e4."
+ },
+ "e4 e5 Nf3 Nc6 Bb5 Nf6": {
+  "note": "Black develops and hits e4 right away instead of ...a6. This is the solid Berlin Defence."
+ },
+ "e4 e5 Nf3 Nc6 Bb5 a6": {
+  "note": "Black asks the bishop a question right away. White can't win e5 yet (Bxc6 then Nxe5 runs into ...Qd4), so the bishop usually retreats."
+ },
+ "e4 e5 Nf3 Nc6 Bc4 Bc5": {
+  "note": "Black mirrors White: the bishop takes an active diagonal aimed at f2, and Black is ready to develop the kingside."
+ },
+ "e4 e5 Nf3 Nc6 Bc4 Nf6": {
+  "note": "Black develops and counterattacks e4 instead of copying White. This is the Two Knights; White should defend calmly."
+ },
+ "e4 e5 Nf3 Nc6 d4 exd4": {
+  "note": "Black takes, because the e5-pawn was attacked twice and could not hold. Black gives up the centre pawn but gets White's d-pawn off the board."
+ },
+ "e4 e5 Nf3 Nf6 Bc4 Nxe4": {
+  "note": "Black takes the free pawn. The knight is active, and if Nxe5 comes, Black blocks the bishop with ...d5.",
+  "cue": "White left the e-pawn undefended: take it."
+ },
+ "e4 e5 Nf3 Nf6 Nc3 Nc6": {
+  "note": "Black copies: develop the knight and defend e5. Now all four knights are out (the Four Knights Game).",
+  "cue": "Develop a queenside piece that also protects your e-pawn."
+ },
+ "e4 e5 Nf3 Nf6 Nxe5 Nxe4": {
+  "note": "Black copies White and grabs e4 at once — a known mistake. It walks into Qe2, where the knight is attacked and can't simply retreat."
+ },
+ "e4 e5 Nf3 Nf6 Nxe5 d6": {
+  "note": "Black kicks the knight first and only then takes on e4. Copying at once with ...Nxe4 is a known trap: after Qe2, the retreat ...Nf6?? loses the queen to Nc6+.",
+  "cue": "Before grabbing back a pawn, first chase White's knight away with a pawn."
+ },
+ "e4 e5 Nf3 Nf6 d3 Nc6": {
+  "note": "Black defends e5 with a developing move, stopping Nxe5.",
+  "cue": "Your e-pawn is now genuinely attacked: defend it with a developing move."
+ },
+ "e4 e5 Nf3 Nf6 d4 Nxe4": {
+  "note": "Black grabs the e4-pawn while it is undefended. The knight is active in the centre and Black will defend it with ...d5.",
+  "cue": "One of White's centre pawns is loose: take it."
+ },
+ "e4 e5 Nf3 Qf6 Bc4 Bc5": {
+  "note": "Black develops the bishop on its active diagonal toward f2."
+ },
+ "e4 e5 Nf3 d5 exd5 Nf6": {
+  "note": "Black develops instead of recapturing, hoping to win back d5 later. Meanwhile e5 is left undefended."
+ },
+ "e4 e5 Nf3 d5 exd5 Qxd5": {
+  "note": "Black recaptures with the queen and wins the pawn back, but the queen is out early and can be chased with tempo."
+ },
+ "e4 e5 Nf3 d6 d4 exd4": {
+  "note": "Black gives up the centre to free the position. White recaptures and keeps a nice space advantage."
+ },
+ "e4 e5 Nf3 d6 d4 f6": {
+  "note": "Black props up e5 with the f-pawn. It holds the centre, but takes f6 away from the knight and weakens the diagonal toward Black's king."
+ },
+ "e4 e5 Qf3 Nf6 Bc4 d5": {
+  "note": "Black hits the bishop with a central pawn, opening lines while White has only the queen and bishop out.",
+  "cue": "Attack White's bishop with a central pawn."
+ },
+ "e4 e5 Qh5 Nc6 Bc4 g6": {
+  "note": "Black stops the mate threat by attacking the queen with a pawn. The queen must move, and the bishop can later go to g7.",
+  "cue": "Mate is threatened on f7: kick the queen away with a pawn."
+ },
+ "e4 e5 d3 Nf6 Bg5 Nc6": {
+  "note": "Black ignores the pin and develops, keeping ...d5 and ...h6 in reserve.",
+  "cue": "Ignore the pin for now and develop another piece toward the centre."
+ },
+ "e4 e5 d3 Nf6 Nh3 d5": {
+  "note": "Black takes the centre with a pawn and opens the c8-bishop's diagonal toward the knight on h3; ...Bxh3 would wreck White's kingside pawns.",
+  "cue": "Grab the centre with a pawn that also opens your light-squared bishop's diagonal."
+ },
+ "e4 e5 d4 exd4 Qxd4 Nc6": {
+  "note": "Black develops with tempo by attacking the queen, which has to move again.",
+  "cue": "White's queen is in the centre: develop a piece that attacks it."
+ },
+ "e4 e5 d4 exd4 e5 d6": {
+  "note": "Black attacks the advanced e5-pawn right away and opens the c8-bishop.",
+  "cue": "Strike at White's advanced e-pawn with a pawn."
+ },
+ "e4 e5 f4 exf4 Nf3 Nf6": {
+  "note": "Black develops and attacks the e4-pawn, which has no defender.",
+  "cue": "Develop a kingside piece that attacks White's undefended e-pawn."
+ },
+ "e4 e6 d4 d5 e5 c5": {
+  "note": "Black hits the base of White's pawn chain at d4 right away. This is Black's main way to fight the e5-d4 centre."
+ },
+ "e4 g6 d4 Bg7 Nf3 d6": {
+  "note": "Black controls e5 so White can't easily push e4-e5, and opens the c8-bishop."
+ },
+ "Nf3 d5 d4 Nf6 Nc3 g6 e3": {
+  "note": "White plays a quiet setup, opening the f1-bishop and supporting d4."
+ },
+ "Nf3 d5 g3 c5 Bg2 Nf6 O-O": {
+  "note": "White castles early. The king is safe behind the fianchetto before White starts any central play."
+ },
+ "b3 e5 Bb2 Nc6 g3 d5 Bg2": {
+  "note": "White aims the second bishop at d5, putting pressure on Black's centre."
+ },
+ "c4 e5 b4 Bxb4 Bb2 d6 e3": {
+  "note": "White opens the f1-bishop and controls d4, continuing development."
+ },
+ "d4 Nf6 Nf3 d5 Bf4 c5 e3": {
+  "note": "White supports d4 with a pawn and opens the f1-bishop.",
+  "cue": "Support your attacked d-pawn with a pawn."
+ },
+ "d4 Nf6 Nf3 g6 Bf4 Bg7 e3": {
+  "note": "White supports d4 and opens the f1-bishop, keeping a solid London structure.",
+  "cue": "Support your d-pawn and open the way for your other bishop."
+ },
+ "d4 d5 Bf4 c5 e3 cxd4 exd4": {
+  "note": "White recaptures toward the centre, keeping a pawn on d4 and opening the e-file and the f1-bishop."
+ },
+ "d4 d5 Nc3 Nc6 Nf3 Nf6 e3": {
+  "note": "White supports d4 and opens the f1-bishop, but the c1-bishop is now shut in."
+ },
+ "d4 d5 Nf3 Nf6 Bf4 Bf5 e3": {
+  "note": "White supports d4 and opens the f1-bishop."
+ },
+ "d4 d5 Nf3 Nf6 Bf4 c5 e3": {
+  "note": "White backs up d4 with a pawn and opens the f1-bishop's diagonal.",
+  "cue": "Support your attacked d-pawn with a pawn."
+ },
+ "d4 d5 Nf3 Nf6 Nc3 g6 e3": {
+  "note": "White plays quietly, supporting d4 and freeing the f1-bishop."
+ },
+ "d4 d5 c4 c6 Nc3 Nf6 Nf3": {
+  "note": "White develops the other knight, guarding d4 and getting ready to castle."
+ },
+ "d4 d5 c4 c6 Nf3 Nf6 Nc3": {
+  "note": "White develops the other knight, adding a third attacker on d5 and preparing e4.",
+  "cue": "Develop your queenside knight, adding pressure on the d5-pawn."
+ },
+ "d4 d5 c4 c6 Nf3 Nf6 e3": {
+  "note": "White plays quietly, protecting c4 so that ...dxc4 no longer wins a pawn, but it does shut in the c1-bishop."
+ },
+ "d4 d5 c4 c6 cxd5 cxd5 Nc3": {
+  "note": "White develops toward the centre and puts pressure on the d5-pawn."
+ },
+ "d4 d5 c4 dxc4 Nf3 Nf6 e3": {
+  "note": "White opens the f1-bishop to take back the c4-pawn.",
+  "cue": "Open a line for the piece that can win back your pawn."
+ },
+ "d4 d5 c4 e6 Nc3 Nf6 Bg5": {
+  "note": "White pins the f6-knight to the queen, weakening Black's control of d5 and e4.",
+  "cue": "Pin the knight that defends Black's centre pawn."
+ },
+ "d4 d5 e3 e6 Nf3 Nf6 Nbd2": {
+  "note": "White develops the knight to d2 to support a later e4 push."
+ },
+ "e3 e5 Qh5 Nc6 Bc4 d5 Bb3": {
+  "note": "White saves the bishop and keeps it on the diagonal aimed at d5, with f7 behind it."
+ },
+ "e4 c5 c3 Nf6 e5 Nd5 Nf3": {
+  "note": "White develops the knight, defends the e5-pawn and prepares Bc4 to hit the d5-knight.",
+  "cue": "Develop a piece that also protects your advanced e-pawn."
+ },
+ "e4 c5 c3 d5 exd5 Qxd5 d4": {
+  "note": "White claims the centre and challenges the c5-pawn. If Black takes on d4, White recaptures with the c-pawn and keeps a pawn in the middle.",
+  "cue": "Put your second centre pawn forward and challenge Black's c-pawn."
+ },
+ "e4 c6 Bc4 d5 exd5 cxd5 Bb3": {
+  "note": "The bishop retreats; Black has the centre pawn and will develop with gain of time."
+ },
+ "e4 c6 Nc3 d5 exd5 cxd5 Bb5+": {
+  "note": "White gives an early check to disturb Black, but it doesn't win anything; Black blocks while developing."
+ },
+ "e4 c6 Nf3 d5 Nc3 Bg4 d4": {
+  "note": "White takes the centre and prepares Be2 and castling."
+ },
+ "e4 c6 Qf3 d5 Bd3 e5 Ne2": {
+  "note": "White develops the knight to e2 (f3 is taken by the queen) and prepares to castle."
+ },
+ "e4 c6 d3 d5 Bd2 e5 Nf3": {
+  "note": "White develops and threatens Nxe5, winning a pawn."
+ },
+ "e4 c6 d4 d5 Nc3 dxe4 Nxe4": {
+  "note": "White wins the pawn back with the knight, which now sits in the centre."
+ },
+ "e4 c6 d4 d5 Nd2 dxe4 Nxe4": {
+  "note": "White regains the pawn, centralises the knight and reopens the queen's guard of d4."
+ },
+ "e4 c6 d4 d5 e5 Bf5 Nc3": {
+  "note": "A sharper set-up: White develops fast and eyes d5, planning g4 to chase the f5-bishop with gain of time."
+ },
+ "e4 c6 d4 d5 e5 Bf5 c3": {
+  "note": "White calmly supports d4 so it can't be undermined easily, planning Nf3 and Be2 with a quiet space edge."
+ },
+ "e4 c6 d4 d5 exd5 cxd5 Bd3": {
+  "note": "The calm Exchange: White aims the bishop at h7 and plans c3, Bf4 and Nf3 for easy development."
+ },
+ "e4 c6 d4 d5 exd5 cxd5 c4": {
+  "note": "The Panov: White attacks d5 again and fights for the centre, accepting a possibly isolated d-pawn for active play.",
+  "cue": "Attack Black's d5-pawn again with a pawn from the side."
+ },
+ "e4 d5 exd5 Nf6 d4 Nxd5 Nf3": {
+  "note": "White develops the kingside knight and prepares to castle. Moves like c4 or Bc4 can later push the d5-knight around.",
+  "cue": "Develop your kingside knight and get closer to castling."
+ },
+ "e4 d5 exd5 Qxd5 Nc3 Qa5 d4": {
+  "note": "White builds a big pawn centre and opens the c1-bishop. The d4-pawn is safe because White's queen guards it.",
+  "cue": "The queen has gone away — claim the centre with a pawn and free your bishop."
+ },
+ "e4 d5 exd5 Qxd5 Nc3 Qd6 d4": {
+  "note": "White grabs the centre with the d-pawn and opens the c1-bishop, which may later come to f4 and hit the queen again.",
+  "cue": "The queen retreated — build your centre with a pawn and free a bishop."
+ },
+ "e4 d6 d4 Nf6 Nc3 g6 Be3": {
+  "note": "White develops the bishop to support d4. Common plans are Qd2 and Bh6 to swap Black's fianchettoed bishop, or f3 to firm up e4.",
+  "cue": "Develop your dark-squared bishop to a square where it supports your d-pawn."
+ },
+ "e4 e5 Bc4 Nf6 Nf3 Nxe4 Nxe5": {
+  "note": "White wins back the pawn. Now White threatens Bxf7+, picking up a pawn and exposing Black's king."
+ },
+ "e4 e5 Bc4 Nf6 Qf3 d5 exd5": {
+  "note": "White captures the pawn that was attacking the c4-bishop, so the bishop is safe and White is a pawn up for the moment."
+ },
+ "e4 e5 Nc3 Nf6 Bc4 Bc5 Nf3": {
+  "note": "White develops with an attack on e5, which is unprotected: Nxe5 is now a threat."
+ },
+ "e4 e5 Nc3 Nf6 Bc4 Bc5 d3": {
+  "note": "White protects e4 from the f6-knight and opens the c1-bishop. Solid development; f4 or Nf3 can come next.",
+  "cue": "Your e4-pawn is attacked — guard it with a pawn that frees your bishop."
+ },
+ "e4 e5 Nc3 Nf6 Bc4 Nc6 d3": {
+  "note": "White guards e4 and opens the c1-bishop. Solid: White can follow with f4 or Nf3 and castle.",
+  "cue": "Your e4-pawn is attacked — guard it with a pawn that frees your bishop."
+ },
+ "e4 e5 Nc3 Nf6 Bc4 Nxe4 Qh5": {
+  "note": "White ignores the knight and threatens Qxf7 mate (bishop and queen both hit f7). Black's next moves are forced to defend.",
+  "cue": "Black's knight left f6 — bring your queen out with a mate threat on f7."
+ },
+ "e4 e5 Nc3 Nf6 Nf3 Nc6 Bc4": {
+  "note": "White aims the bishop at f7 and gets ready to castle. It allows the trick ...Nxe4 Nxe4 d5, regaining the piece with a fork of bishop and knight."
+ },
+ "e4 e5 Nf3 Bc5 Nxe5 Qh4 d4": {
+  "note": "White blocks the bishop's line to f2, stopping the mate, and attacks the bishop at the same time.",
+  "cue": "Block the bishop's line to f2 with a pawn that also attacks it."
+ },
+ "e4 e5 Nf3 Nc6 Bb5 Nf6 O-O": {
+  "note": "White castles and lets e4 go, because d4 and Re1 will win the pawn back quickly.",
+  "cue": "Leave the e4-pawn: get your king safe first."
+ },
+ "e4 e5 Nf3 Nc6 Bb5 a6 Ba4": {
+  "note": "White keeps the bishop and the pressure on c6 instead of trading. From a4 it can later drop back to b3, aimed at f7.",
+  "cue": "Your bishop is attacked — keep it on the same diagonal, still pinning down the c6-knight."
+ },
+ "e4 e5 Nf3 Nc6 Bc4 Bc5 c3": {
+  "note": "White prepares d4 to build a big pawn centre, and the c3-pawn also takes the d4-square away from Black's pieces.",
+  "cue": "Prepare to build a big centre: a small pawn move that supports a later d4."
+ },
+ "e4 e5 Nf3 Nc6 Bc4 Nf6 d3": {
+  "note": "White guards e4 with a pawn and opens the c1-bishop. Quiet and solid — White avoids sharp lines and keeps a healthy centre.",
+  "cue": "Your e4-pawn is attacked — defend it with a pawn that also frees your bishop."
+ },
+ "e4 e5 Nf3 Nc6 d4 exd4 Nxd4": {
+  "note": "White recaptures and wins the pawn back, with a strong knight in the middle and the queen's d-file open. Now White just develops.",
+  "cue": "Win back the pawn you gave — recapture with a piece that becomes strong in the centre."
+ },
+ "e4 e5 Nf3 Nf6 Bc4 Nxe4 Nxe5": {
+  "note": "White wins back the pawn and now threatens Bxf7+, winning a pawn and dragging the king out."
+ },
+ "e4 e5 Nf3 Nf6 Bc4 Nxe4 d3": {
+  "note": "White kicks the knight with a pawn and opens the c1-bishop, but stays a pawn down."
+ },
+ "e4 e5 Nf3 Nf6 Nc3 Nc6 Bb5": {
+  "note": "White develops the bishop with pressure on the c6-knight, which defends e5, and clears the way to castle."
+ },
+ "e4 e5 Nf3 Nf6 Nxe5 Nxe4 Qe2": {
+  "note": "White attacks the e4-knight, and if it retreats, Nc6+ is a discovered check that wins Black's queen. Black's best is ...Qe7.",
+  "cue": "Attack Black's knight in a way that sets up a discovered check on the e-file."
+ },
+ "e4 e5 Nf3 Nf6 Nxe5 d6 Nf3": {
+  "note": "The knight retreats to its best square. White keeps the extra pawn for now, but Black is about to win it back on e4.",
+  "cue": "Your knight is attacked: send it back to its most natural square."
+ },
+ "e4 e5 Nf3 Nf6 Nxe5 d6 Nxf7": {
+  "note": "A tempting sacrifice: the knight hits Black's queen and rook. White gets two pawns and an exposed king for the piece, which is not enough."
+ },
+ "e4 e5 Nf3 Nf6 d3 Nc6 Be2": {
+  "note": "White develops modestly and prepares to castle, but does nothing to stop Black taking the centre."
+ },
+ "e4 e5 Nf3 Nf6 d3 Nc6 Bg5": {
+  "note": "White develops and pins the f6-knight to the queen."
+ },
+ "e4 e5 Nf3 Nf6 d4 Nxe4 Bd3": {
+  "note": "White develops with an attack on the e4-knight, which has no defender yet, and clears the way to castle."
+ },
+ "e4 e5 Nf3 Qf6 Bc4 Bc5 O-O": {
+  "note": "White castles, getting the king safe and the rook ready for the centre.",
+  "cue": "Get your king to safety."
+ },
+ "e4 e5 Nf3 d5 exd5 Nf6 Nxe5": {
+  "note": "White takes a second pawn on e5. The knight is strong in the centre and eyes f7.",
+  "cue": "Black left a pawn unprotected — capture it."
+ },
+ "e4 e5 Nf3 d5 exd5 Qxd5 Nc3": {
+  "note": "White develops with tempo by attacking the queen. Every queen move gives White another free developing move.",
+  "cue": "Develop a piece that attacks Black's queen."
+ },
+ "e4 e5 Nf3 d6 d4 exd4 Nxd4": {
+  "note": "White recaptures with the knight, which sits strongly in the centre. Now develop quickly: Nc3, Bc4 or Be2, and castle.",
+  "cue": "Win back the pawn by capturing with a piece that lands in the centre."
+ },
+ "e4 e5 Nf3 d6 d4 f6 Bc4": {
+  "note": "White develops onto the diagonal that ...f6 opened: the bishop eyes g8 and makes kingside castling hard for Black.",
+  "cue": "Black's f-pawn move opened a diagonal toward the king — develop a piece onto it."
+ },
+ "e4 e5 Qf3 Nf6 Bc4 d5 exd5": {
+  "note": "White captures the pawn that was attacking the c4-bishop, saving the bishop and winning a pawn for the moment."
+ },
+ "e4 e5 Qh5 Nc6 Bc4 g6 Qf3": {
+  "note": "The queen retreats but keeps the threat of mate on f7 together with the c4-bishop."
+ },
+ "e4 e5 d3 Nf6 Bg5 Nc6 f3": {
+  "note": "White props up e4 again, but this weakens the kingside and takes the f3-square away from the g1-knight."
+ },
+ "e4 e5 d3 Nf6 Nh3 d5 exd5": {
+  "note": "White trades off Black's central pawn, but this only helps Black's knight come to the centre."
+ },
+ "e4 e5 d4 exd4 Qxd4 Nc6 Qa4": {
+  "note": "The queen escapes to a4, eyeing the c6-knight and guarding e4 along the 4th rank. It is safe there for now, though a bit offside."
+ },
+ "e4 e5 d4 exd4 e5 d6 Qxd4": {
+  "note": "White regains a pawn and the queen defends e5, but the queen in the centre can be hit by Black's knight."
+ },
+ "e4 e5 f4 exf4 Nf3 Nf6 d3": {
+  "note": "White defends e4 and opens the c1-bishop to win back the f4-pawn."
+ },
+ "e4 e6 d4 d5 e5 c5 c3": {
+  "note": "White supports d4 with another pawn, so that if Black takes on d4 White can recapture with a pawn and keep the chain intact.",
+  "cue": "Black is attacking the base of your pawn chain. Support it with a pawn."
+ },
+ "e4 g6 d4 Bg7 Nf3 d6 Nc3": {
+  "note": "White develops the knight, supporting e4 and building a solid centre before Black can attack it.",
+  "cue": "Develop another piece, protecting your e-pawn."
+ },
+ "Nf3 d5 d4 Nf6 Nc3 g6 e3 Bg7": {
+  "note": "Black finishes the fianchetto. The bishop guards the king and sits on the long diagonal, ready for when the f6-knight moves. Castling is next.",
+  "cue": "Finish what your last pawn move prepared."
+ },
+ "Nf3 d5 g3 c5 Bg2 Nf6 O-O e6": {
+  "note": "Black backs up d5 and opens the f8-bishop, getting ready to castle with a solid pawn centre.",
+  "cue": "Strengthen your centre pawn and free your dark bishop at the same time."
+ },
+ "b3 e5 Bb2 Nc6 g3 d5 Bg2 Nf6": {
+  "note": "Black develops and adds a defender to d5, keeping the centre solid before castling.",
+  "cue": "Defend your attacked centre pawn by developing a piece."
+ },
+ "c4 e5 b4 Bxb4 Bb2 d6 e3 Nf6": {
+  "note": "Black develops and prepares to castle.",
+  "cue": "Develop a kingside piece so you can castle soon."
+ },
+ "d4 Nf6 Nf3 d5 Bf4 c5 e3 Qb6": {
+  "note": "Black targets b2, which the bishop left undefended when it went to f4, and adds pressure on d4."
+ },
+ "d4 Nf6 Nf3 g6 Bf4 Bg7 e3 d6": {
+  "note": "Black prepares ...e5 to challenge White's centre and the f4-bishop."
+ },
+ "d4 d5 Bf4 c5 e3 cxd4 exd4 Nc6": {
+  "note": "Black develops and targets d4, which no longer has a c- or e-pawn next to it to defend it.",
+  "cue": "Develop a piece that targets White's d-pawn."
+ },
+ "d4 d5 Nc3 Nc6 Nf3 Nf6 e3 Bf5": {
+  "note": "Black develops the light bishop to an active square, eyeing c2 and keeping e4 under control.",
+  "cue": "Develop your light bishop actively before your e-pawn moves."
+ },
+ "d4 d5 Nf3 Nf6 Bf4 Bf5 e3 e6": {
+  "note": "Black does the same: opens the dark bishop and holds d5 firmly.",
+  "cue": "Free your dark bishop and strengthen your centre pawn."
+ },
+ "d4 d5 Nf3 Nf6 Bf4 c5 e3 Nc6": {
+  "note": "Black develops and adds more pressure on d4."
+ },
+ "d4 d5 Nf3 Nf6 Nc3 g6 e3 Bg7": {
+  "note": "Black finishes the fianchetto: the bishop guards the king and waits on the long diagonal behind the f6-knight. Castling is next.",
+  "cue": "Finish what your last pawn move prepared."
+ },
+ "d4 d5 c4 c6 Nc3 Nf6 Nf3 dxc4": {
+  "note": "Black takes the c4-pawn. With ...c6 already played, ...b5 could protect it, so White has to spend time getting it back.",
+  "cue": "Now it's time to take the pawn White offered."
+ },
+ "d4 d5 c4 c6 Nf3 Nf6 Nc3 dxc4": {
+  "note": "Black grabs the c4-pawn. With ...c6 already played, Black can try to keep it with ...b5, so White must spend time winning it back.",
+  "cue": "Now it's time to take the pawn White offered."
+ },
+ "d4 d5 c4 c6 Nf3 Nf6 Nc3 e6": {
+  "note": "Black supports d5 with both c- and e-pawns, making a very solid centre (the Semi-Slav)."
+ },
+ "d4 d5 c4 c6 Nf3 Nf6 e3 Bf5": {
+  "note": "Black gets the light bishop out before ...e6 locks it in. That is the main reason for playing ...c6 instead of ...e6.",
+  "cue": "White closed in their own bishop — get yours outside the pawn chain first."
+ },
+ "d4 d5 c4 c6 cxd5 cxd5 Nc3 Nf6": {
+  "note": "Black develops and defends d5 a second time.",
+  "cue": "Develop a kingside piece that protects your centre pawn."
+ },
+ "d4 d5 c4 dxc4 Nf3 Nf6 e3 e6": {
+  "note": "Black gives the pawn back and opens the f8-bishop, preparing ...c5 and castling."
+ },
+ "d4 d5 c4 e6 Nc3 Nf6 Bg5 Be7": {
+  "note": "Black breaks the pin by developing the bishop, and gets ready to castle."
+ },
+ "d4 d5 e3 e6 Nf3 Nf6 Nbd2 b6": {
+  "note": "Black prepares ...Bb7, putting the light bishop on the long diagonal where it can fight for e4.",
+  "cue": "Prepare a fianchetto for your light-squared bishop."
+ },
+ "e3 e5 Qh5 Nc6 Bc4 d5 Bb3 Nf6": {
+  "note": "Black develops and attacks the queen, so White has to spend another move on it. This is how Black gets ahead in development.",
+  "cue": "Develop a piece and attack White's queen with it at the same time."
+ },
+ "e4 c5 c3 Nf6 e5 Nd5 Nf3 Nc6": {
+  "note": "Black develops and adds pressure on e5, the key pawn in White's centre."
+ },
+ "e4 c5 c3 d5 exd5 Qxd5 d4 Nf6": {
+  "note": "Black develops the knight instead of exchanging on d4, keeping the queen strong in the centre."
+ },
+ "e4 c5 c3 d5 exd5 Qxd5 d4 cxd4": {
+  "note": "Black trades pawns on d4, leaving White with an isolated d-pawn that can become a target later."
+ },
+ "e4 c6 Bc4 d5 exd5 cxd5 Bb3 Nc6": {
+  "note": "Black develops and adds control of d4 and e5; the d5-pawn is still guarded by the queen.",
+  "cue": "Develop a queenside piece toward the centre."
+ },
+ "e4 c6 Nc3 d5 exd5 cxd5 Bb5+ Nc6": {
+  "note": "Black blocks the check with a developing move, so the check gained White nothing.",
+  "cue": "Block the check with a piece that wants to come out anyway."
+ },
+ "e4 c6 Nf3 d5 Nc3 Bg4 d4 e6": {
+  "note": "Black firms up d5 and frees the dark bishop. Black's light bishop is already outside the chain, so ...e6 locks nothing in.",
+  "cue": "Your light bishop is out — free the other one."
+ },
+ "e4 c6 Qf3 d5 Bd3 e5 Ne2 Be7": {
+  "note": "Black develops the bishop and prepares to castle. Nothing is attacked yet, so safety first.",
+  "cue": "Develop your dark-squared bishop to a safe square and get ready to castle."
+ },
+ "e4 c6 d3 d5 Bd2 e5 Nf3 Bd6": {
+  "note": "Black guards e5 with a developing move and gets ready to castle.",
+  "cue": "Your e5-pawn is attacked — defend it while developing."
+ },
+ "e4 c6 d4 d5 Nc3 dxe4 Nxe4 Bf5": {
+  "note": "The Classical: Black develops the bishop with tempo, threatening Bxe4 to win the undefended knight.",
+  "cue": "Develop your light bishop with an attack on the centralised knight."
+ },
+ "e4 c6 d4 d5 Nd2 dxe4 Nxe4 Bf5": {
+  "note": "The Classical: Black develops the bishop with tempo, threatening Bxe4 to win the undefended knight.",
+  "cue": "Develop your light bishop with an attack on the centralised knight."
+ },
+ "e4 c6 d4 d5 e5 Bf5 Nc3 e6": {
+  "note": "Black finishes the pawn chain and frees the dark bishop; the f5-bishop is ready to drop back to g6 if hit.",
+  "cue": "Open the way for your dark-squared bishop."
+ },
+ "e4 c6 d4 d5 e5 Bf5 c3 e6": {
+  "note": "Black completes the solid pawn chain and frees the dark bishop. Next comes ...c5 to attack White's d4 base.",
+  "cue": "Your light bishop is out — now open the way for the other bishop."
+ },
+ "e4 c6 d4 d5 exd5 cxd5 Bd3 Nc6": {
+  "note": "Black develops and puts pressure on the d4-pawn straight away, so White has to spend a move defending it.",
+  "cue": "Develop a piece that pressures the d4-pawn."
+ },
+ "e4 c6 d4 d5 exd5 cxd5 c4 Nf6": {
+  "note": "Black defends d5 with a piece while developing; the knight also guards the kingside.",
+  "cue": "Defend the attacked d5-pawn by developing a piece."
+ },
+ "e4 d5 exd5 Nf6 d4 Nxd5 Nf3 g6": {
+  "note": "Black prepares to put the bishop on g7, where it will press against White's d4-pawn from long range, and then castle."
+ },
+ "e4 d5 exd5 Qxd5 Nc3 Qa5 d4 Nf6": {
+  "note": "Black develops the knight to a natural square and prepares to castle kingside, keeping an eye on e4 and d5."
+ },
+ "e4 d5 exd5 Qxd5 Nc3 Qd6 d4 Nf6": {
+  "note": "Black develops the knight to its natural square and prepares to castle kingside."
+ },
+ "e4 d6 d4 Nf6 Nc3 g6 Be3 c6": {
+  "note": "Black prepares queenside counterplay with ...b5 or ...Qa5, and controls d5 and b5."
+ },
+ "e4 e5 Bc4 Nf6 Nf3 Nxe4 Nxe5 d5": {
+  "note": "Black blocks the bishop's line to f7 and attacks it at the same time, gaining a tempo while taking the centre.",
+  "cue": "Your f7-pawn is in danger: block the bishop's diagonal with a pawn that also attacks it."
+ },
+ "e4 e5 Bc4 Nf6 Qf3 d5 exd5 c6": {
+  "note": "Black offers a pawn to open lines: if dxc6, ...Nxc6 gives Black quick development, and otherwise ...cxd5 wins the pawn back.",
+  "cue": "Undermine White's advanced d-pawn with a pawn from the side."
+ },
+ "e4 e5 Nc3 Nf6 Bc4 Bc5 Nf3 d6": {
+  "note": "Black protects e5 with a pawn and opens the c8-bishop. Solid and simple.",
+  "cue": "Your e-pawn is attacked: support it with a pawn that frees your other bishop."
+ },
+ "e4 e5 Nc3 Nf6 Bc4 Bc5 d3 Nc6": {
+  "note": "Black develops naturally and guards e5. Both sides finish developing; watch for ...Na5 hitting the c4-bishop."
+ },
+ "e4 e5 Nc3 Nf6 Bc4 Nc6 d3 Bb4": {
+  "note": "Black develops with a pin on the c3-knight, which guards e4. Black may follow with ...d5 or ...Bxc3 to weaken White's pawns."
+ },
+ "e4 e5 Nc3 Nf6 Bc4 Nxe4 Qh5 Nd6": {
+  "note": "Black's knight guards f7 and stops the mate, and it also attacks the c4-bishop."
+ },
+ "e4 e5 Nc3 Nf6 Nf3 Nc6 Bc4 Bc5": {
+  "note": "Black develops the bishop to its most active diagonal, aiming at f2, and prepares to castle.",
+  "cue": "Mirror White: put your kingside bishop on its most active diagonal."
+ },
+ "e4 e5 Nf3 Bc5 Nxe5 Qh4 d4 Qxe4+": {
+  "note": "Black takes the e4-pawn with check, attacking the e5-knight too. But the c5-bishop is still attacked by the d4-pawn."
+ },
+ "e4 e5 Nf3 Nc6 Bb5 Nf6 O-O Nxe4": {
+  "note": "Black takes the pawn. White will regain it, but Black heads for a simplified, very solid position."
+ },
+ "e4 e5 Nf3 Nc6 Bb5 a6 Ba4 Nf6": {
+  "note": "Black develops and hits e4. White doesn't need to defend it directly, because castling sets up Re1 and tactics on the e-file."
+ },
+ "e4 e5 Nf3 Nc6 Bc4 Bc5 c3 Nf6": {
+  "note": "Black develops and hits e4, which c3 has left without a defender — ...Nxe4 is a real threat."
+ },
+ "e4 e5 Nf3 Nc6 Bc4 Bc5 c3 d6": {
+  "note": "Black supports e5 with a pawn and opens the light-squared bishop, but doesn't yet hit e4, so White can push d4 at once."
+ },
+ "e4 e5 Nf3 Nc6 Bc4 Nf6 d3 Bc5": {
+  "note": "Black develops the bishop actively toward f2 and gets ready to castle."
+ },
+ "e4 e5 Nf3 Nc6 d4 exd4 Nxd4 Bc5": {
+  "note": "Black develops with a threat: the d4-knight is hit by the bishop and the c6-knight, but defended only by the queen, so ...Bxd4 would win it."
+ },
+ "e4 e5 Nf3 Nc6 d4 exd4 Nxd4 Nf6": {
+  "note": "Black develops and hits e4, which is no longer guarded. A sound alternative to ...Bc5: Black aims for quick development and pressure on White's centre."
+ },
+ "e4 e5 Nf3 Nc6 d4 exd4 Nxd4 Qh4": {
+  "note": "An aggressive queen sortie: Black attacks the unguarded e4-pawn (...Qxe4+) and eyes f2/h2. It wins a pawn if White is careless but leaves the queen exposed."
+ },
+ "e4 e5 Nf3 Nf6 Bc4 Nxe4 Nxe5 d5": {
+  "note": "Black blocks the bishop's path to f7 and attacks the bishop at the same time.",
+  "cue": "Your f7-pawn is in danger: block the bishop's diagonal with a pawn that also attacks it."
+ },
+ "e4 e5 Nf3 Nf6 Bc4 Nxe4 d3 Nf6": {
+  "note": "The knight returns to safety, keeping the extra pawn and guarding the kingside.",
+  "cue": "Your knight is attacked: bring it back to a safe square near your king."
+ },
+ "e4 e5 Nf3 Nf6 Nc3 Nc6 Bb5 Bb4": {
+  "note": "Black mirrors White: develop the bishop with the same pressure on the c3-knight, which guards e4, and prepare to castle.",
+  "cue": "Copy your opponent's idea: develop your kingside bishop to pressure a knight."
+ },
+ "e4 e5 Nf3 Nf6 Nxe5 Nxe4 Qe2 Bd6": {
+  "note": "Black counterattacks the e5-knight instead of saving the e4-knight. It fails: White takes on e4 and the e-file tactics still work."
+ },
+ "e4 e5 Nf3 Nf6 Nxe5 d6 Nf3 Nxe4": {
+  "note": "Now that White's knight has left e5, Black safely regains the pawn: material is level and the knight sits actively in the centre.",
+  "cue": "Material is down a pawn: win it back now that the knight has gone."
+ },
+ "e4 e5 Nf3 Nf6 Nxe5 d6 Nxf7 Kxf7": {
+  "note": "Black simply takes the knight. The king looks exposed, but Black is a piece for two pawns up and can tuck the king away (e.g. ...Kg8) later.",
+  "cue": "A knight has jumped in and forks two pieces: can you just remove it?"
+ },
+ "e4 e5 Nf3 Nf6 d3 Nc6 Be2 d5": {
+  "note": "Black grabs the centre with a pawn and threatens ...dxe4, since that pawn would win e4.",
+  "cue": "White is passive: strike in the centre with a pawn."
+ },
+ "e4 e5 Nf3 Nf6 d3 Nc6 Bg5 Be7": {
+  "note": "Black breaks the pin by putting the bishop between knight and queen, and gets ready to castle.",
+  "cue": "Your knight is pinned to the queen: develop a piece that breaks the pin."
+ },
+ "e4 e5 Nf3 Nf6 d4 Nxe4 Bd3 d5": {
+  "note": "Black guards the knight with a pawn and claims the centre. It also leaves ...exd4 as a threat, since the bishop on d3 blocks the queen from defending d4.",
+  "cue": "Your knight is attacked: defend it with a pawn that also grabs the centre."
+ },
+ "e4 e5 Nf3 Qf6 Bc4 Bc5 O-O Ne7": {
+  "note": "Black develops the knight to e7, since f6 is taken by the queen, and prepares to castle."
+ },
+ "e4 e5 Nf3 d5 exd5 Nf6 Nxe5 Qxd5": {
+  "note": "Black wins back a pawn and attacks the e5-knight, which has no defender — ...Qxe5+ is threatened."
+ },
+ "e4 e5 Nf3 d5 exd5 Qxd5 Nc3 Qd7": {
+  "note": "The queen steps back but blocks the c8-bishop and stands on the same diagonal as Black's king — a costly mistake."
+ },
+ "e4 e5 Nf3 d6 d4 exd4 Nxd4 Qe7": {
+  "note": "An odd queen move: Black eyes the e4-pawn (hoping for ...Qxe4+) but blocks the f8-bishop, so Black's development gets stuck."
+ },
+ "e4 e5 Nf3 d6 d4 f6 Bc4 Nc6": {
+  "note": "Black develops the queen's knight and adds another defender to e5."
+ },
+ "e4 e5 Qf3 Nf6 Bc4 d5 exd5 e4": {
+  "note": "Black pushes the e-pawn to kick the queen. Black gains time and space, and the d5-pawn can be won back later.",
+  "cue": "White's queen stands where one of your pawns can attack it."
+ },
+ "e4 e5 Qh5 Nc6 Bc4 g6 Qf3 Nf6": {
+  "note": "Black develops and blocks the f-file, ending the mate threat on f7. The knight also eyes e4.",
+  "cue": "Mate on f7 is threatened again: develop a piece that blocks the queen's line."
+ },
+ "e4 e5 d3 Nf6 Bg5 Nc6 f3 d5": {
+  "note": "Black strikes in the centre with a pawn while White's pieces are undeveloped and the kingside is loosened.",
+  "cue": "White wasted time with a pawn move: grab the centre with a pawn."
+ },
+ "e4 e5 d3 Nf6 Nh3 d5 exd5 Nxd5": {
+  "note": "Black recaptures with a piece, keeping the material level and placing the knight on a strong central square.",
+  "cue": "A pawn was just taken: win it back with a piece."
+ },
+ "e4 e5 d4 exd4 Qxd4 Nc6 Qa4 Nf6": {
+  "note": "Black develops another piece with pressure on e4.",
+  "cue": "Keep developing: bring out a kingside piece that pressures White's e-pawn."
+ },
+ "e4 e5 d4 exd4 e5 d6 Qxd4 Nc6": {
+  "note": "Black develops with tempo, attacking the queen.",
+  "cue": "White's queen sits in the centre: develop a piece that attacks it."
+ },
+ "e4 e5 f4 exf4 Nf3 Nf6 d3 Nc6": {
+  "note": "Black keeps developing. The f4-pawn will probably fall, but Black will be well developed.",
+  "cue": "Keep developing: bring out your other knight."
+ },
+ "e4 e6 d4 d5 e5 c5 c3 Nc6": {
+  "note": "Black develops and adds pressure on d4, the key square in White's centre."
+ },
+ "e4 e6 d4 d5 e5 c5 c3 Qb6": {
+  "note": "Black's queen attacks d4 and b2 at once, before developing the knights."
+ },
+ "e4 g6 d4 Bg7 Nf3 d6 Nc3 Nf6": {
+  "note": "Black develops and attacks e4, which is well defended by the c3-knight. Black is ready to castle kingside."
+ },
+ "Nf3 d5 d4 Nf6 Nc3 g6 e3 Bg7 Bd3": {
+  "note": "White develops the bishop toward Black's kingside and clears the way to castle."
+ },
+ "Nf3 d5 g3 c5 Bg2 Nf6 O-O e6 d4": {
+  "note": "White finally challenges the centre and hits c5, hoping to open lines for the g2-bishop."
+ },
+ "c4 e5 b4 Bxb4 Bb2 d6 e3 Nf6 Be2": {
+  "note": "White develops quietly and gets ready to castle."
+ },
+ "d4 Nf6 Nf3 d5 Bf4 c5 e3 Qb6 Nc3": {
+  "note": "White develops and lets Black take b2. After ...Qxb2?, Nb5 threatens Nc7+ and Rb1, and Black gets into big trouble.",
+  "cue": "Ignore the attack on b2 — develop a piece that punishes the pawn grab."
+ },
+ "d4 Nf6 Nf3 g6 Bf4 Bg7 e3 d6 Be2": {
+  "note": "White develops simply and gets ready to castle, keeping the solid London setup.",
+  "cue": "Develop your last kingside piece so you can castle."
+ },
+ "d4 d5 Bf4 c5 e3 cxd4 exd4 Nc6 Nf3": {
+  "note": "White develops and defends d4."
+ },
+ "d4 d5 Nc3 Nc6 Nf3 Nf6 e3 Bf5 Ne5": {
+  "note": "White jumps forward to trade off Black's c6-knight and eyes f7."
+ },
+ "d4 d5 Nf3 Nf6 Bf4 Bf5 e3 e6 c3": {
+  "note": "White completes the c3-d4-e3 triangle so d4 is secure, and opens a diagonal for the queen toward b3."
+ },
+ "d4 d5 Nf3 Nf6 Bf4 c5 e3 Nc6 Nbd2": {
+  "note": "White develops the knight to d2, where it doesn't block the c-pawn. That way c3 can be played to hold d4.",
+  "cue": "Develop your other knight without blocking your c-pawn."
+ },
+ "d4 d5 Nf3 Nf6 Nc3 g6 e3 Bg7 Bd3": {
+  "note": "White develops the bishop toward Black's king and gets ready to castle."
+ },
+ "d4 d5 c4 c6 Nc3 Nf6 Nf3 dxc4 a4": {
+  "note": "White stops ...b5, which would protect the extra pawn, so the c4-pawn can be won back with e3 and Bxc4."
+ },
+ "d4 d5 c4 c6 Nf3 Nf6 Nc3 dxc4 a4": {
+  "note": "White stops ...b5, which would protect the extra c4-pawn, so the pawn can be won back with e3 and Bxc4."
+ },
+ "d4 d5 c4 c6 Nf3 Nf6 Nc3 e6 e3": {
+  "note": "White guards c4 and opens the f1-bishop, keeping a solid centre.",
+  "cue": "Protect your c-pawn and open a path for your kingside bishop."
+ },
+ "d4 d5 c4 c6 Nf3 Nf6 e3 Bf5 cxd5": {
+  "note": "White exchanges pawns to open the c-file and the f1-bishop's diagonal, getting ready for Qb3 to hit b7 now that Black's bishop has left c8."
+ },
+ "d4 d5 c4 c6 cxd5 cxd5 Nc3 Nf6 Nf3": {
+  "note": "White develops the other knight, guarding d4 and getting ready to castle."
+ },
+ "d4 d5 c4 dxc4 Nf3 Nf6 e3 e6 Bxc4": {
+  "note": "White regains the pawn with the bishop and gets ready to castle.",
+  "cue": "Win back your pawn while developing a piece."
+ },
+ "d4 d5 c4 e6 Nc3 Nf6 Bg5 Be7 e3": {
+  "note": "White guards c4 and opens the f1-bishop, building a solid centre.",
+  "cue": "Protect your c-pawn and open a path for your other bishop."
+ },
+ "d4 d5 e3 e6 Nf3 Nf6 Nbd2 b6 Bb5+": {
+  "note": "White develops with check, aiming to disturb Black's development; the bishop is easily pushed back, though."
+ },
+ "e3 e5 Qh5 Nc6 Bc4 d5 Bb3 Nf6 Qf3": {
+  "note": "The queen retreats to safety, where it eyes f6 and lines up with the b3-bishop against d5."
+ },
+ "e4 c5 c3 Nf6 e5 Nd5 Nf3 Nc6 Bc4": {
+  "note": "White develops with tempo, hitting the undefended d5-knight and preparing to castle kingside.",
+  "cue": "Develop a bishop with tempo by attacking the centralized knight."
+ },
+ "e4 c5 c3 d5 exd5 Qxd5 d4 Nf6 Nf3": {
+  "note": "White develops the kingside knight, supporting d4 and preparing Be2 and castling.",
+  "cue": "Develop your kingside knight, supporting your d-pawn."
+ },
+ "e4 c5 c3 d5 exd5 Qxd5 d4 cxd4 cxd4": {
+  "note": "White recaptures with the pawn, keeping a central pawn on d4 and opening the c3-square for the knight.",
+  "cue": "Win back the pawn while keeping a pawn in the centre."
+ },
+ "e4 c6 Bc4 d5 exd5 cxd5 Bb3 Nc6 Qf3": {
+  "note": "An early queen move: it adds a second attacker on d5 (with the b3-bishop) and threatens Qxd5."
+ },
+ "e4 c6 Nc3 d5 exd5 cxd5 Bb5+ Nc6 Bxc6+": {
+  "note": "White gives up the bishop for the knight with check; Black gets the bishop pair and an extra central pawn on c6."
+ },
+ "e4 c6 Nf3 d5 Nc3 Bg4 d4 e6 Be2": {
+  "note": "White breaks the pin by developing and prepares to castle."
+ },
+ "e4 c6 Qf3 d5 Bd3 e5 Ne2 Be7 exd5": {
+  "note": "White trades on d5, opening the bishop's diagonal toward h7 and threatening dxc6."
+ },
+ "e4 c6 d3 d5 Bd2 e5 Nf3 Bd6 d4": {
+  "note": "White pushes d4 a move later, threatening dxe5. But this leaves e4 loose, and Black can hit the f3-knight."
+ },
+ "e4 c6 d4 d5 Nc3 dxe4 Nxe4 Bf5 Ng3": {
+  "note": "White saves the knight and hits the bishop back, gaining a tempo."
+ },
+ "e4 c6 d4 d5 Nd2 dxe4 Nxe4 Bf5 Ng3": {
+  "note": "White saves the knight and hits the bishop back, gaining a tempo."
+ },
+ "e4 c6 d4 d5 e5 Bf5 Nc3 e6 g4": {
+  "note": "An aggressive lunge: White threatens gxf5, winning the bishop, and gains kingside space with tempo."
+ },
+ "e4 c6 d4 d5 e5 Bf5 c3 e6 Be2": {
+  "note": "White develops modestly and prepares Nf3 and castling. Black answers with ...c5, ...Nc6 and ...Qb6 pressure on d4."
+ },
+ "e4 c6 d4 d5 exd5 cxd5 Bd3 Nc6 c3": {
+  "note": "White props up d4 with a pawn, building a solid chain. Black keeps developing with ...Nf6 and ...Bg4."
+ },
+ "e4 c6 d4 d5 exd5 cxd5 c4 Nf6 Nc3": {
+  "note": "White adds a third attacker on d5 and develops, keeping up the pressure.",
+  "cue": "Add another attacker on d5 while developing."
+ },
+ "e4 d5 exd5 Qxd5 Nc3 Qa5 d4 Nf6 Nf3": {
+  "note": "White develops the kingside knight, guards d4 and gets ready to castle. Simple development is the plan because Black has spent moves with the queen.",
+  "cue": "Develop your kingside knight to its best square, supporting your d-pawn."
+ },
+ "e4 d5 exd5 Qxd5 Nc3 Qd6 d4 Nf6 Nf3": {
+  "note": "White develops the kingside knight, supports d4 and prepares to castle. White is ahead in development thanks to chasing the queen.",
+  "cue": "Develop your kingside knight to its natural square."
+ },
+ "e4 d6 d4 Nf6 Nc3 g6 Be3 c6 Nf3": {
+  "note": "White develops the kingside knight, strengthening d4 and preparing to castle.",
+  "cue": "Develop your last minor kingside piece and get ready to castle."
+ },
+ "e4 e5 Bc4 Nf6 Nf3 Nxe4 Nxe5 d5 Bd3": {
+  "note": "The bishop retreats and hits the e4-knight, but it is a mistake: it lets Black use the e-file against White's knight and king."
+ },
+ "e4 e5 Bc4 Nf6 Qf3 d5 exd5 c6 Nc3": {
+  "note": "White develops and adds a defender to d5, but leaves the queen on f3 where Black's e-pawn can hit it."
+ },
+ "e4 e5 Nc3 Nf6 Bc4 Bc5 Nf3 d6 O-O": {
+  "note": "White castles and will continue with d3 or d4 in the centre."
+ },
+ "e4 e5 Nc3 Nf6 Bc4 Nc6 d3 Bb4 Ne2": {
+  "note": "White develops so that ...Bxc3+ can be met by Nxc3, keeping a healthy pawn structure. The f-pawn also stays free to advance.",
+  "cue": "Develop your other knight to a square that would let it recapture on c3."
+ },
+ "e4 e5 Nc3 Nf6 Bc4 Nxe4 Qh5 Nd6 Bb3": {
+  "note": "White keeps the bishop on the diagonal to f7, so the pressure on f7 stays.",
+  "cue": "Your bishop is attacked — move it but keep it aimed at f7."
+ },
+ "e4 e5 Nc3 Nf6 Nf3 Nc6 Bc4 Bc5 d3": {
+  "note": "White guards e4 solidly and frees the c1-bishop. A slow, Italian-style game follows."
+ },
+ "e4 e5 Nf3 Bc5 Nxe5 Qh4 d4 Qxe4+ Be3": {
+  "note": "White blocks the check while developing; d4 guards the knight and still attacks the c5-bishop. White's lead in development grows and Black's queen will be chased.",
+  "cue": "Block the check with a piece that develops."
+ },
+ "e4 e5 Nf3 Nc6 Bb5 Nf6 O-O Nxe4 d4": {
+  "note": "White hits e5 and opens the centre. Black's king is still in the middle, so open lines favour White.",
+  "cue": "Open the centre with a pawn move that attacks e5."
+ },
+ "e4 e5 Nf3 Nc6 Bb5 a6 Ba4 Nf6 O-O": {
+  "note": "White castles instead of guarding e4: if Black grabs the pawn, Re1 and d4 win it back with a lead in development.",
+  "cue": "Don't worry about e4 yet — get your king safe and your rook toward the centre."
+ },
+ "e4 e5 Nf3 Nc6 Bc4 Bc5 c3 Nf6 d3": {
+  "note": "White calmly guards e4 with a pawn and opens the c1-bishop. This is the slow 'quiet Italian': solid centre first, action later.",
+  "cue": "Your e4-pawn is attacked — guard it with a pawn and free your dark-squared bishop."
+ },
+ "e4 e5 Nf3 Nc6 Bc4 Bc5 c3 d6 d4": {
+  "note": "White pushes d4 straight away, grabbing the centre and attacking the c5-bishop (threatening dxc5). Black must take or retreat.",
+  "cue": "Black didn't challenge e4 — grab the centre with a pawn that also hits Black's bishop."
+ },
+ "e4 e5 Nf3 Nc6 Bc4 Nf6 d3 Bc5 O-O": {
+  "note": "White castles, putting the king safe before the centre opens. Next come c3 and Re1 with a slow build-up.",
+  "cue": "Your king is still in the middle — get it to safety."
+ },
+ "e4 e5 Nf3 Nc6 d4 exd4 Nxd4 Bc5 Be3": {
+  "note": "White defends the knight with a developing move, and the bishop now hits c5 too: Nxc6 followed by Bxc5 is threatened, so Black must stay alert.",
+  "cue": "Your d4-knight is attacked twice — defend it with a piece that also develops and eyes Black's bishop."
+ },
+ "e4 e5 Nf3 Nc6 d4 exd4 Nxd4 Nf6 Nxc6": {
+  "note": "White trades on c6 first so Black must recapture (the knight attacks the queen). This damages Black's pawns and clears the way for e5 to kick the f6-knight.",
+  "cue": "Trade first: capture the c6-knight, which also hits Black's queen."
+ },
+ "e4 e5 Nf3 Nc6 d4 exd4 Nxd4 Qh4 Nb5": {
+  "note": "White ignores e4 and counterattacks: the knight threatens Nxc7+, forking the king and the a8-rook. Black has to deal with that first.",
+  "cue": "Counterattack instead of defending: your knight can threaten a royal fork on c7."
+ },
+ "e4 e5 Nf3 Nf6 Bc4 Nxe4 Nxe5 d5 Bd3": {
+  "note": "The bishop retreats and attacks the e4-knight, but it is a mistake: it lets Black use the e-file against White's knight and king."
+ },
+ "e4 e5 Nf3 Nf6 Bc4 Nxe4 d3 Nf6 Ng5": {
+  "note": "White goes after f7: Nxf7 would fork the queen and rook. But moving the same piece again costs time while White is already a pawn down."
+ },
+ "e4 e5 Nf3 Nf6 Nc3 Nc6 Bb5 Bb4 O-O": {
+  "note": "White castles before anything else. The e5-pawn is not yet worth taking, so safety comes first."
+ },
+ "e4 e5 Nf3 Nf6 Nxe5 Nxe4 Qe2 Bd6 Qxe4": {
+  "note": "White takes the knight and threatens Nc6+, a discovered check that also attacks Black's queen. Black must stop it at once.",
+  "cue": "Grab the hanging knight — your queen will line up on Black's king."
+ },
+ "e4 e5 Nf3 Nf6 Nxe5 d6 Nf3 Nxe4 d3": {
+  "note": "White kicks the e4-knight with a pawn, so it must retreat. Simple and safe: White keeps a small lead in development.",
+  "cue": "Kick Black's knight out of the centre with a pawn."
+ },
+ "e4 e5 Nf3 Nf6 Nxe5 d6 Nf3 Nxe4 d4": {
+  "note": "White builds a big centre and opens the c1-bishop. The plan is Bd3, castling and Re1 to put pressure on Black's e4-knight."
+ },
+ "e4 e5 Nf3 Nf6 d3 Nc6 Be2 d5 exd5": {
+  "note": "White trades in the centre and the d5-pawn now attacks the c6-knight, so Black must recapture."
+ },
+ "e4 e5 Nf3 Nf6 d3 Nc6 Bg5 Be7 Nc3": {
+  "note": "White develops another knight and supports d5 and e4."
+ },
+ "e4 e5 Nf3 Nf6 d4 Nxe4 Bd3 d5 Nxe5": {
+  "note": "White wins back the pawn before Black can take on d4. The knight on e5 is strong and eyes f7."
+ },
+ "e4 e5 Nf3 Qf6 Bc4 Bc5 O-O Ne7 Nc3": {
+  "note": "White develops and eyes d5, where the knight would hit Black's queen and the c7-pawn. d4 is coming too.",
+  "cue": "Develop a knight toward the centre — it eyes a square that hits Black's queen."
+ },
+ "e4 e5 Nf3 d5 exd5 Nf6 Nxe5 Qxd5 Qe2": {
+  "note": "White defends the knight with the queen and lines up on the e-file against Black's king. White stays a clean pawn up.",
+  "cue": "Your e5-knight is undefended — protect it while lining up on Black's king."
+ },
+ "e4 e5 Nf3 d5 exd5 Qxd5 Nc3 Qd7 Bb5": {
+  "note": "White pins the queen to the king, threatening Bxd7+. Black must block the pin (...c6 is best), and White keeps a big lead in development.",
+  "cue": "Black's queen and king share a diagonal — pin the queen with a developing move."
+ },
+ "e4 e5 Nf3 d6 d4 exd4 Nxd4 Qe7 Nc3": {
+  "note": "White guards e4 with a developing move, so Black's queen achieves nothing. White is clearly ahead in development.",
+  "cue": "Black's queen is eyeing your e4-pawn — guard it while developing a piece."
+ },
+ "e4 e5 Nf3 d6 d4 f6 Bc4 Nc6 h3": {
+  "note": "White stops ...Bg4, which would pin the f3-knight — the knight that helps hold d4. Now White can develop calmly.",
+  "cue": "Stop Black's bishop from pinning your f3-knight with a small pawn move."
+ },
+ "e4 e5 Qf3 Nf6 Bc4 d5 exd5 e4 Qd1": {
+  "note": "The queen goes all the way home. White has wasted time, and Black's pawn on e4 cramps White's kingside pieces."
+ },
+ "e4 e5 Qh5 Nc6 Bc4 g6 Qf3 Nf6 c3": {
+  "note": "White prepares d4 but still hasn't developed the kingside knight; the queen on f3 even takes its best square."
+ },
+ "e4 e5 d3 Nf6 Bg5 Nc6 f3 d5 Nc3": {
+  "note": "White develops and adds pressure on d5."
+ },
+ "e4 e5 d3 Nf6 Nh3 d5 exd5 Nxd5 c4": {
+  "note": "White chases the knight with a pawn. It gains a tempo, but it leaves d3 weak and the d4-square permanently without pawn cover."
+ },
+ "e4 e5 d4 exd4 Qxd4 Nc6 Qa4 Nf6 Nc3": {
+  "note": "White defends e4 with the knight and develops."
+ },
+ "e4 e5 d4 exd4 e5 d6 Qxd4 Nc6 Bb5": {
+  "note": "White pins the c6-knight to the king, so it cannot take the queen for now."
+ },
+ "e4 e5 f4 exf4 Nf3 Nf6 d3 Nc6 Bxf4": {
+  "note": "White regains the pawn, so material is level again."
+ },
+ "e4 e6 d4 d5 e5 c5 c3 Nc6 Nf3": {
+  "note": "White develops and adds another defender to d4 and e5.",
+  "cue": "Develop a piece that protects both your d-pawn and your e-pawn."
+ },
+ "e4 e6 d4 d5 e5 c5 c3 Qb6 Nf3": {
+  "note": "White develops and adds a defender to d4 and e5. Black's pressure on d4 is now met.",
+  "cue": "Develop a piece that protects your d-pawn and e-pawn."
+ },
+ "e4 g6 d4 Bg7 Nf3 d6 Nc3 Nf6 Be3": {
+  "note": "White develops the dark-squared bishop, protecting d4. A typical plan is Qd2 and Bh6 to trade off Black's strong g7-bishop.",
+  "cue": "Develop your dark-squared bishop to a safe square where it supports your centre."
+ },
+ "Nf3 d5 d4 Nf6 Nc3 g6 e3 Bg7 Bd3 O-O": {
+  "note": "Black puts the king safe behind the fianchetto. Next come ...c5 or ...Nc6 to fight for the centre.",
+  "cue": "Your kingside is ready — make your king safe."
+ },
+ "Nf3 d5 g3 c5 Bg2 Nf6 O-O e6 d4 Nc6": {
+  "note": "Black develops and adds pressure on d4. If dxc5, Black recaptures with the bishop and is comfortable.",
+  "cue": "Develop your queenside knight to add pressure on White's d-pawn."
+ },
+ "c4 e5 b4 Bxb4 Bb2 d6 e3 Nf6 Be2 c5": {
+  "note": "Black takes space and controls d4, keeping White's pieces out of the centre and making a secure spot for the b4-bishop. Black stays a pawn up and comfortable.",
+  "cue": "Take space with a pawn that controls d4 and backs up your advanced bishop."
+ },
+ "d4 Nf6 Nf3 g6 Bf4 Bg7 e3 d6 Be2 O-O": {
+  "note": "Black puts the king safe behind the fianchetto before starting central play with ...e5 or ...c5."
+ },
+ "d4 d5 Bf4 c5 e3 cxd4 exd4 Nc6 Nf3 Bg4": {
+  "note": "Black develops and pins the f3-knight to the queen, weakening one of d4's defenders.",
+  "cue": "Develop your light bishop and pin the knight that guards d4."
+ },
+ "d4 d5 Nc3 Nc6 Nf3 Nf6 e3 Bf5 Ne5 Nxe5": {
+  "note": "Black simply trades knights. After dxe5 the f6-knight moves (e.g. to e4) and Black stands well, with White's centre pawn pulled to e5.",
+  "cue": "Swap off the advanced knight."
+ },
+ "d4 d5 Nf3 Nf6 Bf4 Bf5 e3 e6 c3 Nc6": {
+  "note": "Black develops and puts more pressure on d4.",
+  "cue": "Develop your queenside knight to press on d4."
+ },
+ "d4 d5 Nf3 Nf6 Bf4 c5 e3 Nc6 Nbd2 e6": {
+  "note": "Black backs up c5 and opens the f8-bishop, building a solid centre."
+ },
+ "d4 d5 Nf3 Nf6 Nc3 g6 e3 Bg7 Bd3 O-O": {
+  "note": "Black puts the king safe behind the fianchetto, ready to fight for the centre with ...c5 or ...Nc6.",
+  "cue": "Your kingside is ready — make your king safe."
+ },
+ "d4 d5 c4 c6 Nc3 Nf6 Nf3 dxc4 a4 Bf5": {
+  "note": "Black brings the light bishop out before playing ...e6, and the bishop also makes e4 harder for White.",
+  "cue": "Get your light bishop outside the pawn chain before you close it in."
+ },
+ "d4 d5 c4 c6 Nf3 Nf6 Nc3 dxc4 a4 Bf5": {
+  "note": "Black brings the light bishop out before playing ...e6, so it won't be shut in behind the pawns. It also keeps White from playing e4 easily.",
+  "cue": "Get your light bishop outside the pawn chain before you close it in."
+ },
+ "d4 d5 c4 c6 Nf3 Nf6 Nc3 e6 e3 Nbd7": {
+  "note": "Black develops, supporting a later ...e5 or ...c5 break."
+ },
+ "d4 d5 c4 c6 Nf3 Nf6 e3 Bf5 cxd5 cxd5": {
+  "note": "Black recaptures with the c-pawn, keeping a pawn on d5 and getting a symmetrical, solid centre.",
+  "cue": "Win back the pawn and keep a pawn in the centre."
+ },
+ "d4 d5 c4 c6 cxd5 cxd5 Nc3 Nf6 Nf3 Nc6": {
+  "note": "Black develops the queenside knight to its best square, pressing on d4 and controlling e5 and b4.",
+  "cue": "Develop your queenside knight to its most natural square, eyeing d4."
+ },
+ "d4 d5 c4 dxc4 Nf3 Nf6 e3 e6 Bxc4 c5": {
+  "note": "Black hits d4, Black's main way to fight for the centre in this line."
+ },
+ "d4 d5 c4 e6 Nc3 Nf6 Bg5 Be7 e3 O-O": {
+  "note": "Black puts the king safe before thinking about ...dxc4 or ...b6."
+ },
+ "d4 d5 e3 e6 Nf3 Nf6 Nbd2 b6 Bb5+ c6": {
+  "note": "Black blocks the check with a pawn that attacks the bishop, so White must spend another move retreating.",
+  "cue": "Block the check with a pawn that also attacks the checking piece."
+ },
+ "e3 e5 Qh5 Nc6 Bc4 d5 Bb3 Nf6 Qf3 a5": {
+  "note": "Black goes after the b3-bishop: ...a4 next would leave it nowhere safe to go, so White has to deal with this right away.",
+  "cue": "White's bishop on b3 has few safe squares — start a pawn march to trap it."
+ },
+ "e4 c5 c3 Nf6 e5 Nd5 Nf3 Nc6 Bc4 Nb6": {
+  "note": "Black saves the knight and attacks the c4-bishop at the same time, forcing White to move it again."
+ },
+ "e4 c5 c3 d5 exd5 Qxd5 d4 Nf6 Nf3 Bg4": {
+  "note": "Black develops the bishop and puts pressure on the f3-knight, which supports d4. A common follow-up is ...e6 and ...Nc6."
+ },
+ "e4 c5 c3 d5 exd5 Qxd5 d4 cxd4 cxd4 Nc6": {
+  "note": "Black develops with pressure on d4: knight and queen both attack it and only White's queen defends, so Black threatens to win the pawn."
+ },
+ "e4 c6 Bc4 d5 exd5 cxd5 Bb3 Nc6 Qf3 Nf6": {
+  "note": "Black defends d5 with a developing move. Next ...Bg4 or ...e6 hits the queen or solidifies, and White's queen has wasted time.",
+  "cue": "Your d5-pawn is attacked twice — defend it while developing."
+ },
+ "e4 c6 Nc3 d5 exd5 cxd5 Bb5+ Nc6 Bxc6+ bxc6": {
+  "note": "Black recaptures toward the centre, so the c6 and d5 pawns form a strong duo, and the two bishops give Black the easier game.",
+  "cue": "You're in check — recapture so your pawns point toward the centre."
+ },
+ "e4 c6 Nf3 d5 Nc3 Bg4 d4 e6 Be2 Nd7": {
+  "note": "Black develops flexibly, preparing ...Ngf6 and keeping ...dxe4 in reserve; the knight on d7 guards e5 and f6.",
+  "cue": "Develop your queenside knight to a modest square that supports your kingside knight."
+ },
+ "e4 c6 Qf3 d5 Bd3 e5 Ne2 Be7 exd5 cxd5": {
+  "note": "Black recaptures and is left with two big centre pawns on d5 and e5, the better side of the position.",
+  "cue": "Recapture so you keep two pawns in the centre."
+ },
+ "e4 c6 d3 d5 Bd2 e5 Nf3 Bd6 d4 dxe4": {
+  "note": "Black grabs e4 and attacks the f3-knight, threatening exf3. White usually answers Nxe5, and Black develops easily with ...Nf6.",
+  "cue": "Capture a central pawn and hit a white knight at the same time."
+ },
+ "e4 c6 d4 d5 Nc3 dxe4 Nxe4 Bf5 Ng3 Bg6": {
+  "note": "The bishop retreats but stays on its good diagonal, aiming at White's queenside and c2.",
+  "cue": "Your bishop is attacked — retreat it without leaving its diagonal."
+ },
+ "e4 c6 d4 d5 Nd2 dxe4 Nxe4 Bf5 Ng3 Bg6": {
+  "note": "The bishop retreats but stays on its good diagonal, aiming at White's queenside and c2.",
+  "cue": "Your bishop is attacked — retreat it without leaving its diagonal."
+ },
+ "e4 c6 d4 d5 e5 Bf5 Nc3 e6 g4 Bg6": {
+  "note": "The bishop must move; it retreats but stays on the useful b1-h7 diagonal. White's g4 push has also loosened White's kingside.",
+  "cue": "Your bishop is attacked by a pawn — retreat it but keep it on its diagonal."
+ },
+ "e4 c6 d4 d5 exd5 cxd5 Bd3 Nc6 c3 Nf6": {
+  "note": "Black develops toward the centre and guards the kingside (h7). Next ...Bg4 or ...g6 brings the last minor pieces out.",
+  "cue": "Bring out a kingside piece that also helps guard h7."
+ },
+ "e4 c6 d4 d5 exd5 cxd5 c4 Nf6 Nc3 e6": {
+  "note": "Black adds a pawn defender to d5 and frees the f8-bishop, aiming to castle quickly.",
+  "cue": "Support d5 with a pawn and free your dark-squared bishop."
+ },
+ "e4 d5 exd5 Qxd5 Nc3 Qa5 d4 Nf6 Nf3 Bf5": {
+  "note": "Black brings the light-squared bishop outside the pawn chain before playing ...e6, and eyes the c2-pawn."
+ },
+ "e4 d5 exd5 Qxd5 Nc3 Qd6 d4 Nf6 Nf3 a6": {
+  "note": "A prophylactic pawn move: it takes b5 away from White's knight and bishop, so Nb5 can't harass the queen and Bb5+ is not possible."
+ },
+ "e4 e5 Bc4 Nf6 Nf3 Nxe4 Nxe5 d5 Bd3 Qe7": {
+  "note": "Black attacks the unprotected e5-knight. It can't simply retreat (e.g. Nf3?? Nc3+, discovered check winning the queen), so Black wins material.",
+  "cue": "Use the e-file: line up your queen against the undefended knight and White's king."
+ },
+ "e4 e5 Bc4 Nf6 Qf3 d5 exd5 c6 Nc3 e4": {
+  "note": "Black kicks the queen with a pawn, gaining time. After the queen moves, ...cxd5 wins back the pawn with a good centre.",
+  "cue": "White's queen stands on a square one of your pawns can attack."
+ },
+ "e4 e5 Nc3 Nf6 Bc4 Bc5 Nf3 d6 O-O O-O": {
+  "note": "Black castles too. Development is complete and the position is equal.",
+  "cue": "Your king is still in the centre: get it safe."
+ },
+ "e4 e5 Nc3 Nf6 Bc4 Nxe4 Qh5 Nd6 Bb3 Nc6": {
+  "note": "Black guards e5, which the queen was attacking (Qxe5+ would win a pawn with check)."
+ },
+ "e4 e5 Nc3 Nf6 Nf3 Nc6 Bc4 Bc5 d3 O-O": {
+  "note": "Black gets the king safe. Everything is developed; next ideas are ...d6 and ...h6 or ...a6.",
+  "cue": "You are developed: get your king safe."
+ },
+ "e4 e5 Nf3 Nc6 Bb5 Nf6 O-O Nxe4 d4 Nd6": {
+  "note": "Black retreats with a threat: the knight attacks the b5-bishop, and it also keeps watch on f5 and c4."
+ },
+ "e4 e5 Nf3 Nc6 Bb5 a6 Ba4 Nf6 O-O Be7": {
+  "note": "Black develops quietly and prepares to castle. This is the main 'Closed' Ruy Lopez."
+ },
+ "e4 e5 Nf3 Nc6 Bb5 a6 Ba4 Nf6 O-O Nxe4": {
+  "note": "Black grabs the e4-pawn — the Open Ruy Lopez. It's playable because White's quick d4 and Re1 regain the pawn, so this leads to open, active play rather than a pawn up."
+ },
+ "e4 e5 Nf3 Nc6 Bc4 Bc5 c3 Nf6 d3 d6": {
+  "note": "Black also supports the centre with a pawn and opens the c8-bishop, which may go to g4 or e6."
+ },
+ "e4 e5 Nf3 Nc6 Bc4 Bc5 c3 d6 d4 exd4": {
+  "note": "Black takes, removing the pawn that attacked the bishop. White will recapture and keep a big pawn centre."
+ },
+ "e4 e5 Nf3 Nc6 Bc4 Nf6 d3 Bc5 O-O d6": {
+  "note": "Black supports e5 with a pawn and opens the c8-bishop."
+ },
+ "e4 e5 Nf3 Nc6 d4 exd4 Nxd4 Bc5 Be3 Qf6": {
+  "note": "Black piles up on d4: bishop, knight and now queen all attack it, so ...Bxd4 would win the knight. The queen also eyes f2."
+ },
+ "e4 e5 Nf3 Nc6 d4 exd4 Nxd4 Nf6 Nxc6 bxc6": {
+  "note": "Black recaptures toward the centre with the b-pawn: this keeps the d-file closed (no early queen trade) and supports a later ...d5."
+ },
+ "e4 e5 Nf3 Nc6 d4 exd4 Nxd4 Qh4 Nb5 Bb4": {
+  "note": "Black develops with check, gaining time and keeping the plan of ...Qxe4+ alive."
+ },
+ "e4 e5 Nf3 Nf6 Bc4 Nxe4 Nxe5 d5 Bd3 Qe7": {
+  "note": "Black attacks the unprotected e5-knight. It can't simply retreat (e.g. Nf3?? Nc3+, discovered check winning the queen), so Black wins material.",
+  "cue": "Use the e-file: line up your queen against the undefended knight and White's king."
+ },
+ "e4 e5 Nf3 Nf6 Bc4 Nxe4 d3 Nf6 Ng5 d5": {
+  "note": "Black blocks the bishop's line to f7 with a pawn that also attacks the bishop, ending the threat with tempo.",
+  "cue": "f7 is under fire: block the bishop's diagonal with a pawn that also attacks it."
+ },
+ "e4 e5 Nf3 Nf6 Nc3 Nc6 Bb5 Bb4 O-O O-O": {
+  "note": "Black castles too. The position stays symmetrical and very solid.",
+  "cue": "Your king is still in the centre: get it safe."
+ },
+ "e4 e5 Nf3 Nf6 Nxe5 Nxe4 Qe2 Bd6 Qxe4 Bxe5": {
+  "note": "Black removes the dangerous knight, but the bishop on e5 is now attacked by White's queen and has no defender."
+ },
+ "e4 e5 Nf3 Nf6 Nxe5 d6 Nf3 Nxe4 d3 Nf6": {
+  "note": "The knight retreats to its natural square, where it helps guard Black's king."
+ },
+ "e4 e5 Nf3 Nf6 Nxe5 d6 Nf3 Nxe4 d4 d5": {
+  "note": "Black stakes out the centre too, and the d5-pawn props up the knight on e4 so it cannot be chased off easily.",
+  "cue": "Support your centralised knight with a pawn that also claims the centre."
+ },
+ "e4 e5 Nf3 Nf6 d3 Nc6 Be2 d5 exd5 Nxd5": {
+  "note": "Black recaptures with the knight, which now sits in the centre, and the material is level.",
+  "cue": "Recapture in the centre so material is level and your c6-knight is no longer attacked."
+ },
+ "e4 e5 Nf3 Nf6 d3 Nc6 Bg5 Be7 Nc3 h6": {
+  "note": "Black asks the bishop a question: retreat or trade itself for the knight.",
+  "cue": "Ask White's pinning bishop to decide: attack it with a pawn."
+ },
+ "e4 e5 Nf3 Nf6 d4 Nxe4 Bd3 d5 Nxe5 Bd6": {
+  "note": "Black develops by challenging the strong e5-knight and gets ready to castle. Both sides have centralised knights.",
+  "cue": "Develop your kingside bishop to a square that challenges White's centralised knight."
+ },
+ "e4 e5 Nf3 d6 d4 exd4 Nxd4 Qe7 Nc3 Nf6": {
+  "note": "Black develops and puts more pressure on e4."
+ },
+ "e4 e5 Nf3 d6 d4 f6 Bc4 Nc6 h3 Nge7": {
+  "note": "Black develops the kingside knight via e7, since the f6-pawn blocks its normal square."
+ },
+ "e4 e5 Qf3 Nf6 Bc4 d5 exd5 e4 Qd1 Bc5": {
+  "note": "Black develops to an active diagonal aimed at f2 and prepares to castle, enjoying a clear lead in development.",
+  "cue": "Develop your kingside bishop to the diagonal aimed at White's f2."
+ },
+ "e4 e5 Qh5 Nc6 Bc4 g6 Qf3 Nf6 c3 Na5": {
+  "note": "The knight attacks the c4-bishop, White's most dangerous attacker of f7. Black is happy to trade knight for bishop and get the bishop pair.",
+  "cue": "White's most dangerous bishop is loose: chase it with a knight."
+ },
+ "e4 e5 d3 Nf6 Bg5 Nc6 f3 d5 Nc3 d4": {
+  "note": "Black pushes on with tempo: the pawn attacks the c3-knight, which must move again, and Black gains lots of space.",
+  "cue": "Push a centre pawn forward to attack a knight and gain space."
+ },
+ "e4 e5 d3 Nf6 Nh3 d5 exd5 Nxd5 c4 Nf6": {
+  "note": "The knight steps back to a safe, useful square. With the d-file open, Black's queen now eyes the weak d3-pawn, and ...Bxh3 is still in the air.",
+  "cue": "Your knight is attacked by a pawn: retreat it to a good, safe square."
+ },
+ "e4 e5 d4 exd4 Qxd4 Nc6 Qa4 Nf6 Nc3 Bb4": {
+  "note": "Black pins the c3-knight to the king and also blocks the queen's guard of e4 along the 4th rank, so ...Nxe4 is now a threat.",
+  "cue": "Pin the knight that guards White's e-pawn, cutting off the queen's defence at the same time."
+ },
+ "e4 e5 d4 exd4 e5 d6 Qxd4 Nc6 Bb5 Bd7": {
+  "note": "Black breaks the pin by developing. Now the knight really threatens ...Nxd4, winning the queen, so White must deal with it.",
+  "cue": "Your knight is pinned: develop a piece that blocks the pin, renewing the threat to the queen."
+ },
+ "e4 e5 f4 exf4 Nf3 Nf6 d3 Nc6 Bxf4 d5": {
+  "note": "Black strikes in the centre, opening lines while White's king is exposed by the missing f-pawn.",
+  "cue": "Material is level: grab the centre with a pawn."
+ },
+ "e4 e6 d4 d5 e5 c5 c3 Nc6 Nf3 Bd7": {
+  "note": "Black develops the light-squared bishop quietly, keeping options like ...Qb6 and ...Rc8 to build more pressure on the c-file and d4."
+ },
+ "e4 e6 d4 d5 e5 c5 c3 Nc6 Nf3 Qb6": {
+  "note": "Black adds a third attacker on d4 and also eyes b2, which ties down White's c1-bishop."
+ },
+ "e4 e6 d4 d5 e5 c5 c3 Qb6 Nf3 Bd7": {
+  "note": "Black develops the bishop and plans ...Bb5 to swap off its light-squared bishop, which is often hemmed in by Black's own pawns."
+ },
+ "d4 d5 Bf4 c5 e3 cxd4 exd4 Nc6 Nf3 Bg4 Nbd2": {
+  "note": "White develops the other knight; from d2 it can break the pin by recapturing on f3 if needed."
+ },
+ "d4 d5 Nf3 Nf6 Bf4 Bf5 e3 e6 c3 Nc6 Bd3": {
+  "note": "White offers to swap light bishops; Black's f5-bishop is one of Black's best pieces."
+ },
+ "d4 d5 Nf3 Nf6 Bf4 c5 e3 Nc6 Nbd2 e6 c3": {
+  "note": "White completes the London pawn triangle (c3-d4-e3), which keeps d4 rock-solid against Black's pressure.",
+  "cue": "Complete your pawn triangle so your d-pawn is secure."
+ },
+ "d4 d5 Nf3 Nf6 Nc3 g6 e3 Bg7 Bd3 O-O O-O": {
+  "note": "White castles too, and both kings are safe."
+ },
+ "d4 d5 c4 c6 Nc3 Nf6 Nf3 dxc4 a4 Bf5 e3": {
+  "note": "White opens the f1-bishop's diagonal so it can take back on c4."
+ },
+ "d4 d5 c4 c6 Nf3 Nf6 Nc3 dxc4 a4 Bf5 e3": {
+  "note": "White opens the f1-bishop's diagonal so it can recapture the c4-pawn next move."
+ },
+ "d4 d5 c4 c6 Nf3 Nf6 Nc3 e6 e3 Nbd7 Bd3": {
+  "note": "White develops the bishop toward Black's kingside and gets ready to castle.",
+  "cue": "Develop your kingside bishop toward Black's king so you can castle."
+ },
+ "d4 d5 c4 c6 Nf3 Nf6 e3 Bf5 cxd5 cxd5 Qb3": {
+  "note": "White attacks b7, which lost its guard when the bishop left c8, and also adds pressure on d5."
+ },
+ "d4 d5 c4 c6 cxd5 cxd5 Nc3 Nf6 Nf3 Nc6 Bf4": {
+  "note": "White develops the dark bishop outside the pawn chain before playing e3."
+ },
+ "d4 d5 c4 dxc4 Nf3 Nf6 e3 e6 Bxc4 c5 O-O": {
+  "note": "White gets the king safe before deciding what to do about the tension on d4.",
+  "cue": "Get your king to safety before the centre opens."
+ },
+ "d4 d5 c4 e6 Nc3 Nf6 Bg5 Be7 e3 O-O Nf3": {
+  "note": "White develops the last knight, guarding d4 and getting ready to castle.",
+  "cue": "Develop your last knight so you can castle."
+ },
+ "e4 c5 c3 Nf6 e5 Nd5 Nf3 Nc6 Bc4 Nb6 Bb3": {
+  "note": "White retreats the bishop to safety on b3, where it still eyes the f7-pawn along the diagonal.",
+  "cue": "Your bishop is attacked. Retreat it to a square where it stays on the same diagonal."
+ },
+ "e4 c5 c3 d5 exd5 Qxd5 d4 cxd4 cxd4 Nc6 Nf3": {
+  "note": "White develops and adds a second defender to d4, stopping Black from winning the pawn.",
+  "cue": "Your d-pawn is attacked twice. Develop a piece that also defends it."
+ },
+ "e4 c6 d4 d5 Nc3 dxe4 Nxe4 Bf5 Ng3 Bg6 h4": {
+  "note": "White threatens h5, which would trap the g6-bishop since h7 is blocked by Black's own pawn."
+ },
+ "e4 c6 d4 d5 Nd2 dxe4 Nxe4 Bf5 Ng3 Bg6 h4": {
+  "note": "White threatens h5, which would trap the g6-bishop since h7 is blocked by Black's own pawn."
+ },
+ "e4 c6 d4 d5 e5 Bf5 Nc3 e6 g4 Bg6 Nge2": {
+  "note": "White develops the knight to e2, aiming for Nf4 or h4-h5 to hunt the g6-bishop."
+ },
+ "e4 c6 d4 d5 exd5 cxd5 Bd3 Nc6 c3 Nf6 Bf4": {
+  "note": "White develops the bishop outside the pawn chain before playing Nf3. Black usually answers ...Bg4, pinning or harassing."
+ },
+ "e4 c6 d4 d5 exd5 cxd5 c4 Nf6 Nc3 e6 Nf3": {
+  "note": "White develops and guards d4, preparing to castle; Black now chooses where to put the dark bishop.",
+  "cue": "Develop your kingside knight and prepare to castle."
+ },
+ "e4 d5 exd5 Qxd5 Nc3 Qa5 d4 Nf6 Nf3 Bf5 Ne5": {
+  "note": "White's knight jumps to a strong central square, eyeing f7. The plan is Bc4 and sometimes g4 to chase the f5-bishop and gain space.",
+  "cue": "Put your knight on an active central post that eyes f7."
+ },
+ "e4 e5 Nc3 Nf6 Bc4 Nxe4 Qh5 Nd6 Bb3 Nc6 Nb5": {
+  "note": "White attacks the d6-knight, the only guard of f7: Nxd6+ cxd6 Qxf7 would be mate.",
+  "cue": "Attack the knight that is guarding f7 — remove the defender and mate follows."
+ },
+ "e4 e5 Nf3 Nc6 Bb5 Nf6 O-O Nxe4 d4 Nd6 Bxc6": {
+  "note": "White trades bishop for knight, doubling Black's pawns and removing the defender of e5. White will then take on e5 with tempo.",
+  "cue": "Your bishop is attacked — give it up for the knight that guards e5."
+ },
+ "e4 e5 Nf3 Nc6 Bb5 a6 Ba4 Nf6 O-O Be7 Re1": {
+  "note": "White now guards e4 with the rook. That also sets up a real threat: Bxc6 and Nxe5, since e4 is safe.",
+  "cue": "Your e4-pawn needs protection now — use a piece that wasn't in play yet."
+ },
+ "e4 e5 Nf3 Nc6 Bb5 a6 Ba4 Nf6 O-O Nxe4 d4": {
+  "note": "White hits e5 at once and opens lines toward Black's king, which is still in the centre. The pawn will be regained.",
+  "cue": "Hit back in the centre with a pawn, opening lines while Black's king is uncastled."
+ },
+ "e4 e5 Nf3 Nc6 Bc4 Bc5 c3 Nf6 d3 d6 O-O": {
+  "note": "White castles: the king is safe, and the rook can come to e1 to support the centre and a later d4.",
+  "cue": "Your pieces are out — get your king to safety."
+ },
+ "e4 e5 Nf3 Nc6 Bc4 Bc5 c3 d6 d4 exd4 cxd4": {
+  "note": "White recaptures with the c-pawn, building a classic e4+d4 centre and attacking the bishop once more.",
+  "cue": "Recapture so that you get two pawns side by side in the centre."
+ },
+ "e4 e5 Nf3 Nc6 Bc4 Nf6 d3 Bc5 O-O d6 c3": {
+  "note": "White prepares d4 and gives the bishop a retreat on c2 later. It also keeps Black's knight off d4.",
+  "cue": "Prepare a later d4 with a small pawn move that also controls d4."
+ },
+ "e4 e5 Nf3 Nc6 d4 exd4 Nxd4 Bc5 Be3 Qf6 c3": {
+  "note": "White adds a pawn guard to the d4-knight, so it is defended three times and can't be won. A solid pawn defender is better than moving the knight.",
+  "cue": "Your d4-knight is attacked three times — give it one more defender, ideally a pawn."
+ },
+ "e4 e5 Nf3 Nc6 d4 exd4 Nxd4 Nf6 Nxc6 bxc6 e5": {
+  "note": "White pushes with tempo: the f6-knight is attacked and must move. White gains space and the knight usually goes to d5, where c4 can chase it again.",
+  "cue": "Push a centre pawn forward to chase away Black's f6-knight."
+ },
+ "e4 e5 Nf3 Nc6 d4 exd4 Nxd4 Qh4 Nb5 Bb4 Bd2": {
+  "note": "White blocks the check with a developing move that also attacks the b4-bishop. The Nxc7+ fork is still threatened.",
+  "cue": "Block the check with a piece that develops and attacks the checking bishop."
+ },
+ "e4 e5 Nf3 Nf6 Bc4 Nxe4 Nxe5 d5 Bd3 Qe7 Bxe4": {
+  "note": "White takes the knight, hoping to rescue the material, but the bishop on e4 is about to be pinned."
+ },
+ "e4 e5 Nf3 Nf6 Bc4 Nxe4 d3 Nf6 Ng5 d5 Bb5+": {
+  "note": "The bishop escapes with check, but it will be hit again by ...c6, costing White more time."
+ },
+ "e4 e5 Nf3 Nf6 Nc3 Nc6 Bb5 Bb4 O-O O-O d3": {
+  "note": "White firmly defends e4 and opens the c1-bishop, which often goes to g5 to pin the f6-knight."
+ },
+ "e4 e5 Nf3 Nf6 Nxe5 Nxe4 Qe2 Bd6 Qxe4 Bxe5 Qxe5+": {
+  "note": "White takes the bishop with check, ending a whole piece up. The queen also eyes g7.",
+  "cue": "Win back the piece — capture with check."
+ },
+ "e4 e5 Nf3 Nf6 Nxe5 d6 Nf3 Nxe4 d3 Nf6 Nc3": {
+  "note": "White develops toward the centre. Plans include d4, Bd3 or Be2, and castling — normal play with an easy position.",
+  "cue": "Develop a piece toward the centre."
+ },
+ "e4 e5 Nf3 Nf6 Nxe5 d6 Nf3 Nxe4 d4 d5 Bd3": {
+  "note": "White develops toward the kingside and attacks the knight on e4, preparing to castle next."
+ },
+ "e4 e5 Nf3 Nf6 d3 Nc6 Be2 d5 exd5 Nxd5 O-O": {
+  "note": "White castles. Black has a free, comfortable position with a strong knight on d5 and easy development."
+ },
+ "e4 e5 Nf3 Nf6 d3 Nc6 Bg5 Be7 Nc3 h6 Bxf6": {
+  "note": "White gives up the bishop for the knight rather than retreat. Black must recapture, as the bishop also hits e7 and g7."
+ },
+ "e4 e5 Nf3 Nf6 d4 Nxe4 Bd3 d5 Nxe5 Bd6 O-O": {
+  "note": "White gets the king safe and brings the rook toward the centre before starting any action."
+ },
+ "e4 e5 Nf3 d6 d4 exd4 Nxd4 Qe7 Nc3 Nf6 Bg5": {
+  "note": "White develops with a pin: the f6-knight can't move without exposing the queen on e7, so ...Nxe4 is off the table. Qd2 and long castling often follow.",
+  "cue": "Develop a bishop to pin Black's f6-knight against the queen behind it."
+ },
+ "e4 e5 Nf3 d6 d4 f6 Bc4 Nc6 h3 Nge7 O-O": {
+  "note": "White castles and is ahead in development. Next ideas are Nc3 and pressure on the a2-g8 diagonal, where Black's king is uncomfortable.",
+  "cue": "You're well developed — get your king safe."
+ },
+ "e4 e6 d4 d5 e5 c5 c3 Nc6 Nf3 Qb6 a3": {
+  "note": "White prepares b4 to gain space on the queenside and, by covering b4, keeps Black's pieces from landing there.",
+  "cue": "Prepare to grab queenside space with a pawn push."
+ },
+ "d4 d5 Bf4 c5 e3 cxd4 exd4 Nc6 Nf3 Bg4 Nbd2 e6": {
+  "note": "Black opens the f8-bishop, planning ...Bd6 to trade off White's strong London bishop, and gets ready to castle.",
+  "cue": "Open a diagonal for your dark bishop so it can challenge White's active bishop."
+ },
+ "d4 d5 Nf3 Nf6 Bf4 Bf5 e3 e6 c3 Nc6 Bd3 Ne4": {
+  "note": "Black puts the knight on a strong central square. If White plays Bxe4, then ...dxe4 attacks the f3-knight and gains time.",
+  "cue": "Jump a knight into the strong central square in front of your pawns."
+ },
+ "d4 d5 Nf3 Nf6 Nc3 g6 e3 Bg7 Bd3 O-O O-O Nc6": {
+  "note": "Black develops the last minor piece, putting more pressure on d4. Ideas like ...Nb4 to swap off the d3-bishop can follow.",
+  "cue": "Develop your last minor piece so it adds pressure on d4."
+ },
+ "d4 d5 c4 c6 Nc3 Nf6 Nf3 dxc4 a4 Bf5 e3 e6": {
+  "note": "Black gives up the c4-pawn and opens the f8-bishop instead, aiming to develop quickly and castle.",
+  "cue": "Open the diagonal for your dark-squared bishop with a small pawn move."
+ },
+ "d4 d5 c4 c6 Nf3 Nf6 Nc3 dxc4 a4 Bf5 e3 e6": {
+  "note": "Black accepts that the c4-pawn will be lost and opens a diagonal for the f8-bishop instead, aiming for quick development and castling.",
+  "cue": "Open the diagonal for your dark-squared bishop with a small pawn move."
+ },
+ "d4 d5 c4 c6 Nf3 Nf6 Nc3 e6 e3 Nbd7 Bd3 dxc4": {
+  "note": "Black takes on c4 with gain of time, since the d3-bishop has to recapture and use a second move."
+ },
+ "d4 d5 c4 c6 Nf3 Nf6 e3 Bf5 cxd5 cxd5 Qb3 Qc8": {
+  "note": "Black guards b7 and hits back down the open c-file: the c1-bishop is unprotected, so Black threatens ...Qxc1+.",
+  "cue": "Protect the b7-pawn with a piece that also attacks something of White's down an open file."
+ },
+ "d4 d5 c4 c6 cxd5 cxd5 Nc3 Nf6 Nf3 Nc6 Bf4 Bf5": {
+  "note": "Black copies White and develops the light bishop outside the pawns before ...e6 closes it in.",
+  "cue": "Get your light bishop out before you play a pawn move that would lock it in."
+ },
+ "d4 d5 c4 dxc4 Nf3 Nf6 e3 e6 Bxc4 c5 O-O a6": {
+  "note": "Black prepares ...b5 to chase the c4-bishop and gain queenside space, with ...Bb7 to follow."
+ },
+ "d4 d5 c4 e6 Nc3 Nf6 Bg5 Be7 e3 O-O Nf3 h6": {
+  "note": "Black asks the g5-bishop what it wants: retreat or trade for the knight. Black also gives the king a safe square (luft)."
+ },
+ "e4 c5 c3 Nf6 e5 Nd5 Nf3 Nc6 Bc4 Nb6 Bb3 c4": {
+  "note": "Black gains space and kicks the bishop again, threatening to win it. The c4-pawn also takes the d3-square away from White's pieces."
+ },
+ "e4 c5 c3 d5 exd5 Qxd5 d4 cxd4 cxd4 Nc6 Nf3 Bg4": {
+  "note": "Black targets the knight that defends d4. The idea is ...Bxf3, damaging White's pawns or removing a defender, and then ...Qxd4."
+ },
+ "e4 c6 d4 d5 Nc3 dxe4 Nxe4 Bf5 Ng3 Bg6 h4 h6": {
+  "note": "Black makes an escape square on h7, so after h5 the bishop can drop back safely. Without this, h5 would trap the bishop.",
+  "cue": "White threatens to trap your bishop with a pawn push — give it an escape square."
+ },
+ "e4 c6 d4 d5 Nd2 dxe4 Nxe4 Bf5 Ng3 Bg6 h4 h6": {
+  "note": "Black makes an escape square on h7, so after h5 the bishop can drop back safely. Without this, h5 would trap the bishop.",
+  "cue": "White threatens to trap your bishop with a pawn push — give it an escape square."
+ },
+ "e4 c6 d4 d5 e5 Bf5 Nc3 e6 g4 Bg6 Nge2 c5": {
+  "note": "Black strikes back at d4, the base of White's pawn chain, before White's kingside attack gets going. Typical follow-up: ...Nc6.",
+  "cue": "Hit the base of White's pawn chain with a pawn."
+ },
+ "e4 c6 d4 d5 exd5 cxd5 c4 Nf6 Nc3 e6 Nf3 Bb4": {
+  "note": "Black pins the c3-knight, a key defender of d5 and e4, and gets ready to castle.",
+  "cue": "Develop your dark bishop actively: pin a knight that guards d5."
+ },
+ "e4 d5 exd5 Qxd5 Nc3 Qa5 d4 Nf6 Nf3 Bf5 Ne5 c6": {
+  "note": "A solid move: it covers d5 and b5, giving the queen a retreat to c7 or d8. Black wants to finish with ...e6 and ...Nbd7."
+ },
+ "e4 e5 Nc3 Nf6 Bc4 Nxe4 Qh5 Nd6 Bb3 Nc6 Nb5 g6": {
+  "note": "Black hits the queen with a pawn to gain time and push it away from the f7 attack."
+ },
+ "e4 e5 Nf3 Nc6 Bb5 Nf6 O-O Nxe4 d4 Nd6 Bxc6 dxc6": {
+  "note": "Black recaptures toward the centre, opening lines for the c8-bishop and the queen."
+ },
+ "e4 e5 Nf3 Nc6 Bb5 a6 Ba4 Nf6 O-O Be7 Re1 b5": {
+  "note": "Black kicks the bishop and stops Bxc6 ideas, gaining space on the queenside."
+ },
+ "e4 e5 Nf3 Nc6 Bb5 a6 Ba4 Nf6 O-O Nxe4 d4 b5": {
+  "note": "Black kicks the bishop to gain queenside space and free the c6-knight from the pin, so that ...d5 can follow to support the e4-knight."
+ },
+ "e4 e5 Nf3 Nc6 Bc4 Bc5 c3 Nf6 d3 d6 O-O O-O": {
+  "note": "Black castles too, finishing the king's safety. Both sides now manoeuvre slowly."
+ },
+ "e4 e5 Nf3 Nc6 Bc4 Bc5 c3 d6 d4 exd4 cxd4 Bb6": {
+  "note": "Black retreats the bishop to a safe square where it still aims at d4. White has the bigger centre; Black is solid and will develop with ...Nf6."
+ },
+ "e4 e5 Nf3 Nc6 Bc4 Nf6 d3 Bc5 O-O d6 c3 O-O": {
+  "note": "Black castles too. The usual slow Italian middlegame: both sides manoeuvre before a break like d4 or ...d5."
+ },
+ "e4 e5 Nf3 Nc6 d4 exd4 Nxd4 Bc5 Be3 Qf6 c3 Nge7": {
+  "note": "Black develops the last minor piece to e7 (f6 is taken by the queen) and gets ready to castle."
+ },
+ "e4 e5 Nf3 Nc6 d4 exd4 Nxd4 Qh4 Nb5 Bb4 Bd2 Qxe4": {
+  "note": "Black grabs the e4-pawn with check. Black is a pawn up, but the queen is out early and the c7 fork is still in the air."
+ },
+ "e4 e5 Nf3 Nf6 Bc4 Nxe4 Nxe5 d5 Bd3 Qe7 Bxe4 Qxe5": {
+  "note": "Black takes the knight and pins the e4-bishop to the king. Next ...dxe4 wins the bishop, leaving Black a piece up.",
+  "cue": "Grab the loose knight in a way that pins White's bishop to the king."
+ },
+ "e4 e5 Nf3 Nf6 Bc4 Nxe4 d3 Nf6 Ng5 d5 Bb5+ c6": {
+  "note": "Black blocks the check with a pawn that attacks the bishop, so it must move again. Black is a pawn up and well developed.",
+  "cue": "Block the check with a pawn that also attacks the bishop."
+ },
+ "e4 e5 Nf3 Nf6 Nc3 Nc6 Bb5 Bb4 O-O O-O d3 d6": {
+  "note": "Black copies again: e5 is solidly protected and the c8-bishop can come out, for example to g4.",
+  "cue": "Shore up your e-pawn with a pawn and free your light-squared bishop."
+ },
+ "e4 e5 Nf3 Nf6 Nxe5 d6 Nf3 Nxe4 d4 d5 Bd3 Be7": {
+  "note": "Black develops quietly and gets ready to castle. The knight on e4 is still held by the d5-pawn.",
+  "cue": "Develop your dark-squared bishop modestly so you can castle."
+ },
+ "e4 e5 Nf3 Nf6 d3 Nc6 Be2 d5 exd5 Nxd5 O-O Bd6": {
+  "note": "Black develops the bishop to guard e5 and prepares to castle. Black's position is easy and active.",
+  "cue": "Develop your kingside bishop so it also guards your e-pawn, then castle."
+ },
+ "e4 e5 Nf3 Nf6 d3 Nc6 Bg5 Be7 Nc3 h6 Bxf6 Bxf6": {
+  "note": "Black recaptures with the bishop, keeping a healthy pawn structure and gaining the bishop pair.",
+  "cue": "A piece was taken: recapture with the piece that keeps your pawns healthy."
+ },
+ "e4 e5 Nf3 Nf6 d4 Nxe4 Bd3 d5 Nxe5 Bd6 O-O O-O": {
+  "note": "Black castles too, keeping the position symmetrical and solid. Next comes development of the queenside pieces.",
+  "cue": "Your king is still in the centre: get it safe."
+ },
+ "e4 e6 d4 d5 e5 c5 c3 Nc6 Nf3 Qb6 a3 Nh6": {
+  "note": "The knight can't go to f6 because of e5, so it heads for f5 to add yet more pressure on d4."
+ },
+ "d4 d5 c4 c6 Nc3 Nf6 Nf3 dxc4 a4 Bf5 e3 e6 Bxc4": {
+  "note": "White wins the pawn back while developing the bishop, and is ready to castle."
+ },
+ "d4 d5 c4 c6 Nf3 Nf6 Nc3 dxc4 a4 Bf5 e3 e6 Bxc4": {
+  "note": "White wins the pawn back, developing the bishop to an active square and getting ready to castle."
+ },
+ "d4 d5 c4 c6 Nf3 Nf6 Nc3 e6 e3 Nbd7 Bd3 dxc4 Bxc4": {
+  "note": "White takes back the pawn and the bishop is active again.",
+  "cue": "Recapture the pawn you just lost."
+ },
+ "d4 d5 c4 c6 cxd5 cxd5 Nc3 Nf6 Nf3 Nc6 Bf4 Bf5 e3": {
+  "note": "White opens the f1-bishop and supports d4, getting ready to develop the bishop and castle."
+ },
+ "d4 d5 c4 e6 Nc3 Nf6 Bg5 Be7 e3 O-O Nf3 h6 Bh4": {
+  "note": "White keeps the pin by retreating along the same diagonal instead of giving up the bishop for the knight.",
+  "cue": "Your bishop is attacked — retreat it but keep the pin."
+ },
+ "e4 c5 c3 Nf6 e5 Nd5 Nf3 Nc6 Bc4 Nb6 Bb3 c4 Bc2": {
+  "note": "White's bishop moves to c2, aiming at the h7-pawn and Black's kingside. The e5-pawn keeps Black's knights off f6.",
+  "cue": "Your bishop is attacked again. Find a safe square where it points at Black's kingside."
+ },
+ "e4 c5 c3 d5 exd5 Qxd5 d4 cxd4 cxd4 Nc6 Nf3 Bg4 Nc3": {
+  "note": "White develops with tempo, hitting the queen. If Black takes on f3, White recaptures and Black's queen is still attacked.",
+  "cue": "Develop a piece that attacks the enemy queen."
+ },
+ "e4 c6 d4 d5 Nc3 dxe4 Nxe4 Bf5 Ng3 Bg6 h4 h6 Nf3": {
+  "note": "White develops and prepares h5 plus Bd3 to trade off Black's good bishop."
+ },
+ "e4 c6 d4 d5 Nd2 dxe4 Nxe4 Bf5 Ng3 Bg6 h4 h6 Nf3": {
+  "note": "White develops and prepares h5 plus Bd3 to trade off Black's good bishop."
+ },
+ "e4 e5 Nc3 Nf6 Bc4 Nxe4 Qh5 Nd6 Bb3 Nc6 Nb5 g6 Qf3": {
+  "note": "White moves the queen to a square that still eyes f7, so Nxd6+ remains a threat (after ...cxd6, Qxf7 is mate).",
+  "cue": "Your queen is attacked — move it where it still aims at f7."
+ },
+ "e4 e5 Nf3 Nc6 Bb5 Nf6 O-O Nxe4 d4 Nd6 Bxc6 dxc6 dxe5": {
+  "note": "White wins back the pawn and gains time: the e5-pawn attacks the d6-knight, which must move.",
+  "cue": "Win back your pawn with a capture that also attacks Black's knight."
+ },
+ "e4 e5 Nf3 Nc6 Bb5 a6 Ba4 Nf6 O-O Be7 Re1 b5 Bb3": {
+  "note": "White retreats to the a2-g8 diagonal, where the bishop aims at f7 and is hard to chase further.",
+  "cue": "Your bishop is attacked — retreat it to a diagonal aimed at f7."
+ },
+ "e4 e5 Nf3 Nc6 Bb5 a6 Ba4 Nf6 O-O Nxe4 d4 b5 Bb3": {
+  "note": "White keeps the bishop on the diagonal toward f7 and d5, where it bothers Black's centre.",
+  "cue": "Your bishop is attacked — move it to a safe square still aimed at Black's king side."
+ },
+ "e4 e5 Nf3 Nc6 Bc4 Bc5 c3 Nf6 d3 d6 O-O O-O Re1": {
+  "note": "White puts the rook behind the e4-pawn: it protects e4 and supports a future d4 break, after which the e-file may open.",
+  "cue": "Bring a rook to the file where your centre pawn stands, to back it up."
+ },
+ "e4 e5 Nf3 Nc6 d4 exd4 Nxd4 Bc5 Be3 Qf6 c3 Nge7 Qd2": {
+  "note": "White connects the queen to the bishop on e3, adds support on the dark squares, and prepares Nb5 ideas or castling queenside. Balanced, normal play.",
+  "cue": "Bring the queen up one square to back up your bishop and get ready to castle."
+ },
+ "e4 e5 Nf3 Nc6 d4 exd4 Nxd4 Qh4 Nb5 Bb4 Bd2 Qxe4 Be2": {
+  "note": "White blocks the check while developing and getting ready to castle — and Nxc7+ forking king and rook is still threatened. White is giving a pawn for a big lead in development.",
+  "cue": "Block the check with a piece that develops and lets you castle next."
+ },
+ "e4 e5 Nf3 Nf6 Nxe5 d6 Nf3 Nxe4 d4 d5 Bd3 Be7 O-O": {
+  "note": "White tucks the king away and brings the rook toward the centre, where it can join the attack on the e4-knight."
+ },
+ "e4 e5 Nf3 Nf6 d4 Nxe4 Bd3 d5 Nxe5 Bd6 O-O O-O c4": {
+  "note": "White attacks d5, which the queen cannot defend because her own bishop on d6 is in the way. Black usually props it up with ...c6."
+ },
+ "d4 d5 c4 c6 Nc3 Nf6 Nf3 dxc4 a4 Bf5 e3 e6 Bxc4 Bb4": {
+  "note": "Black develops actively and pins the c3-knight, making e4 harder for White, and gets ready to castle.",
+  "cue": "Develop your dark bishop actively and pin the knight that supports White's e4 push."
+ },
+ "d4 d5 c4 c6 Nf3 Nf6 Nc3 dxc4 a4 Bf5 e3 e6 Bxc4 Bb4": {
+  "note": "Black develops actively and pins the c3-knight, which makes it harder for White to push e4, while getting ready to castle.",
+  "cue": "Develop your dark bishop actively and pin the knight that supports White's e4 push."
+ },
+ "d4 d5 c4 c6 Nf3 Nf6 Nc3 e6 e3 Nbd7 Bd3 dxc4 Bxc4 b5": {
+  "note": "Black chases the bishop again, gaining queenside space and making room for ...Bb7 and ...a6/...c5."
+ },
+ "d4 d5 c4 c6 cxd5 cxd5 Nc3 Nf6 Nf3 Nc6 Bf4 Bf5 e3 e6": {
+  "note": "Black does the same thing: opens the dark bishop, strengthens d5, and gets ready to castle. The position is solid and level.",
+  "cue": "Both bishops are out — open the way for your other bishop and get ready to castle."
+ },
+ "d4 d5 c4 e6 Nc3 Nf6 Bg5 Be7 e3 O-O Nf3 h6 Bh4 b6": {
+  "note": "Black prepares ...Bb7 to develop the shut-in light bishop on the long diagonal."
+ },
+ "e4 c5 c3 d5 exd5 Qxd5 d4 cxd4 cxd4 Nc6 Nf3 Bg4 Nc3 Bxf3": {
+  "note": "Black removes the knight before moving the queen; it also attacks White's queen on d1, so White must recapture before taking on d5."
+ },
+ "e4 c6 d4 d5 Nc3 dxe4 Nxe4 Bf5 Ng3 Bg6 h4 h6 Nf3 Nd7": {
+  "note": "Black develops the queen's knight first, covering e5 so a white knight landing there can be traded off, and prepares ...Ngf6.",
+  "cue": "Develop a knight that keeps White's pieces off e5."
+ },
+ "e4 c6 d4 d5 Nd2 dxe4 Nxe4 Bf5 Ng3 Bg6 h4 h6 Nf3 Nd7": {
+  "note": "Black develops the queen's knight first, covering e5 so a white knight landing there can be traded off, and prepares ...Ngf6.",
+  "cue": "Develop a knight that keeps White's pieces off e5."
+ },
+ "e4 e5 Nc3 Nf6 Bc4 Nxe4 Qh5 Nd6 Bb3 Nc6 Nb5 g6 Qf3 f5": {
+  "note": "Black blocks the queen's line to f7. With f7 safe, Black now threatens ...Nxb5, since that knight has no defender."
+ },
+ "e4 e5 Nf3 Nc6 Bb5 Nf6 O-O Nxe4 d4 Nd6 Bxc6 dxc6 dxe5 Nf5": {
+  "note": "The knight moves to a good square, and by leaving d6 it opens the d-file so Black's queen now attacks White's."
+ },
+ "e4 e5 Nf3 Nc6 Bb5 a6 Ba4 Nf6 O-O Be7 Re1 b5 Bb3 d6": {
+  "note": "Black supports e5 with a pawn and opens the c8-bishop."
+ },
+ "e4 e5 Nf3 Nc6 Bb5 a6 Ba4 Nf6 O-O Nxe4 d4 b5 Bb3 d5": {
+  "note": "Black props up the e4-knight with a pawn and blocks the bishop's diagonal. With the knight secure, the d4-pawn is now under real pressure."
+ },
+ "e4 e5 Nf3 Nc6 Bc4 Bc5 c3 Nf6 d3 d6 O-O O-O Re1 a6": {
+  "note": "Black makes a safe square on a7 for the bishop, so it can't be hit by d4 or b4, and stops White's pieces from using b5."
+ },
+ "e4 e5 Nf3 Nc6 d4 exd4 Nxd4 Qh4 Nb5 Bb4 Bd2 Qxe4 Be2 Kd8": {
+  "note": "Black guards c7 with the king to stop the fork, but loses the right to castle. Now Black threatens ...Qxg2, hitting the rook."
+ },
+ "e4 e5 Nf3 Nf6 Nxe5 d6 Nf3 Nxe4 d4 d5 Bd3 Be7 O-O Nc6": {
+  "note": "Black develops and puts pressure on the d4-pawn, so White has to keep defending the centre instead of attacking.",
+  "cue": "Develop a queenside piece that also puts pressure on White's d-pawn."
+ },
+ "d4 d5 c4 c6 Nf3 Nf6 Nc3 dxc4 a4 Bf5 e3 e6 Bxc4 Bb4 O-O": {
+  "note": "White tucks the king away and connects the rooks before planning e4 or Qe2."
+ },
+ "e4 c5 c3 d5 exd5 Qxd5 d4 cxd4 cxd4 Nc6 Nf3 Bg4 Nc3 Bxf3 gxf3": {
+  "note": "White recaptures, keeping the d1-queen safe, and the c3-knight still threatens Nxd5. Black's best is usually ...Qxd4, trading queens for a pawn.",
+  "cue": "Your queen is attacked by a bishop. Take it back, and keep your queen safe."
+ },
+ "e4 c6 d4 d5 Nc3 dxe4 Nxe4 Bf5 Ng3 Bg6 h4 h6 Nf3 Nd7 h5": {
+  "note": "White gains space and threatens hxg6, forcing the bishop back to h7."
+ },
+ "e4 c6 d4 d5 Nd2 dxe4 Nxe4 Bf5 Ng3 Bg6 h4 h6 Nf3 Nd7 h5": {
+  "note": "White gains space and threatens hxg6, forcing the bishop back to h7."
+ },
+ "e4 e5 Nc3 Nf6 Bc4 Nxe4 Qh5 Nd6 Bb3 Nc6 Nb5 g6 Qf3 f5 Qd5": {
+  "note": "White guards the b5-knight and finds a new route to f7: Nxd6+ cxd6 Qf7 would be mate. Black must cover f7 again.",
+  "cue": "Your knight on b5 is hanging — guard it with the queen while aiming at f7 again."
+ },
+ "e4 e5 Nf3 Nc6 Bb5 Nf6 O-O Nxe4 d4 Nd6 Bxc6 dxc6 dxe5 Nf5 Qxd8": {
+  "note": "White trades queens with check. Black must take with the king and loses castling rights; this is the famous Berlin endgame.",
+  "cue": "The queens are facing each other — trade them so Black's king must recapture."
+ },
+ "e4 e5 Nf3 Nc6 Bb5 a6 Ba4 Nf6 O-O Be7 Re1 b5 Bb3 d6 c3": {
+  "note": "White prepares d4 and makes a retreat square on c2 for the bishop if Black plays ...Na5.",
+  "cue": "Prepare a central pawn break with a quiet pawn move — it also gives your bishop a future retreat."
+ },
+ "e4 e5 Nf3 Nc6 Bb5 a6 Ba4 Nf6 O-O Nxe4 d4 b5 Bb3 d5 dxe5": {
+  "note": "White wins back the pawn. Now the d-file is open, so the d5-pawn is attacked by the bishop and the queen and needs help.",
+  "cue": "Win back your pawn by capturing in the centre."
+ },
+ "e4 e5 Nf3 Nc6 Bc4 Bc5 c3 Nf6 d3 d6 O-O O-O Re1 a6 Bb3": {
+  "note": "White pulls the bishop back before ...b5 or ...Na5 can hit it, keeping it on the long diagonal aimed at f7.",
+  "cue": "Your bishop could soon be chased — retreat it now, still aiming at f7."
+ },
+ "e4 e5 Nf3 Nc6 d4 exd4 Nxd4 Qh4 Nb5 Bb4 Bd2 Qxe4 Be2 Kd8 O-O": {
+  "note": "White castles, which tucks the king away and stops ...Qxg2 (the king guards g2). Black's king is stuck in the middle while White's pieces come fast.",
+  "cue": "Black threatens to grab your g2-pawn — secure your king and guard g2 in one move."
+ },
+ "e4 e5 Nf3 Nf6 Nxe5 d6 Nf3 Nxe4 d4 d5 Bd3 Be7 O-O Nc6 Re1": {
+  "note": "The rook takes the open e-file, adding pressure to the knight on e4 and the bishop on e7 behind it."
+ },
+ "d4 d5 c4 c6 Nf3 Nf6 Nc3 dxc4 a4 Bf5 e3 e6 Bxc4 Bb4 O-O O-O": {
+  "note": "Black finishes kingside development and gets the king safe. Development is complete and the position is balanced.",
+  "cue": "Everything is developed on the kingside — get your king safe."
+ },
+ "e4 c6 d4 d5 Nc3 dxe4 Nxe4 Bf5 Ng3 Bg6 h4 h6 Nf3 Nd7 h5 Bh7": {
+  "note": "The bishop goes to the square ...h6 prepared, staying on the b1-h7 diagonal.",
+  "cue": "Your bishop is hit by a pawn — use the escape square you made earlier."
+ },
+ "e4 c6 d4 d5 Nd2 dxe4 Nxe4 Bf5 Ng3 Bg6 h4 h6 Nf3 Nd7 h5 Bh7": {
+  "note": "The bishop goes to the square ...h6 prepared, staying on the b1-h7 diagonal.",
+  "cue": "Your bishop is hit by a pawn — use the escape square you made earlier."
+ },
+ "e4 e5 Nc3 Nf6 Bc4 Nxe4 Qh5 Nd6 Bb3 Nc6 Nb5 g6 Qf3 f5 Qd5 Qe7": {
+  "note": "Black's queen covers f7 and stops the mate. But it leaves c7 weak, and Black threatens ...Nxb5."
+ },
+ "e4 e5 Nf3 Nc6 Bb5 Nf6 O-O Nxe4 d4 Nd6 Bxc6 dxc6 dxe5 Nf5 Qxd8 Kxd8": {
+  "note": "Black takes back with the king. Without queens the king is safe enough, and Black's two bishops make up for the doubled pawns."
+ },
+ "e4 e5 Nf3 Nc6 Bb5 a6 Ba4 Nf6 O-O Be7 Re1 b5 Bb3 d6 c3 O-O": {
+  "note": "Black castles, and the position is the main line of the Closed Ruy Lopez."
+ },
+ "e4 e5 Nf3 Nc6 Bb5 a6 Ba4 Nf6 O-O Nxe4 d4 b5 Bb3 d5 dxe5 Be6": {
+  "note": "Black guards d5 with the bishop. Black has an active knight on e4 and free development; White has the e5-pawn."
+ },
+ "e4 e5 Nf3 Nc6 Bc4 Bc5 c3 Nf6 d3 d6 O-O O-O Re1 a6 Bb3 Ba7": {
+  "note": "Black tucks the bishop away where pawn pushes like d4 can't attack it, while it still eyes d4 and f2."
+ },
+ "e4 e5 Nf3 Nc6 d4 exd4 Nxd4 Qh4 Nb5 Bb4 Bd2 Qxe4 Be2 Kd8 O-O Bxd2": {
+  "note": "Black trades off the d2-bishop. White recaptures with the knight, developing it, and has strong pressure for the pawn against Black's uncastled king."
+ },
+ "e4 e5 Nf3 Nf6 Nxe5 d6 Nf3 Nxe4 d4 d5 Bd3 Be7 O-O Nc6 Re1 Bg4": {
+  "note": "Black develops and pins the f3-knight to the queen. That knight is a key defender of d4, which the c6-knight is attacking.",
+  "cue": "Develop your light-squared bishop where it pins a white knight."
+ },
+ "e4 c6 d4 d5 Nc3 dxe4 Nxe4 Bf5 Ng3 Bg6 h4 h6 Nf3 Nd7 h5 Bh7 Bd3": {
+  "note": "White offers a bishop trade to remove Black's best minor piece and bring the queen to d3."
+ },
+ "e4 c6 d4 d5 Nd2 dxe4 Nxe4 Bf5 Ng3 Bg6 h4 h6 Nf3 Nd7 h5 Bh7 Bd3": {
+  "note": "White offers a bishop trade to remove Black's best minor piece and bring the queen to d3."
+ },
+ "e4 e5 Nc3 Nf6 Bc4 Nxe4 Qh5 Nd6 Bb3 Nc6 Nb5 g6 Qf3 f5 Qd5 Qe7 Nxc7": {
+  "note": "White takes c7 with check, forking the king and the a8-rook.",
+  "cue": "Use your knight for a capture with check that also hits a rook."
+ },
+ "e4 e5 Nf3 Nc6 Bb5 a6 Ba4 Nf6 O-O Be7 Re1 b5 Bb3 d6 c3 O-O h3": {
+  "note": "White stops ...Bg4, which would pin the f3-knight and weaken White's grip on d4. After this, d4 can come safely.",
+  "cue": "Before pushing d4, stop Black's bishop from pinning your f3-knight."
+ },
+ "e4 e5 Nf3 Nc6 Bb5 a6 Ba4 Nf6 O-O Nxe4 d4 b5 Bb3 d5 dxe5 Be6 c3": {
+  "note": "White makes room for the bishop on c2 and keeps Black's pieces off d4. Often Nbd2 follows to challenge the e4-knight.",
+  "cue": "Give your bishop a retreat square and keep Black's pieces off d4."
+ },
+ "e4 e5 Nf3 Nc6 Bc4 Bc5 c3 Nf6 d3 d6 O-O O-O Re1 a6 Bb3 Ba7 h3": {
+  "note": "White stops ...Bg4 or ...Ng4, which would harass the f3-knight, so White can regroup (often Nbd2-f1-g3) before pushing d4.",
+  "cue": "Stop Black's bishop or knight from jumping to g4 with a small pawn move."
+ },
+ "e4 e5 Nf3 Nf6 Nxe5 d6 Nf3 Nxe4 d4 d5 Bd3 Be7 O-O Nc6 Re1 Bg4 c3": {
+  "note": "White shores up d4 with a pawn, so the pin on f3 matters less, and opens the d1-a4 diagonal for the queen (Qb3 ideas)."
+ },
+ "e4 c6 d4 d5 Nc3 dxe4 Nxe4 Bf5 Ng3 Bg6 h4 h6 Nf3 Nd7 h5 Bh7 Bd3 Bxd3": {
+  "note": "Black takes the trade; otherwise Bxh7 would remove it anyway and drag the rook to h7. Trading pieces eases Black's cramped game.",
+  "cue": "Your bishop is challenged by White's bishop — decide whether to trade."
+ },
+ "e4 c6 d4 d5 Nd2 dxe4 Nxe4 Bf5 Ng3 Bg6 h4 h6 Nf3 Nd7 h5 Bh7 Bd3 Bxd3": {
+  "note": "Black takes the trade; otherwise Bxh7 would remove it anyway and drag the rook to h7. Trading pieces eases Black's cramped game.",
+  "cue": "Your bishop is challenged by White's bishop — decide whether to trade."
+ },
+ "e4 e5 Nc3 Nf6 Bc4 Nxe4 Qh5 Nd6 Bb3 Nc6 Nb5 g6 Qf3 f5 Qd5 Qe7 Nxc7 Kd8": {
+  "note": "Black's king steps aside and attacks the knight, but it can't save the rook."
+ },
+ "e4 e5 Nf3 Nc6 Bb5 a6 Ba4 Nf6 O-O Be7 Re1 b5 Bb3 d6 c3 O-O h3 Na5": {
+  "note": "Black chases the strong b3-bishop off the a2-g8 diagonal and frees the c-pawn to come to c5."
+ },
+ "e4 e5 Nf3 Nc6 Bb5 a6 Ba4 Nf6 O-O Nxe4 d4 b5 Bb3 d5 dxe5 Be6 c3 Bc5": {
+  "note": "Black puts the bishop on its most active diagonal, aimed at f2, and gets ready to castle."
+ },
+ "e4 e5 Nf3 Nf6 Nxe5 d6 Nf3 Nxe4 d4 d5 Bd3 Be7 O-O Nc6 Re1 Bg4 c3 f5": {
+  "note": "Black cements the e4-knight with a second pawn, so the pressure from Re1, Bd3 and a later Nbd2 cannot dislodge it. Black can castle next.",
+  "cue": "Your e4-knight is under fire: give it a second pawn defender."
+ },
+ "e4 c6 d4 d5 Nc3 dxe4 Nxe4 Bf5 Ng3 Bg6 h4 h6 Nf3 Nd7 h5 Bh7 Bd3 Bxd3 Qxd3": {
+  "note": "White recaptures with the queen, which eyes the kingside and connects toward queenside castling."
+ },
+ "e4 c6 d4 d5 Nd2 dxe4 Nxe4 Bf5 Ng3 Bg6 h4 h6 Nf3 Nd7 h5 Bh7 Bd3 Bxd3 Qxd3": {
+  "note": "White recaptures with the queen, which eyes the kingside and connects toward queenside castling."
+ },
+ "e4 e5 Nc3 Nf6 Bc4 Nxe4 Qh5 Nd6 Bb3 Nc6 Nb5 g6 Qf3 f5 Qd5 Qe7 Nxc7 Kd8 Nxa8": {
+  "note": "White grabs the rook. The knight will probably be trapped on a8, but White stays an exchange up — the main line of this wild variation.",
+  "cue": "Your knight is attacked — capture the biggest piece it can reach."
+ },
+ "e4 e5 Nf3 Nc6 Bb5 a6 Ba4 Nf6 O-O Be7 Re1 b5 Bb3 d6 c3 O-O h3 Na5 Bc2": {
+  "note": "White keeps the bishop by tucking it on c2 — the square that c3 prepared — where it now aims at Black's kingside.",
+  "cue": "Your bishop is attacked — keep it by using the retreat square your earlier pawn move made."
+ },
+ "e4 c6 d4 d5 Nc3 dxe4 Nxe4 Bf5 Ng3 Bg6 h4 h6 Nf3 Nd7 h5 Bh7 Bd3 Bxd3 Qxd3 e6": {
+  "note": "Black builds a solid pawn wall and frees the dark bishop, ready to develop and castle.",
+  "cue": "Open the way for your dark-squared bishop and firm up d5."
+ },
+ "e4 c6 d4 d5 Nd2 dxe4 Nxe4 Bf5 Ng3 Bg6 h4 h6 Nf3 Nd7 h5 Bh7 Bd3 Bxd3 Qxd3 e6": {
+  "note": "Black builds a solid pawn wall and frees the dark bishop, ready to develop and castle.",
+  "cue": "Open the way for your dark-squared bishop and firm up d5."
+ },
+ "e4 e5 Nc3 Nf6 Bc4 Nxe4 Qh5 Nd6 Bb3 Nc6 Nb5 g6 Qf3 f5 Qd5 Qe7 Nxc7 Kd8 Nxa8 b6": {
+  "note": "Black prepares ...Bb7, which hits the d5-queen and later wins the trapped a8-knight. Black has active pieces for the material, though White is still slightly better."
+ },
+ "e4 e5 Nf3 Nc6 Bb5 a6 Ba4 Nf6 O-O Be7 Re1 b5 Bb3 d6 c3 O-O h3 Na5 Bc2 c5": {
+  "note": "Black grabs queenside space and puts pressure on d4 before White can push there comfortably."
+ },
+ "e4 c6 d4 d5 Nc3 dxe4 Nxe4 Bf5 Ng3 Bg6 h4 h6 Nf3 Nd7 h5 Bh7 Bd3 Bxd3 Qxd3 e6 Bd2": {
+  "note": "White develops and clears the back rank to castle queenside, where the king is away from White's own advanced h-pawn."
+ },
+ "e4 c6 d4 d5 Nd2 dxe4 Nxe4 Bf5 Ng3 Bg6 h4 h6 Nf3 Nd7 h5 Bh7 Bd3 Bxd3 Qxd3 e6 Bd2": {
+  "note": "White develops and clears the back rank to castle queenside, where the king is away from White's own advanced h-pawn."
+ },
+ "e4 e5 Nf3 Nc6 Bb5 a6 Ba4 Nf6 O-O Be7 Re1 b5 Bb3 d6 c3 O-O h3 Na5 Bc2 c5 d4": {
+  "note": "White finally plays the central break, building an e4+d4 centre and challenging e5.",
+  "cue": "Now strike in the centre with the pawn break you've been preparing."
+ },
+ "e4 c6 d4 d5 Nc3 dxe4 Nxe4 Bf5 Ng3 Bg6 h4 h6 Nf3 Nd7 h5 Bh7 Bd3 Bxd3 Qxd3 e6 Bd2 Ngf6": {
+  "note": "Black develops the second knight, guarding the kingside and eyeing e4 and the h5-pawn.",
+  "cue": "Develop your last knight toward the centre."
+ },
+ "e4 c6 d4 d5 Nd2 dxe4 Nxe4 Bf5 Ng3 Bg6 h4 h6 Nf3 Nd7 h5 Bh7 Bd3 Bxd3 Qxd3 e6 Bd2 Ngf6": {
+  "note": "Black develops the second knight, guarding the kingside and eyeing e4 and the h5-pawn.",
+  "cue": "Develop your last knight toward the centre."
+ },
+ "e4 e5 Nf3 Nc6 Bb5 a6 Ba4 Nf6 O-O Be7 Re1 b5 Bb3 d6 c3 O-O h3 Na5 Bc2 c5 d4 Qc7": {
+  "note": "Black's queen supports e5 and lines up on the c-file. A classic setup; Black holds the centre and plays on the queenside."
+ },
+ "e4 c6 d4 d5 Nc3 dxe4 Nxe4 Bf5 Ng3 Bg6 h4 h6 Nf3 Nd7 h5 Bh7 Bd3 Bxd3 Qxd3 e6 Bd2 Ngf6 O-O-O": {
+  "note": "White tucks the king away on the queenside and puts the rook on the d-file behind the d4-pawn."
+ },
+ "e4 c6 d4 d5 Nd2 dxe4 Nxe4 Bf5 Ng3 Bg6 h4 h6 Nf3 Nd7 h5 Bh7 Bd3 Bxd3 Qxd3 e6 Bd2 Ngf6 O-O-O": {
+  "note": "White tucks the king away on the queenside and puts the rook on the d-file behind the d4-pawn."
+ },
+ "e4 c6 d4 d5 Nc3 dxe4 Nxe4 Bf5 Ng3 Bg6 h4 h6 Nf3 Nd7 h5 Bh7 Bd3 Bxd3 Qxd3 e6 Bd2 Ngf6 O-O-O Be7": {
+  "note": "Black develops the last minor piece modestly and prepares to castle, with a sound, solid position.",
+  "cue": "Develop your remaining minor piece and get ready to castle."
+ },
+ "e4 c6 d4 d5 Nd2 dxe4 Nxe4 Bf5 Ng3 Bg6 h4 h6 Nf3 Nd7 h5 Bh7 Bd3 Bxd3 Qxd3 e6 Bd2 Ngf6 O-O-O Be7": {
+  "note": "Black develops the last minor piece modestly and prepares to castle, with a sound, solid position.",
+  "cue": "Develop your remaining minor piece and get ready to castle."
+ }
+}

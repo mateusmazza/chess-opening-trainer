@@ -90,8 +90,9 @@ async function main() {
      'courses grouped by role (your openings / antidotes)');
   ok(ev('typeof startLine') === 'function', 'app globals reachable for driving');
   // daily scheduler introduces the FIRST course (curriculum order) first
-  ok(ev(`buildDailyQueue()[0].courseId`) === ev(`CARDS.find(c=>cardState(c.id)==='new').courseId`),
-     'daily queue starts from the first unseen course (learning curve)');
+  // (trouble-spot drills, e.g. from real-game slips, may come before new lines)
+  ok(ev(`buildDailyQueue().find(c=>!c.isFocus&&!c.isPuzzle).courseId`) === ev(`CARDS.find(c=>cardState(c.id)==='new').courseId`),
+     'daily queue starts new lines from the first unseen course (learning curve)');
   // Courses arrive sorted by weight (build/priority.py), so the first one is
   // whatever your games say matters most -- not a fixed tier.
   ok(ev('COURSES[0].weight') >= ev('COURSES[COURSES.length-1].weight'),

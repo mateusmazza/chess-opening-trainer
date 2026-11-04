@@ -36,17 +36,27 @@ const DEFAULTS = () => ({
            sessionsDone:0, perfectSessions:0,
            puzzleRating:null, puzzlesDone:0, puzzlesSolved:0},
   cards:{},                 // cardId -> {seen,ease,interval,due,reps,lapses,lastGrade,clean}
+  moves:{},                 // moveKey -> per-move memory, see recordMove()
+  history:[],               // one row per study day: {d, moves, first, miss}
   lessons:{},               // lessonId -> {rung,clean,tries,interval,due,mastered}
   badges:{},
-  settings:{muted:false, newPerDay:4, maxSession:14, theme:'green', tacticsPerDay:6},
+  settings:{muted:false, newPerDay:4, maxSession:14, theme:'green', tacticsPerDay:6,
+            focusPerDay:4},
   lastSummary:null,
 });
 let state = load();
-function load(){
-  try{ const s=JSON.parse(localStorage.getItem(SKEY)); if(s&&s.v===1){
-        const d=DEFAULTS(); return {...d,...s, profile:{...d.profile,...s.profile},
+// Saved state (or a backup) from any earlier version -> the current shape.
+// Fields added later are simply filled with their defaults, so nothing that
+// was saved is ever dropped.
+function normalize(s){
+  const d=DEFAULTS();
+  return {...d,...s, profile:{...d.profile,...s.profile},
           settings:{...d.settings,...s.settings}, cards:s.cards||{},
-          lessons:s.lessons||{}, badges:s.badges||{}}; }
+          moves:s.moves||{}, history:s.history||[],
+          lessons:s.lessons||{}, badges:s.badges||{}};
+}
+function load(){
+  try{ const s=JSON.parse(localStorage.getItem(SKEY)); if(s&&s.v===1) return normalize(s);
   }catch(e){}
   return DEFAULTS();
 }
@@ -75,10 +85,7 @@ function importProgress(){
     const inc=s.profile&&s.profile.xp||0, cur=state.profile.xp||0;
     if(cur>inc && !confirm(`This backup has ${inc} XP but you currently have ${cur}. Overwrite anyway?`)) return;
     // Route through the same normalisation load() uses, so older backups still work.
-    const d=DEFAULTS();
-    state={...d,...s, profile:{...d.profile,...s.profile},
-           settings:{...d.settings,...s.settings}, cards:s.cards||{},
-           lessons:s.lessons||{}, badges:s.badges||{}};
+    state=normalize(s);
     save(); applyTheme(state.settings.theme); refreshTopbar(); go('home');
     toast(`Restored ${state.profile.xp} XP, ${Object.keys(state.cards).length} cards.`,'');
   };
@@ -89,6 +96,11 @@ function importProgress(){
 let CARDS=[];                 // flat list
 const CARD_BY_ID={};
 const CARDS_BY_COURSE={};
+// A line is what you review; a MOVE is what you actually forget. Every one of
+// your moves gets a key -- your colour plus the moves that led to it -- so its
+// memory is tracked on its own, shared by every line (and course) passing
+// through that position. MOVE_INDEX finds the lines that contain a move.
+const MOVE_INDEX={};          // moveKey -> [{card, step}]
 (function enumerate(){
   for(const c of COURSES){
     CARDS_BY_COURSE[c.id]=[];
@@ -100,9 +112,13 @@ const CARDS_BY_COURSE={};
           courseName:c.name, name:node.name||c.name, edges:path,
           myMoves:path.filter(e=>e.mine).length};
         CARDS.push(card); CARD_BY_ID[card.id]=card; CARDS_BY_COURSE[c.id].push(card);
+        path.forEach((e,step)=>{ if(e.mine) (MOVE_INDEX[e.key]=MOVE_INDEX[e.key]||[]).push({card,step}); });
         return;
       }
-      for(const e of ch) dfs(e.node, path.concat(e));
+      for(const e of ch){
+        e.key=`${c.color}|${path.map(x=>x.san).join(' ')}`;
+        dfs(e.node, path.concat(e));
+      }
     })(c.tree, []);
   }
 })();
@@ -130,7 +146,11 @@ function cardState(id){
   if(s.due<=today()) return 'due';
   return s.interval>=MATURE ? 'mature' : 'learning';
 }
-function gradeFromMistakes(m){ return m===0?'easy': m===1?'good': m<=3?'hard':'again'; }
+// A clean line answered with hesitation is known, not yet automatic -- in a
+// blitz game a move you have to dig for is a move you may not find. So it
+// earns 'good' (a normal interval) rather than 'easy' (a stretched one).
+function gradeFromMistakes(m, slow=0){
+  return m===0 ? (slow?'good':'easy') : m===1?'good': m<=3?'hard':'again'; }
 function schedule(id, grade){
   const t=today();
   let s=srs(id) || {seen:false, ease:2.5, interval:0, due:t, reps:0, lapses:0};
@@ -174,6 +194,132 @@ function overallMastery(){
 function dueCount(){ let d=0; for(const c of CARDS) if(cardState(c.id)==='due') d++; return d; }
 function newAvailable(){ let n=0; for(const c of CARDS) if(cardState(c.id)==='new') n++; return n; }
 function stars(pct){ return pct>=90?3 : pct>=60?2 : pct>=25?1 : 0; }
+
+/* ---------------- per-move memory ----------------
+   The line scheduler above decides WHEN you see a line. This layer remembers
+   each of your moves separately, because that is the unit you actually
+   forget: in a 10-move line you rarely forget the line, you forget move 7.
+
+   A move you miss becomes a TROUBLE SPOT, and it stays one until you have
+   played it right first time, without hesitating, on two DIFFERENT days
+   after the day you missed it. Getting it right minutes after being shown
+   it proves short-term memory, not learning. Trouble spots are drilled on their
+   own (focus drills), dropped straight into the position, every day until
+   they clear. A move missed three times or more is "stubborn" and goes to the
+   front of that queue. Slips in your real games (app/mygames.js) count as
+   misses too -- the board is the test that matters. */
+const SLOW_MS=10000;          // a correct move slower than this is not yet automatic
+const IDLE_MS=90000;          // ...unless you clearly walked away from the screen
+const STUBBORN=3;
+function newMoveStat(){ return {n:0, ok:0, miss:0, streak:0, okDays:0, hist:''}; }
+function recordMove(edge, clean, ms){
+  if(!edge.key) return null;          // puzzles have no move key
+  const t=today();
+  const s=state.moves[edge.key]=state.moves[edge.key]||newMoveStat();
+  const slow = clean && ms>SLOW_MS && ms<IDLE_MS;
+  s.n++; s.lastSeen=t;
+  if(clean){
+    s.ok++; s.streak++;
+    if(slow) s.slow=(s.slow||0)+1;
+    // a day only counts if it is not the day you missed it: right a minute
+    // after being corrected is short-term memory, not learning
+    else if(s.lastOkDay!==t && s.lastMiss!==t){ s.okDays++; s.lastOkDay=t; }
+  } else {
+    s.miss++; s.streak=0; s.okDays=0; s.lastMiss=t; s.lastOkDay=null;
+  }
+  s.hist=(s.hist+(clean?(slow?'s':'1'):'0')).slice(-12);
+  // one row per study day, for the accuracy trend
+  let h=state.history[state.history.length-1];
+  if(!h||h.d!==t){ h={d:t, moves:0, first:0, miss:0}; state.history.push(h);
+    if(state.history.length>400) state.history.shift(); }
+  h.moves++; if(clean) h.first++; else h.miss++;
+  return s;
+}
+function markTaught(edge){
+  const s=state.moves[edge.key]=state.moves[edge.key]||newMoveStat();
+  s.taught=today(); session.known.add(edge.key);
+}
+// unseen | solid | shaky (right but slow last time) | trouble | fixed
+function moveStatus(key){
+  const s=state.moves[key];
+  if(!s) return 'unseen';
+  if(s.miss) return s.okDays>=2 ? 'fixed' : 'trouble';
+  if(!s.n) return 'unseen';
+  return s.hist.slice(-1)==='s' ? 'shaky' : 'solid';
+}
+// Moves you have met before, so a new line does not re-teach a shared prefix.
+// Lines you reviewed before per-move tracking existed count as known.
+function knownMoves(){
+  const k=new Set();
+  for(const key in state.moves){ const s=state.moves[key]; if(s.n||s.taught) k.add(key); }
+  for(const c of CARDS){ const s=srs(c.id);
+    if(s&&s.seen) for(const e of c.edges) if(e.mine) k.add(e.key); }
+  return k;
+}
+function troubleSpots(){
+  const out=[];
+  for(const key in state.moves){
+    const st=moveStatus(key);
+    if((st!=='trouble' && st!=='shaky') || !MOVE_INDEX[key]) continue;
+    const at=MOVE_INDEX[key][0], s=state.moves[key];
+    out.push({key, s, card:at.card, step:at.step, edge:at.card.edges[at.step],
+              status:st, stubborn:st==='trouble' && s.miss>=STUBBORN});
+  }
+  const rank=x=> x.stubborn?0 : x.status==='trouble'?1 : 2;
+  return out.sort((a,b)=>rank(a)-rank(b) || (b.s.lastMiss||0)-(a.s.lastMiss||0) || b.s.miss-a.s.miss);
+}
+function fixedCount(){ let n=0; for(const k in state.moves) if(moveStatus(k)==='fixed') n++; return n; }
+// Today's focus drills: trouble spots you have not already answered today --
+// once you have, the next test needs a night's sleep in between to mean
+// anything. (A miss in today's session is re-drilled within that session.)
+function focusQueue(n){
+  const t=today();
+  return troubleSpots().filter(x=>x.s.lastSeen!==t).slice(0,n).map(x=>focusCard(x.key));
+}
+// A focus drill: the line that contains the move, started at that move, and
+// running on through two more of your moves -- the continuation re-anchors the
+// forgotten move inside the line it belongs to.
+function focusCard(key){
+  const {card,step}=MOVE_INDEX[key][0];
+  let end=card.edges.length, mine=0;
+  for(let i=step+1;i<card.edges.length;i++){
+    if(card.edges[i].mine && ++mine===2){ end=i+1; break; }
+  }
+  return {...card, id:'focus:'+key, isFocus:true, focusKey:key, startStep:step, endStep:end};
+}
+function focusSubtitle(card){
+  const s=state.moves[card.focusKey]||{};
+  const bits=[];
+  if(s.gameMiss) bits.push('you left the book here in a real game');
+  if(s.miss) bits.push(`missed ${s.miss}×`);
+  if(moveStatus(card.focusKey)==='shaky') bits.push('right, but slow');
+  return 'Trouble spot' + (bits.length?' — '+bits.join(' · '):'');
+}
+function dayOf(unixSec){ const d=new Date(unixSec*1000); d.setHours(0,0,0,0); return Math.round(d.getTime()/864e5); }
+// Real-game slips become misses, once each, if they are recent. Older ones are
+// left alone: what you have done in training since is the better evidence.
+const GAME_SLIP_DAYS=45;
+function importGameSlips(){
+  if(typeof MYGAMES==='undefined' || !MYGAMES.moves) return;
+  const t=today();
+  for(const key in MYGAMES.moves){
+    const g=MYGAMES.moves[key];
+    if(!g.lastMiss || !MOVE_INDEX[key]) continue;
+    const day=dayOf(g.lastMiss.t);
+    if(t-day>GAME_SLIP_DAYS) continue;
+    const s=state.moves[key]=state.moves[key]||newMoveStat();
+    if((s.gameMiss||0)>=day) continue;         // already counted
+    s.gameMiss=day; s.miss++; s.streak=0; s.okDays=0; s.lastOkDay=null;
+    s.lastMiss=Math.max(s.lastMiss||0, day);
+  }
+  save();
+}
+// First-try accuracy (%) over the `days` study days before day `before`, or null.
+function accuracyBefore(before, days){
+  const rows=state.history.filter(h=>h.d<before).slice(-days);
+  const m=rows.reduce((a,h)=>a+h.moves,0), f=rows.reduce((a,h)=>a+h.first,0);
+  return m ? Math.round(f/m*100) : null;
+}
 
 /* ---------------- backlog catch-up (load balancing) ----------------
    After a break, overdue reviews pile up. Rather than dumping them all as
@@ -264,6 +410,7 @@ function go(view, arg){
   // than throwing if someone reaches these without a build.
   else if(view==='pack')  { if(typeof renderPack==='function')  renderPack(arg); else return go('home'); }
   else if(view==='coach') { if(typeof renderCoach==='function') renderCoach();   else return go('home'); }
+  else if(view==='progress'){ renderProgress(); }
   else if(view==='lesson'){ if(typeof renderLesson==='function') renderLesson(arg); else return go('home'); }
   document.body.dataset.view=view;
 }
@@ -297,18 +444,21 @@ function renderHome(){
   const nextNew=CARDS.find(c=>cardState(c.id)==='new');
   const tac=(typeof buildTacticsQueue==='function')
     ? buildTacticsQueue(state.settings.tacticsPerDay||0).length : 0;
+  const foc=focusQueue(state.settings.focusPerDay||0).length;
   const ds=$('#dueSummary');
-  const total=due+nw+tac;
-  if(total>0) ds.innerHTML =
-      (due+nw>0 ? `<b>${due+nw}</b> opening line${due+nw===1?'':'s'}` : '') +
-      (due+nw>0 && tac>0 ? ' · ' : '') +
-      (tac>0 ? `<b>${tac}</b> tactics` : '') +
-      ` — about ${estMinutes(due+nw, tac)} min` +
+  const total=due+nw+tac+foc;
+  const parts=[];
+  if(due+nw>0) parts.push(`<b>${due+nw}</b> opening line${due+nw===1?'':'s'}`);
+  if(foc>0) parts.push(`<b>${foc}</b> trouble spot${foc===1?'':'s'}`);
+  if(tac>0) parts.push(`<b>${tac}</b> tactics`);
+  if(total>0) ds.innerHTML = parts.join(' · ') +
+      ` — about ${estMinutes(due+nw, tac, foc)} min` +
       (nw&&nextNew? `<br><span style="font-size:.92em">next up: <b>${courseById(nextNew.courseId).name}</b></span>` : '');
   else if(newAvailable()>0) ds.innerHTML=`No reviews due. Tap to learn <b>${Math.min(newAvailable(),state.settings.newPerDay)}</b> new line(s).`;
   else ds.innerHTML='🎉 All caught up! Nothing due today — come back tomorrow, or drill anything below.';
 
   $('#startBtn').addEventListener('click', startDaily);
+  if(typeof renderProgressCard==='function') renderProgressCard($('#progressCard'));
 
   /* Course cards. COURSES arrives from the build already sorted by weight --
      how much of your practice each opening has earned, computed from how
@@ -394,6 +544,10 @@ function renderHome(){
     <select id="npd" style="${selCss}">
       ${[2,3,4,5,8].map(n=>`<option ${state.settings.newPerDay===n?'selected':''}>${n}</option>`).join('')}
     </select>
+    &nbsp;·&nbsp; Trouble spots per day:
+    <select id="fpd" style="${selCss}" title="How many of the moves you keep missing are drilled on their own each day">
+      ${[0,2,4,6,10].map(n=>`<option ${state.settings.focusPerDay===n?'selected':''}>${n}</option>`).join('')}
+    </select>
     &nbsp;·&nbsp; Reviews per day:
     <select id="rpd" style="${selCss}" title="Caps how many reviews pile up per day — extras spread to later days">
       ${rpdOpts.map(n=>`<option ${state.settings.maxSession===n?'selected':''}>${n}</option>`).join('')}
@@ -410,6 +564,7 @@ function renderHome(){
   $('#exportLink').addEventListener('click',e=>{ e.preventDefault(); exportProgress(); });
   $('#importLink').addEventListener('click',e=>{ e.preventDefault(); importProgress(); });
   $('#npd').addEventListener('change',e=>{ state.settings.newPerDay=+e.target.value; save(); go('home'); });
+  $('#fpd').addEventListener('change',e=>{ state.settings.focusPerDay=+e.target.value; save(); go('home'); });
   $('#rpd').addEventListener('change',e=>{ state.settings.maxSession=+e.target.value; save(); rebalanceBacklog(); go('home'); });
   const tpd=$('#tpd');
   if(tpd) tpd.addEventListener('change',e=>{ state.settings.tacticsPerDay=+e.target.value; save(); go('home'); });
@@ -421,8 +576,8 @@ function renderHome(){
 // A memorised opening line is quick; a puzzle you have to actually work out is
 // not. Weighting them the same made the daily estimate read low once tactics
 // joined the session, which matters when the whole promise is "10 minutes".
-function estMinutes(lines, puzzles=0){
-  return Math.max(1, Math.round(lines*0.6 + puzzles*1.0));
+function estMinutes(lines, puzzles=0, focus=0){
+  return Math.max(1, Math.round(lines*0.6 + puzzles*1.0 + focus*0.4));
 }
 
 /* ---------------- COURSE DETAIL ---------------- */
@@ -441,7 +596,7 @@ function renderCourse(courseId){
     const row=document.createElement('div'); row.className='cd-line';
     row.innerHTML=`<div class="cl-top"><span class="cl-name">${i===0?'★ ':''}${shortName(card.name,c.name)}</span>
         <span class="cl-state ${st}">${lbl}</span></div>
-      <div class="cl-moves">${numbered(card.edges)}</div>`;
+      <div class="cl-moves">${numberedStatus(card.edges)}</div>`;
     row.addEventListener('click',()=>startLine(card,false));
     wrap.appendChild(row);
   });
@@ -450,11 +605,16 @@ function shortName(name,courseName){
   if(name.startsWith(courseName)) { const r=name.slice(courseName.length).replace(/^[:,\s]+/,''); return r||'Main line'; }
   return name;
 }
-function numbered(edges){
-  // ply 0 is always White's move; number every White move "n."
-  let str='';
-  edges.forEach((e,i)=>{ str += (i%2===0 ? `${i/2+1}.${e.san} ` : `${e.san} `); });
-  return str.trim();
+// The same, with each of your moves coloured by how well you know it, so a
+// line's weak point is visible before you drill it.
+function numberedStatus(edges){
+  return edges.map((e,i)=>{
+    const st=e.mine ? moveStatus(e.key) : '';
+    const txt=(i%2===0?`${i/2+1}.`:'')+e.san;
+    return st==='trouble'||st==='shaky'||st==='fixed'
+      ? `<span class="ms-${st}" title="${{trouble:'keeps slipping',shaky:'right but slow',fixed:'fixed'}[st]}">${txt}</span>`
+      : txt;
+  }).join(' ');
 }
 
 /* ---------------- badges ---------------- */
@@ -467,6 +627,7 @@ const BADGES=[
   {id:'scholar',ico:'🎓', name:'Opening Expert',test:()=>COURSES.some(c=>courseProgress(c.id).pct===100)},
   {id:'polyglot',ico:'🌍',name:'All-Rounder',   test:()=>COURSES.every(c=>courseProgress(c.id).mature>=1)},
   {id:'grinder',ico:'🏆', name:'Dedicated',     test:p=>p.sessionsDone>=30},
+  {id:'fixer',  ico:'🛠️', name:'Fixer',         test:()=>fixedCount()>=10},
 ];
 function checkBadges(){
   for(const b of BADGES){ if(!state.badges[b.id] && b.test(state.profile)){
@@ -495,13 +656,15 @@ function buildDailyQueue(){
   let budget=Math.max(0, state.settings.maxSession-reviews.length);
   budget=Math.min(budget, state.settings.newPerDay);
   const news=CARDS.filter(c=>cardState(c.id)==='new').slice(0,budget);
-  const openings=reviews.concat(news);
 
-  // Tactics ride along in the same session. Openings come first (they are
-  // quick and warm you up on familiar ground), then the harder puzzles.
+  // Reviews first (familiar ground, a warm-up), then the moves you keep
+  // missing, then new material while you are still fresh. Tactics ride along
+  // at the end -- they are harder, and they put useful distance between
+  // learning a new line and being re-tested on it.
+  const focus=focusQueue(state.settings.focusPerDay||0);
   const tactics = (typeof buildTacticsQueue==='function')
     ? buildTacticsQueue(state.settings.tacticsPerDay||0) : [];
-  return openings.concat(tactics);
+  return reviews.concat(focus, news, tactics);
 }
 function startDaily(){
   const q=buildDailyQueue();
@@ -513,10 +676,22 @@ function startCourse(courseId, learn){
   beginSession(q, learn?'learn':'course', learn);
 }
 function startLine(card, learn){ beginSession([card], learn?'learn':'line', learn); }
+function startFocus(keys){
+  const q=keys.filter(k=>MOVE_INDEX[k]).map(focusCard);
+  if(!q.length){ toast('Nothing to fix right now 🎉','good'); return; }
+  beginSession(q,'focus',false);
+}
+
+// Sessions where a move you have never seen is TAUGHT before it is tested.
+// A single-line drill is you asking to be tested, so it is left out. Focus
+// drills are included: a slip from a real game can land on a move the trainer
+// has not shown you yet.
+const TEACH_MODES=new Set(['daily','course','focus']);
 
 function beginSession(queue, mode, learn){
   session={queue, idx:0, mode, learn, results:[], xpGained:0,
-           movesPlayed:0, firstTry:0, requeues:0};
+           movesPlayed:0, firstTry:0, requeues:0,
+           known:knownMoves(), missed:new Map(), taught:0};
   clearView(); app.appendChild(tpl('tpl-train'));
   board=$('#board'); boardWrap=$('.board-wrap'); overlay=$('#boardOverlay');
   $('#hintBtn').addEventListener('click', onHint);
@@ -529,18 +704,32 @@ function beginSession(queue, mode, learn){
 function startCard(card){
   // Opening lines always begin from the initial position; puzzles carry their
   // own start position. Everything downstream is identical.
-  const start = card.startFen || STARTFEN;
-  play={card, color:card.color, edges:card.edges, fen:start, step:0,
-        wrong:0, hintMoves:0, wrongThisMove:0, hintThisMove:false, requeued:false,
-        blind: !!card.blind, shownFen:start};
+  const first=card.startStep||0;
+  const start = first ? card.edges[first-1].node.fen : (card.startFen || STARTFEN);
+  play={card, color:card.color, edges:card.edges, fen:start, step:first,
+        end:card.endStep||card.edges.length,
+        wrong:0, hintMoves:0, wrongThisMove:0, hintThisMove:false, hintLevel:0,
+        requeued:!!card._requeued, blind: !!card.blind, shownFen:start, slow:0, taught:0,
+        isNewLine: !card.isPuzzle && !card.isFocus && cardState(card.id)==='new'};
   whiteBottom = card.color==='white';
   renderBoard(start, whiteBottom);
   $('#lineName').textContent = card.isPuzzle
     ? `${card.courseName} — ${card.name}`
-    : `${card.courseName} — ${shortName(card.name,card.courseName)}`;
+    : `${card.isFocus?'🎯 ':''}${card.courseName} — ${shortName(card.name,card.courseName)}`;
   $('#moveList').innerHTML='';
+  const ex=$('#explain'); if(ex) ex.innerHTML='';
   const sub=$('#lineSub');
-  if(sub) sub.textContent = card.isPuzzle ? puzzleSubtitle(card) : '';
+  if(sub) sub.textContent = card.isPuzzle ? puzzleSubtitle(card)
+    : card.isFocus ? focusSubtitle(card) : '';
+  // A focus drill drops you straight into the position you keep getting
+  // wrong, with the moves that led there on show: the context is part of
+  // what you are remembering.
+  if(first){
+    for(let i=0;i<first;i++) addMoveChip(card.edges[i], true);
+    const prev=card.edges[first-1];
+    highlightLast(prev.from, prev.to);
+    if(!prev.mine) showExplain(prev, first-1);
+  }
   updateSessBar();
   $('#hintBtn').disabled=$('#revealBtn').disabled=false;
   document.body.classList.toggle('blind-mode', !!play.blind);
@@ -554,10 +743,24 @@ function updateSessBar(){
 
 function processStep(){
   if(!viewAlive()) return;
-  if(play.step>=play.edges.length){ return finishCard(); }
+  if(play.step>=play.end){ return finishCard(); }
   const edge=play.edges[play.step];
-  if(edge.mine && !session.learn){
-    play.awaiting=true; selected=null;
+  if(edge.mine){
+    play.awaiting=true; selected=null; play.moveStart=Date.now();
+    // Teach, then test. A move you have never been shown is not something
+    // you can retrieve -- asking for it only produces a guess, and a wrong
+    // guess is what you then remember. So the first time, you are shown the
+    // move and why, and you play it yourself (doing beats watching).
+    play.teaching = !play.card.isPuzzle && (session.learn ||
+      ((play.isNewLine || play.card.isFocus) && TEACH_MODES.has(session.mode)
+       && !session.known.has(edge.key)));
+    $('#hintBtn').disabled=$('#revealBtn').disabled=play.teaching;
+    if(play.teaching){
+      highlightHint(edge.from, edge.to);
+      setPrompt(`${session.learn?'Book move':'New move'}: ${edge.san} — play it on the board.`,'good');
+      showExplain(edge, play.step, true);
+      return;
+    }
     const first = !play.edges.slice(0,play.step).some(e=>e.mine);
     if(play.card.isPuzzle){
       setPrompt(first ? puzzlePrompt(play.card)
@@ -568,15 +771,18 @@ function processStep(){
     }
   } else {
     play.awaiting=false;
-    if(session.learn && edge.mine) setPrompt(`Book move: ${edge.san}`,'good');
-    else setPrompt('', '');
+    setPrompt('', '');
     engineBusy=true;
-    setTimeout(()=>playEdge(edge, ()=>{ play.step++; processStep(); }), session.learn?750:430);
+    const step=play.step;
+    setTimeout(()=>playEdge(edge, ()=>{
+      if(!play.card.isPuzzle) showExplain(edge, step);
+      play.step++; processStep();
+    }), session.learn?750:430);
   }
 }
 
 function onBoardClick(e){
-  if(!play || !play.awaiting || engineBusy || session.learn) return;
+  if(!play || !play.awaiting || engineBusy) return;
   const sq=e.target.closest('.sq'); if(!sq) return;
   const square=sq.dataset.square;
   const map=parseFEN(play.fen);
@@ -596,37 +802,72 @@ function onBoardClick(e){
   const from=selected; selected=null;
   if(from===edge.from && square===edge.to){
     play.awaiting=false;
+    const ms=Date.now()-(play.moveStart||Date.now());
+    const step=play.step;
     goodFeedback(edge);
     engineBusy=true;
     playEdge(edge, ()=>{
-      // tally this move
-      session.movesPlayed++; state.profile.totalMoves++;
-      if(play.wrongThisMove===0 && !play.hintThisMove) session.firstTry++;
-      addXp(play.hintThisMove?4:10, edge.to);
-      play.wrongThisMove=0; play.hintThisMove=false;
+      if(play.teaching){
+        markTaught(edge); play.taught++; session.taught++;
+        addXp(2, edge.to);
+      } else {
+        // tally this move
+        session.movesPlayed++; state.profile.totalMoves++;
+        const clean = play.wrongThisMove===0 && !play.hintThisMove;
+        if(clean) session.firstTry++;
+        if(!play.card.isPuzzle){
+          const s=recordMove(edge, clean, ms);
+          if(s && clean && s.hist.slice(-1)==='s') play.slow++;
+          if(!clean) session.missed.set(edge.key, {edge, step});
+        }
+        addXp(play.hintThisMove?4:10, edge.to);
+      }
+      if(!play.card.isPuzzle) showExplain(edge, step);
+      play.wrongThisMove=0; play.hintThisMove=false; play.hintLevel=0;
       play.step++; processStep();
     });
+  } else if(play.teaching){
+    badFeedback(from, square);
+    setPrompt(`Follow the arrow: ${edge.san}.`, 'bad');
+    highlightHint(edge.from, edge.to);
   } else {
     play.wrong++; play.wrongThisMove++;
     badFeedback(from, square);
-    setPrompt(play.card.isPuzzle
-      ? (play.blind ? 'Not it — recheck your line from the position in your head.'
-                    : 'Not the strongest move here — look again.')
-      : 'Not the book move here — try again.', 'bad');
+    if(play.card.isPuzzle){
+      setPrompt(play.blind ? 'Not it — recheck your line from the position in your head.'
+                           : 'Not the strongest move here — look again.', 'bad');
+    } else {
+      // The first miss gets the IDEA, not the answer: retrieving the move
+      // from its reason is what makes it stick. If this is also the move you
+      // keep playing in real games, say so -- that is the habit to break.
+      const habit=realGameHabit(edge, from, square);
+      const cue = play.wrongThisMove===1 && edge.cue ? ` 💭 ${edge.cue}` : '';
+      setPrompt('Not the book move here.' + cue +
+        (habit ? ` (You played that in ${habit} of your real games here.)` : ''), 'bad');
+    }
     if(play.wrongThisMove>=2) highlightHint(edge.from, null);   // nudge after 2 misses
   }
 }
 
+// Hints climb a ladder: first the idea (a cue that does not name the move),
+// then the piece, and only "I forgot" gives the whole answer. Each rung asks
+// you to do a bit more of the remembering yourself.
 function onHint(){
-  if(!play||!play.awaiting||session.learn) return;
+  if(!play||!play.awaiting||play.teaching) return;
   const edge=play.edges[play.step];
+  play.hintThisMove=true;
+  if(play.hintLevel===0 && edge.cue && !play.card.isPuzzle){
+    play.hintLevel=1;
+    setPrompt(`💭 ${edge.cue}`, '');
+    return;
+  }
+  play.hintLevel=2;
   highlightHint(edge.from, null);
-  if(!play.hintThisMove){ play.hintThisMove=true; }
   setPrompt('Hint: move the highlighted piece.', '');
 }
 function onReveal(){
-  if(!play||!play.awaiting||engineBusy||session.learn) return;
-  const edge=play.edges[play.step];
+  if(!play||!play.awaiting||engineBusy||play.teaching) return;
+  const edge=play.edges[play.step], step=play.step;
   play.hintThisMove=true; play.hintMoves++;
   highlightHint(edge.from, edge.to);
   setPrompt(`The book move is ${edge.san}.`, '');
@@ -634,7 +875,12 @@ function onReveal(){
   engineBusy=true;
   setTimeout(()=>playEdge(edge, ()=>{
     session.movesPlayed++; state.profile.totalMoves++;
-    play.wrongThisMove=0; play.hintThisMove=false;
+    if(!play.card.isPuzzle){
+      recordMove(edge, false, 0);
+      session.missed.set(edge.key, {edge, step});
+      showExplain(edge, step);
+    }
+    play.wrongThisMove=0; play.hintThisMove=false; play.hintLevel=0;
     play.step++; processStep();
   }), 900);
 }
@@ -648,16 +894,27 @@ function finishCard(){
     return replayLine(()=>finishCard());
   }
   const mistakes = play.wrong + play.hintMoves;
-  const grade = session.learn ? null : gradeFromMistakes(mistakes);
+  // A line that taught you a new move has not tested you yet. It is not
+  // graded: it comes back at the end of the session, after other material,
+  // as a real test -- learn, then retrieve after a gap.
+  const taughtOnly = !session.learn && play.taught>0;
+  const grade = (session.learn || taughtOnly) ? null : gradeFromMistakes(mistakes, play.slow);
   if(session.learn){
     // Learn mode doesn't grade, but completing a lesson should register the
     // line as introduced (so it shows progress and gets scheduled for review).
     const s=srs(play.card.id);
     if(!s||!s.seen) schedule(play.card.id, 'good');
   }
+  if(taughtOnly && !play.requeued){
+    session.queue.push({...play.card, _requeued:true});
+    toast('New moves learned — you will be tested on this line again before you finish.','');
+    creditStudyDay(); refreshTopbar();
+  }
   if(grade){
-    schedule(play.card.id, grade);
-    session.results.push({id:play.card.id, grade, mistakes});
+    // A focus drill tests one move, not the line: its result lives in the
+    // per-move memory (already recorded), so the line's schedule is untouched.
+    if(!play.card.isFocus) schedule(play.card.id, grade);
+    session.results.push({id:play.card.id, grade, mistakes, focus:!!play.card.isFocus});
     // Puzzles rate you as much as you rate them: a clean solve nudges your
     // puzzle rating up, so the app keeps serving material at the right level
     // without waiting for the next rebuild.
@@ -679,11 +936,12 @@ function finishCard(){
           ml.appendChild(a); }
       }
     }
-    if(grade==='easy'){ addXp(25); toast('Perfect line! +25 XP','good'); miniConfetti(); }
+    if(grade==='easy'){ addXp(25); toast(play.card.isFocus?'Fixed it! +25 XP':'Perfect line! +25 XP','good'); miniConfetti(); }
     else if(grade==='good'){ addXp(10); }
-    // re-queue lapses once for immediate relearn (daily/course only)
-    if(grade==='again' && session.mode!=='line' && session.requeues<6 && !play.requeued){
-      session.queue.push(play.card); session.requeues++; play.requeued=true;
+    // re-queue misses once for immediate relearn (not for a single-line drill)
+    if(mistakes>0 && (grade==='again' || play.card.isFocus) && session.mode!=='line'
+       && session.requeues<6 && !play.requeued){
+      session.queue.push({...play.card, _requeued:true}); session.requeues++;
     }
     // Every reviewed line counts on its own — credit the day and check badges
     // now, so quitting mid-session never loses your streak or an earned badge.
@@ -692,7 +950,8 @@ function finishCard(){
   save();
   session.idx++;
   if(session.idx>=session.queue.length) return finishSession();
-  setTimeout(()=>startCard(session.queue[session.idx]), 500);
+  // Give yourself a moment to read why the last move was played.
+  setTimeout(()=>startCard(session.queue[session.idx]), play.card.isPuzzle?500:1100);
   updateSessBar();
 }
 
@@ -735,7 +994,72 @@ function showSummary(){
   const due=dueCount();
   $('#sumNext').textContent = due? `${due} more line(s) still due — keep going!`
       : `Next reviews unlock as your lines come due. See you tomorrow! 🔥`;
+  // How today compares with your own recent average -- the number that tells
+  // you whether the mistakes are actually going down.
+  const trend=$('#sumTrend'), base=accuracyBefore(today(), 7);
+  if(trend && session.movesPlayed && base!==null){
+    const d=s.acc-base;
+    trend.innerHTML = `First-try accuracy <b>${s.acc}%</b> vs <b>${base}%</b> over your previous study days `+
+      `<span class="${d>=0?'up':'down'}">${d>=0?'▲':'▼'} ${Math.abs(d)}</span>`;
+  }
+  // Immediate feedback on exactly what went wrong, with the reason, while it
+  // is fresh -- and a one-tap way to practise just those moves again.
+  const host=$('#sumMissed');
+  if(host && session.missed.size){
+    const rows=[...session.missed.values()].map(({edge,step})=>
+      `<li><b>${moveLabel(edge,step)}</b> ${edge.note?esc(edge.note):esc((edge.facts||[]).join(' · '))}</li>`).join('');
+    host.innerHTML=`<h3>Moves to remember</h3><ul class="missed-list">${rows}</ul>
+      <button class="ghost-btn" id="sumFocus">🎯 Drill these ${session.missed.size} again now</button>`;
+    const keys=[...session.missed.keys()];
+    $('#sumFocus').addEventListener('click',()=>startFocus(keys));
+  }
   if(s.acc>=90 && s.lines>0){ confetti(); SND.win(); }
+}
+
+/* ---------------- explanations ----------------
+   Every move arrives with its reason (note), what it does on the board
+   (facts) and what it threatens (threat) -- see build/explain.py. Your move
+   and the reply it got stay on screen together, so you read the exchange,
+   not just a move. */
+function esc(t){ return String(t).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c])); }
+function moveLabel(edge, step){ return `${Math.floor(step/2)+1}${step%2?'…':'.'}${edge.san}`; }
+function explainHTML(edge, step, teaching){
+  const who = teaching ? 'New move' : edge.mine ? 'Your move' : 'Their move';
+  const facts=(edge.facts||[]).join(' · ');
+  // the threat is a move by the same side again, so number it like one
+  const threat = edge.threat ? `<div class="ex-threat">${edge.mine?'Threatens':'⚠ Watch out — they threaten'} `+
+    `${step%2?'…':''}${esc(edge.threat)}</div>` : '';
+  return `<div class="ex-row ${edge.mine?'mine':'opp'}">
+    <div class="ex-head">${who} <b>${esc(moveLabel(edge,step))}</b></div>
+    ${edge.note?`<div class="ex-note">${esc(edge.note)}</div>`:''}
+    ${facts?`<div class="ex-facts">${esc(facts)}</div>`:''}${threat}</div>`;
+}
+function showExplain(edge, step, teaching){
+  const host=$('#explain'); if(!host) return;
+  const row=explainHTML(edge, step, teaching);
+  const last=host.lastElementChild;
+  // your move starts a fresh pair; their reply joins it
+  if(edge.mine || !last || !last.classList.contains('mine')) host.innerHTML=row;
+  else host.insertAdjacentHTML('beforeend', row);
+}
+// Is the wrong move you just tried the one you keep playing in real games?
+// Returns how many games, or 0. Matched on piece + destination square, which
+// is all a click tells us -- enough to recognise a habit.
+function realGameHabit(edge, from, to){
+  if(typeof MYGAMES==='undefined' || !MYGAMES.moves) return 0;
+  const g=MYGAMES.moves[edge.key]; if(!g) return 0;
+  const p=parseFEN(play.fen)[from]; if(!p) return 0;
+  const letter=p.toUpperCase()==='P' ? '' : p.toUpperCase();
+  let n=0;
+  for(const san in g.played){
+    if(g.book.includes(san)) continue;
+    let pl, dest;
+    if(san.startsWith('O-O')){ pl='K'; dest=(san.startsWith('O-O-O')?'c':'g')+(play.color==='white'?'1':'8'); }
+    else { const m=san.match(/([a-h][1-8])(=[QRBN])?[+#]?$/); if(!m) continue;
+      dest=m[1]; pl=/^[KQRBN]/.test(san)?san[0]:''; }
+    if(pl===letter && dest===to) n+=g.played[san];
+  }
+  return n;
 }
 
 /* ---------------- feedback helpers ---------------- */
@@ -859,11 +1183,11 @@ function replayLine(cb){
   })();
 }
 
-function addMoveChip(edge){
+function addMoveChip(edge, context){
   const ml=$('#moveList');
   if(!ml) return;                       // view was left mid-animation
   const chip=document.createElement('span');
-  chip.className='mv'+(edge.mine?' me':'');
+  chip.className='mv'+(edge.mine?' me':'')+(context?' ctx':'');
   chip.textContent=edge.san;
   ml.appendChild(chip);
 }
@@ -927,5 +1251,6 @@ function rolloverStreakCheck(){
 applyTheme(state.settings.theme);
 refreshTopbar();
 rolloverStreakCheck();
+importGameSlips();
 rebalanceBacklog();
 go('home');

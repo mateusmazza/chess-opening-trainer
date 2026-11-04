@@ -360,3 +360,63 @@ body.blind-mode .board-wrap::after{content:"🧠 calculating — board frozen";
 .ls-rung-name small{color:var(--muted);font-size:.74rem}
 .ls-rung-prog{margin-left:auto;font-size:.78rem;color:var(--accent);
   font-weight:700}
+
+/* ---------- explanations (why each move) ---------- */
+.explain{max-width:520px;margin:4px auto 8px;text-align:left;display:flex;flex-direction:column;gap:6px}
+.explain:empty{display:none}
+.ex-row{background:var(--card);border:1px solid var(--line);border-left:3px solid var(--line);
+  border-radius:9px;padding:7px 10px;font-size:.86rem;line-height:1.35;-webkit-user-select:text;user-select:text}
+.ex-row.mine{border-left-color:var(--accent)}
+.ex-head{color:var(--muted);font-size:.75rem;text-transform:uppercase;letter-spacing:.05em}
+.ex-head b{color:var(--ink);text-transform:none;letter-spacing:0;font-family:ui-monospace,monospace}
+.ex-note{margin-top:2px}
+.ex-facts{color:var(--muted);font-size:.78rem;margin-top:3px}
+.ex-threat{color:var(--bad);font-weight:600;font-size:.82rem;margin-top:3px}
+.ex-row.mine .ex-threat{color:var(--good)}
+.moves .mv.ctx{opacity:.55}
+
+/* ---------- per-move status in course view ---------- */
+.ms-trouble{color:var(--bad);font-weight:700;text-decoration:underline dotted}
+.ms-shaky{color:var(--gold);font-weight:600}
+.ms-fixed{color:var(--good)}
+
+/* ---------- session summary additions ---------- */
+.sum-trend{font-size:.9rem}
+.up{color:var(--good);font-weight:700} .down{color:var(--bad);font-weight:700}
+.sum-missed{text-align:left;margin:8px 0}
+.sum-missed h3{font-size:.85rem;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);margin:6px 0}
+.missed-list{margin:0 0 10px;padding-left:18px;font-size:.84rem;line-height:1.4;max-height:220px;overflow:auto}
+.missed-list b{font-family:ui-monospace,monospace}
+
+/* ---------- progress ---------- */
+.progress-card{background:var(--card);border:1px solid var(--line);border-radius:12px;
+  padding:10px 14px;margin:6px auto 4px;max-width:640px;display:flex;flex-wrap:wrap;
+  gap:8px 16px;align-items:center;justify-content:space-between;font-size:.86rem}
+.pg-stats{display:flex;flex-direction:column;gap:3px;color:var(--muted)}
+.pg-stats b{color:var(--ink)}
+.pg-actions{display:flex;gap:12px;align-items:center}
+.pg-actions a,.leak a{color:var(--accent)}
+.view.progress .small{font-size:.84rem}
+.pg-hero{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap;margin-bottom:10px}
+.pg-hero b{font-size:2.2rem;font-family:var(--serif)}
+.pg-hero span{color:var(--muted);font-size:.86rem}
+.pc-chart{position:relative;height:140px;margin:6px 0 26px;padding-left:34px}
+.pc-grid{position:absolute;left:0;top:0;bottom:0;right:0;display:flex;flex-direction:column;
+  justify-content:space-between;font-size:.66rem;color:var(--muted);pointer-events:none}
+.pc-grid span{border-top:1px solid var(--line);opacity:.8;padding-top:1px}
+.pc-grid span:last-child{border-top:1px solid var(--muted)}
+.pc-bars{position:relative;height:100%;display:flex;align-items:flex-end;gap:2px}
+.pc-col{flex:1;max-width:34px;height:100%;display:flex;flex-direction:column;justify-content:flex-end;
+  align-items:center;position:relative;outline:none}
+.pc-bar{width:100%;max-width:18px;background:var(--accent);border-radius:4px 4px 0 0}
+.pc-col:hover .pc-bar,.pc-col:focus .pc-bar{background:var(--accent2)}
+.pc-x{position:absolute;bottom:-17px;font-size:.62rem;color:var(--muted);white-space:nowrap}
+.spot-list,.leak-list{display:flex;flex-direction:column;gap:8px;margin:10px 0}
+.spot,.leak{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:8px 12px;font-size:.86rem}
+.spot-top{display:flex;gap:6px;align-items:center;flex-wrap:wrap}
+.spot-course{font-weight:600;margin-right:4px}
+.spot-line{font-family:ui-monospace,monospace;font-size:.78rem;color:var(--muted);margin:4px 0;word-break:break-word}
+.spot details,.leak details{-webkit-user-select:text;user-select:text}
+.spot summary,.leak summary{cursor:pointer;color:var(--accent);font-size:.8rem}
+.tag-chip{font-size:.68rem;border:1px solid var(--line);border-radius:20px;padding:1px 7px;color:var(--muted)}
+.tag-chip.bad{border-color:var(--bad);color:var(--bad)}

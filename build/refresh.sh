@@ -113,6 +113,11 @@ if ! python3 build/generate.py >>"$LOG" 2>&1; then
   log "repertoire rebuild failed"; restore_on_fail
 fi
 
+# Where your real games left your repertoire: feeds the app's "in your games"
+# panel and turns each recent slip into a trouble spot to drill. Optional --
+# a failure here costs that panel, not the refresh.
+python3 build/game_moves.py >>"$LOG" 2>&1 || log "game_moves failed (non-fatal)"
+
 # A plain-text copy of the report, so you can read where you stand without
 # opening the app.
 python3 build/weaknesses.py > "$ROOT/data/report.txt" 2>>"$LOG" || true
