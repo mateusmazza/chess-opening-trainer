@@ -38,6 +38,7 @@ const PUZZLES_BY_PACK = {};
         myMoves: item.myMoves,
         blind: !!pack.blind,
         meta: item.meta || {},
+        why: item.why || null,
       };
       PUZZLES.push(card);
       PUZZLE_BY_ID[card.id] = card;
@@ -84,7 +85,7 @@ const LESSON_CARD_BY_ID = {};
           lessonId: L.id, stageId: st.id, packId: 'lesson-' + L.id,
           courseName: L.title, name: (item.meta && item.meta.title) || st.name,
           color: item.color, startFen: item.startFen, edges: item.edges,
-          myMoves: item.myMoves, meta: item.meta || {},
+          myMoves: item.myMoves, meta: item.meta || {}, why: item.why || null,
         };
         st.cardObjs.push(card);
         LESSON_CARDS.push(card);
@@ -340,6 +341,44 @@ const THEME_LABELS = {
   clearance:'clearance', zugzwang:'zugzwang', mate:'checkmate',
 };
 const themeLabel = t => THEME_LABELS[t] || t;
+
+// The idea behind each motif in one sentence, shown under a finished puzzle
+// so the solution is tied to a pattern you can look for in your own games.
+// Labels like "crushing" or "long" describe the puzzle, not an idea: skipped.
+const THEME_IDEAS = {
+  hangingPiece:'Something was left unprotected. Before anything else, check: is anything attacked and undefended?',
+  fork:'One piece attacks two targets at once, and they can only save one.',
+  pin:'A pinned piece cannot move without exposing something more valuable behind it.',
+  skewer:'The valuable piece in front is attacked and has to move, leaving the one behind it to be taken.',
+  discoveredAttack:'Moving one piece uncovers an attack by the piece behind it, so you threaten two things at once.',
+  capturingDefender:'Take the piece doing the guarding, and what it guarded is left hanging.',
+  backRankMate:'A king shut in behind its own pawns can be mated on the back rank.',
+  trappedPiece:'A piece with no safe square to go to can be attacked and won.',
+  deflection:'Force a defender away from the square or piece it is guarding.',
+  attraction:'Lure the king or a piece onto a square where it can be hit.',
+  sacrifice:'Giving up material is fine when what follows wins more.',
+  intermezzo:'Before making the expected recapture, play an in-between move with a bigger threat.',
+  quietMove:'No check and no capture: the move sets up a threat they cannot meet.',
+  doubleCheck:'Two pieces give check at once, so only a king move can answer it.',
+  xRayAttack:'A piece attacks through another piece standing on the same line.',
+  interference:'Block the line between a defender and what it defends.',
+  clearance:'Move a piece out of the way to open a line or a square for another one.',
+  promotion:'Push the pawn to the last rank and it becomes a new queen.',
+  advancedPawn:'A pawn that far up the board either promotes or ties their pieces down.',
+  defensiveMove:'Deal with their threat first. Here, only one move holds.',
+  zugzwang:'Every move they have makes their position worse.',
+  mate:'Look at every check first. Forcing moves led straight to mate.',
+};
+['mateIn1','mateIn2','mateIn3','mateIn4','mateIn5'].forEach(t=>{ THEME_IDEAS[t]=THEME_IDEAS.mate; });
+function themeIdeas(themes){
+  const out=[];
+  for(const t of themes){
+    const s=THEME_IDEAS[t];
+    if(s && !out.includes(s)) out.push(s);
+    if(out.length>=2) break;
+  }
+  return out;
+}
 
 /* =====================================================================
    WEAKNESS DASHBOARD

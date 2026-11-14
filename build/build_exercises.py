@@ -552,7 +552,14 @@ def main():
             "blurb": "Converting won positions and holding difficult ones.",
             "items": endg})
 
-    # ---------- 3. emit ----------
+    # ---------- 3. explain ----------
+    # Every puzzle carries why its solution works, shown when it ends.
+    import explain_puzzles
+    print("\nExplaining the solutions...")
+    explain_puzzles.annotate_payload({"packs": packs, "lessons": lesson_packs},
+                                     verbose=True)
+
+    # ---------- 4. emit ----------
     summary = {
         "gamesAnalysed": prof.get("games_analysed", 0),
         "rating": prof.get("rating", {}),

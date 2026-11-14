@@ -234,11 +234,11 @@ def facts(board, move, prev_move=None, prev_capture=False):
 # threats: what does this move threaten if the other side ignores it?
 # ----------------------------------------------------------------------------
 
-def _load_threats():
-    if not os.path.exists(THREATS_PATH):
+def _load_threats(path=THREATS_PATH):
+    if not os.path.exists(path):
         return {}
     try:
-        with open(THREATS_PATH, encoding="utf-8") as fh:
+        with open(path, encoding="utf-8") as fh:
             return json.load(fh).get("threats", {})
     except (OSError, ValueError):
         return {}
@@ -252,8 +252,14 @@ class Threats:
     THREAT_MIN_CP over what they have when the defender replies normally.
     """
 
-    def __init__(self, engine_path=None, allow_engine=True):
-        self.cache = _load_threats()
+    def __init__(self, engine_path=None, allow_engine=True, path=THREATS_PATH,
+                 depth=THREAT_DEPTH, comment=None):
+        self.path = path
+        self.depth = depth
+        self.comment = comment or ("What each repertoire move threatens, from "
+                                   "Stockfish (see build/explain.py). Tracked so "
+                                   "a fresh clone needs no engine.")
+        self.cache = _load_threats(path)
         self.engine_path = engine_path
         self.allow_engine = allow_engine
         self.dirty = False
@@ -276,13 +282,11 @@ class Threats:
             self._engine = None
         if self.dirty:
             payload = {
-                "_comment": "What each repertoire move threatens, from Stockfish "
-                            "(see build/explain.py). Tracked so a fresh clone "
-                            "needs no engine.",
-                "depth": THREAT_DEPTH, "min_cp": THREAT_MIN_CP,
+                "_comment": self.comment,
+                "depth": self.depth, "min_cp": THREAT_MIN_CP,
                 "threats": dict(sorted(self.cache.items())),
             }
-            with open(THREATS_PATH, "w", encoding="utf-8") as fh:
+            with open(self.path, "w", encoding="utf-8") as fh:
                 json.dump(payload, fh, indent=1)
                 fh.write("\n")
 
@@ -302,7 +306,7 @@ class Threats:
             return None
 
         import chess.engine
-        limit = chess.engine.Limit(depth=THREAT_DEPTH)
+        limit = chess.engine.Limit(depth=self.depth)
         attacker = not after.turn
 
         normal = eng.analyse(after, limit)["score"].pov(attacker).score(mate_score=10000)

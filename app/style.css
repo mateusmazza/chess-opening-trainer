@@ -373,6 +373,21 @@ body.blind-mode .board-wrap::after{content:"🧠 calculating — board frozen";
 .ex-facts{color:var(--muted);font-size:.78rem;margin-top:3px}
 .ex-threat{color:var(--bad);font-weight:600;font-size:.82rem;margin-top:3px}
 .ex-row.mine .ex-threat{color:var(--good)}
+.ex-row.missed{border-left-color:var(--bad)}
+.ex-tag{background:var(--bad);color:#fff;border-radius:99px;padding:1px 7px;font-size:.66rem;
+  text-transform:none;letter-spacing:0;margin-left:4px;vertical-align:1px}
+/* the "Got it" pause after a missed move and at the end of every puzzle */
+.ex-gate{display:flex;flex-direction:column;gap:6px;background:var(--card);border:1px solid var(--line);
+  border-radius:14px;padding:12px;box-shadow:0 6px 22px rgba(0,0,0,.18)}
+.ex-gate .ex-row{background:transparent}
+.gate-head{font-weight:700;font-size:1rem}
+.gate-head b{font-family:ui-monospace,monospace}
+.gate-tried{font-size:.86rem;color:var(--muted)}
+.gate-tried b{color:var(--ink);font-family:ui-monospace,monospace}
+.gate-outcome{font-weight:700;color:var(--good);margin-top:2px}
+.gate-ideas{margin:0;padding-left:18px;font-size:.86rem;line-height:1.4}
+.gate-habit{font-size:.84rem;border-top:1px solid var(--line);padding-top:6px}
+.gate-ok{align-self:center;margin-top:6px !important;min-width:160px}
 .moves .mv.ctx{opacity:.55}
 
 /* ---------- per-move status in course view ---------- */

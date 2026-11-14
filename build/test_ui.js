@@ -38,14 +38,29 @@ const peek = () => JSON.parse(ev(`JSON.stringify({
 })`));
 
 // Play a whole line by clicking book moves. Returns stats.
-async function playLine(cardId, { injectWrong } = {}) {
-  ev(`startLine(CARD_BY_ID['${cardId}'], false)`);
+const gotIt = () => window.document.getElementById('gotIt');
+function clickGotIt() {
+  gotIt().dispatchEvent(new window.MouseEvent('click', { bubbles: true }));
+}
+
+async function playLine(cardId, { injectWrong, start } = {}) {
+  ev(start || `startLine(CARD_BY_ID['${cardId}'], false)`);
   await delay(140);
   const xp0 = peek().xp;
   let guard = 0, didWrong = false, myMoves = 0, wrongRejected = null;
+  const gates = [];
   while (guard++ < 600) {
     const st = peek();
     if (st.inSummary) break;
+    if (gotIt()) {
+      // The line must hold still while the explanation is up.
+      await delay(600);
+      const held = peek().step === st.step && !!gotIt();
+      gates.push({ held, text: window.document.getElementById('explain').textContent });
+      clickGotIt();
+      await delay(60);
+      continue;
+    }
     if (st.step >= st.total && st.total >= 0) { await delay(120); continue; }
     if (!st.awaiting || !st.edge || !st.edge.mine) { await delay(50); continue; }
 
@@ -71,7 +86,7 @@ async function playLine(cardId, { injectWrong } = {}) {
   if (done) done.dispatchEvent(new window.MouseEvent('click', { bubbles: true }));
   await delay(60);
   return { myMoves, xpGained: peek().xp - xp0, acc: acc && acc.textContent,
-           completed: peek().inSummary === false, wrongRejected, finalFen };
+           completed: peek().inSummary === false, wrongRejected, finalFen, gates };
 }
 
 async function main() {
@@ -115,10 +130,14 @@ async function main() {
   ok(r1.xpGained > 0, `XP increased on Caro line (+${r1.xpGained})`);
   ok(/%$/.test(r1.acc || ''), 'summary shows accuracy: ' + r1.acc);
   ok(window.document.querySelector('.view.home'), 'returned home after summary');
+  ok(r1.gates.length === 1, `the missed move paused on its explanation (${r1.gates.length} pause)`);
+  ok(r1.gates.length && r1.gates[0].held, 'line waited for "Got it" before continuing');
+  ok(r1.gates.length && /Why .+ is the move/.test(r1.gates[0].text), 'pause explains why the book move is the move');
 
   // 2) Deepest line in the whole repertoire (long line, all-correct -> perfect)
   const deepId = ev(`Object.keys(CARD_BY_ID).reduce((a,b)=>CARD_BY_ID[b].myMoves>CARD_BY_ID[a].myMoves?b:a)`);
   const r2 = await playLine(deepId);
+  ok(r2.gates.length === 0, 'a clean line never pauses');
   ok(r2.myMoves >= 10, `deepest line (${deepId}) played ${r2.myMoves} moves`);
   ok(/^(100|9\d)%$/.test(r2.acc), 'all-correct deep line scored high accuracy: ' + r2.acc);
 
@@ -130,6 +149,26 @@ async function main() {
   const rank1 = r3.finalFen.split(' ')[0].split('/')[7];
   ok((function(){let f=0;for(const c of rank1){if(/\d/.test(c))f+=+c;else{if(c==='K'&&'abcdefgh'[f]==='g')return true;f++;}}return false;})(),
      'Italian: castling applied (king on g1)');
+
+  // 4) Puzzles end on a review of the solution, not a jump to the next board
+  if (ev('typeof PUZZLES!=="undefined" && PUZZLES.length>0')) {
+    const pid = ev(`(PUZZLES.find(c=>!c.blind && c.why && c.why.outcome)||PUZZLES.find(c=>!c.blind)).id`);
+    const r4 = await playLine(null, { start: `beginSession([PUZZLE_BY_ID['${pid}']],'line',false)`, injectWrong: true });
+    ok(r4.gates.length === 1, `puzzle ended on one review pause (${r4.gates.length})`);
+    const t = (r4.gates[0] || {}).text || '';
+    ok(r4.gates.length && r4.gates[0].held, 'puzzle review waited for "Got it"');
+    ok(/why the solution works/i.test(t), 'review says why the solution works');
+    ok(/you missed this/.test(t), 'review marks the move you missed');
+    const outcome = ev(`PUZZLE_BY_ID['${pid}'].why && PUZZLE_BY_ID['${pid}'].why.outcome || ''`);
+    ok(!!outcome && t.includes(outcome), 'review states what the line wins: ' + outcome);
+    const blindId = ev(`(PUZZLES.find(c=>c.blind)||{}).id`);
+    if (blindId) {
+      const r5 = await playLine(null, { start: `beginSession([PUZZLE_BY_ID['${blindId}']],'line',false)` });
+      ok(r5.gates.length === 1 && /Solved ✓/.test(r5.gates[0].text), 'clean blind solve: replay, then review');
+    }
+  } else {
+    console.log('  - no exercises.js: puzzle review checks skipped');
+  }
 
   // storage (guarded -- jsdom blocks file:// localStorage; real browsers allow it)
   try { ok(!!window.localStorage.getItem('openingTrainer.v1'), 'progress saved to localStorage'); }

@@ -134,6 +134,10 @@ are learned, applied to the one thing you actually forget: a single move.
   known but not yet automatic — in blitz, a move you have to dig for is a move
   you may not find. It does not count toward fixing a trouble spot, and a clean
   but hesitant line is graded *good* instead of *easy*.
+* **A miss stops until you understand it.** When you miss a move (a wrong
+  try, a hint, or "I forgot"), the line pauses on why the book move is the
+  move, and what you tried instead, until you press **Got it ✓** (or Enter).
+  A clean line never pauses.
 * **Immediate, specific feedback.** The session summary lists exactly the moves
   you missed, with why each is played, and offers to drill just those again.
   It also compares today's first-try accuracy with your recent average.
@@ -280,6 +284,7 @@ chess-opening-trainer/
     ├── lessons.py        ← 3b. mistakes → diagnosed lessons + drill ladders
     ├── lichess_puzzles.py←    filters the puzzle DB by theme + rating
     ├── build_exercises.py← 4. profile + lessons → app/exercises.js
+    ├── explain_puzzles.py←    why each puzzle's solution works (run by 4)
     ├── refresh.sh        ←    runs the whole pipeline; safe to re-run any time
     ├── retag.py          ←    re-run theme detection without the engine
     ├── get_puzzle_db.sh  ←    downloads the Lichess puzzle database
@@ -383,6 +388,25 @@ boards while the pool lasts. Solve enough cleanly at a rung and you move up;
 fail repeatedly and you drop back a rung rather than grinding. The app works
 **two** lessons a day, not one puzzle from each of six — concentration beats
 spreading thin.
+
+### Every puzzle ends on why it works
+
+A puzzle no longer ends with "Correct!" and then the next board. It stops on
+the whole solution, move by move, and waits for **Got it**:
+
+* what each move does (captures, checks, pins, attacks something loose), and
+  what it threatens if ignored, from Stockfish. That second part is what
+  explains a quiet move with no capture or check to point at;
+* what the line wins ("You win the queen for a rook", "It ends in checkmate");
+* for your own blunders, what the move you actually played allowed;
+* the idea behind the motif, and for a lesson, the habit you are practising.
+
+The moves you missed are marked. `build/explain_puzzles.py` writes all of this
+into the exercises at build time (engine results are cached in the gitignored
+`data/puzzle_threats.json`). A refresh does it automatically. To annotate the
+exercises you already have without rebuilding them, run
+`python3 build/explain_puzzles.py` (about 30 seconds). It only adds fields, so
+your puzzle history is untouched.
 
 ### The rest
 

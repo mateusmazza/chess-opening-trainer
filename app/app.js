@@ -710,7 +710,8 @@ function startCard(card){
         end:card.endStep||card.edges.length,
         wrong:0, hintMoves:0, wrongThisMove:0, hintThisMove:false, hintLevel:0,
         requeued:!!card._requeued, blind: !!card.blind, shownFen:start, slow:0, taught:0,
-        isNewLine: !card.isPuzzle && !card.isFocus && cardState(card.id)==='new'};
+        isNewLine: !card.isPuzzle && !card.isFocus && cardState(card.id)==='new',
+        missedSteps:new Set(), tried:null};
   whiteBottom = card.color==='white';
   renderBoard(start, whiteBottom);
   $('#lineName').textContent = card.isPuzzle
@@ -822,9 +823,18 @@ function onBoardClick(e){
         }
         addXp(play.hintThisMove?4:10, edge.to);
       }
+      const missed = !play.teaching && !(play.wrongThisMove===0 && !play.hintThisMove);
+      const tried = play.tried;
+      play.wrongThisMove=0; play.hintThisMove=false; play.hintLevel=0; play.tried=null;
+      play.step++;
+      // A missed book move stops on its reason until you have read it.
+      // (Puzzles explain the whole solution once, when they end.)
+      if(missed && !play.card.isPuzzle && hasExplanation(edge)){
+        return gate(missHTML(edge, step, tried), 'Got it ✓', ()=>{
+          showExplain(edge, step); processStep(); });
+      }
       if(!play.card.isPuzzle) showExplain(edge, step);
-      play.wrongThisMove=0; play.hintThisMove=false; play.hintLevel=0;
-      play.step++; processStep();
+      processStep();
     });
   } else if(play.teaching){
     badFeedback(from, square);
@@ -832,6 +842,7 @@ function onBoardClick(e){
     highlightHint(edge.from, edge.to);
   } else {
     play.wrong++; play.wrongThisMove++;
+    play.missedSteps.add(play.step);
     badFeedback(from, square);
     if(play.card.isPuzzle){
       setPrompt(play.blind ? 'Not it — recheck your line from the position in your head.'
@@ -841,6 +852,7 @@ function onBoardClick(e){
       // from its reason is what makes it stick. If this is also the move you
       // keep playing in real games, say so -- that is the habit to break.
       const habit=realGameHabit(edge, from, square);
+      play.tried={from, to:square, piece:map[from], habit};
       const cue = play.wrongThisMove===1 && edge.cue ? ` 💭 ${edge.cue}` : '';
       setPrompt('Not the book move here.' + cue +
         (habit ? ` (You played that in ${habit} of your real games here.)` : ''), 'bad');
@@ -855,7 +867,7 @@ function onBoardClick(e){
 function onHint(){
   if(!play||!play.awaiting||play.teaching) return;
   const edge=play.edges[play.step];
-  play.hintThisMove=true;
+  play.hintThisMove=true; play.missedSteps.add(play.step);
   if(play.hintLevel===0 && edge.cue && !play.card.isPuzzle){
     play.hintLevel=1;
     setPrompt(`💭 ${edge.cue}`, '');
@@ -868,20 +880,26 @@ function onHint(){
 function onReveal(){
   if(!play||!play.awaiting||engineBusy||play.teaching) return;
   const edge=play.edges[play.step], step=play.step;
-  play.hintThisMove=true; play.hintMoves++;
+  play.hintThisMove=true; play.hintMoves++; play.missedSteps.add(step);
   highlightHint(edge.from, edge.to);
   setPrompt(`The book move is ${edge.san}.`, '');
   play.awaiting=false; selected=null; clearSel();
   engineBusy=true;
   setTimeout(()=>playEdge(edge, ()=>{
     session.movesPlayed++; state.profile.totalMoves++;
+    const tried=play.tried;
+    play.wrongThisMove=0; play.hintThisMove=false; play.hintLevel=0; play.tried=null;
+    play.step++;
     if(!play.card.isPuzzle){
       recordMove(edge, false, 0);
       session.missed.set(edge.key, {edge, step});
+      if(hasExplanation(edge)){
+        return gate(missHTML(edge, step, tried), 'Got it ✓', ()=>{
+          showExplain(edge, step); processStep(); });
+      }
       showExplain(edge, step);
     }
-    play.wrongThisMove=0; play.hintThisMove=false; play.hintLevel=0;
-    play.step++; processStep();
+    processStep();
   }), 900);
 }
 
@@ -949,9 +967,18 @@ function finishCard(){
   }
   save();
   session.idx++;
-  if(session.idx>=session.queue.length) return finishSession();
+  const last = session.idx>=session.queue.length;
+  const next = ()=> last ? finishSession() : startCard(session.queue[session.idx]);
+  // A puzzle never just jumps to the next board: it stops on why the
+  // solution works until you say you have got it.
+  if(play.card.isPuzzle){
+    if(!last) updateSessBar();
+    return gate(puzzleReviewHTML(play.card, mistakes===0),
+                last ? 'Got it ✓' : 'Got it — next ›', next);
+  }
+  if(last) return finishSession();
   // Give yourself a moment to read why the last move was played.
-  setTimeout(()=>startCard(session.queue[session.idx]), play.card.isPuzzle?500:1100);
+  setTimeout(next, 1100);
   updateSessBar();
 }
 
@@ -1022,15 +1049,27 @@ function showSummary(){
    and the reply it got stay on screen together, so you read the exchange,
    not just a move. */
 function esc(t){ return String(t).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c])); }
-function moveLabel(edge, step){ return `${Math.floor(step/2)+1}${step%2?'…':'.'}${edge.san}`; }
-function explainHTML(edge, step, teaching){
-  const who = teaching ? 'New move' : edge.mine ? 'Your move' : 'Their move';
+// Opening lines start at move 1; a puzzle starts wherever its FEN says, so
+// its move numbers are offset by the plies before it.
+function plyBase(fen){
+  if(!fen) return 0;
+  const f=fen.split(' ');
+  return (parseInt(f[5]||'1',10)-1)*2 + (f[1]==='b'?1:0);
+}
+function curBase(){ return (play && play.card) ? plyBase(play.card.startFen) : 0; }
+function moveLabel(edge, step, base=0){
+  const ply=base+step;
+  return `${Math.floor(ply/2)+1}${ply%2?'…':'.'}${edge.san}`;
+}
+function explainHTML(edge, step, teaching, opts={}){
+  const base = opts.base!=null ? opts.base : curBase();
+  const who = opts.who || (teaching ? 'New move' : edge.mine ? 'Your move' : 'Their move');
   const facts=(edge.facts||[]).join(' · ');
   // the threat is a move by the same side again, so number it like one
   const threat = edge.threat ? `<div class="ex-threat">${edge.mine?'Threatens':'⚠ Watch out — they threaten'} `+
-    `${step%2?'…':''}${esc(edge.threat)}</div>` : '';
-  return `<div class="ex-row ${edge.mine?'mine':'opp'}">
-    <div class="ex-head">${who} <b>${esc(moveLabel(edge,step))}</b></div>
+    `${(base+step)%2?'…':''}${esc(edge.threat)}</div>` : '';
+  return `<div class="ex-row ${edge.mine?'mine':'opp'}${opts.missed?' missed':''}">
+    <div class="ex-head">${who} <b>${esc(moveLabel(edge,step,base))}</b>${opts.missed?' <span class="ex-tag">you missed this</span>':''}</div>
     ${edge.note?`<div class="ex-note">${esc(edge.note)}</div>`:''}
     ${facts?`<div class="ex-facts">${esc(facts)}</div>`:''}${threat}</div>`;
 }
@@ -1042,6 +1081,76 @@ function showExplain(edge, step, teaching){
   if(edge.mine || !last || !last.classList.contains('mine')) host.innerHTML=row;
   else host.insertAdjacentHTML('beforeend', row);
 }
+/* ---------------- "Got it" pauses ----------------
+   A missed move used to be explained for about a second, then the line moved
+   on -- and a puzzle ended with "Correct!" and the next board, with no word on
+   WHY the solution worked. Feedback you have no time to read is not feedback.
+   So a missed move, and every finished puzzle, now stops on its explanation
+   until you say you have understood it. */
+function hasExplanation(edge){
+  return !!(edge.note || (edge.facts&&edge.facts.length) || edge.threat);
+}
+function gate(html, label, cb){
+  const host=$('#explain');
+  if(!host){ cb(); return; }
+  engineBusy=true; play.awaiting=false; play.gated=true;
+  $('#hintBtn').disabled=$('#revealBtn').disabled=true;
+  host.innerHTML=`<div class="ex-gate">${html}
+    <button class="big-btn small gate-ok" id="gotIt">${label}</button></div>`;
+  const btn=$('#gotIt'), myPlay=play;
+  let done=false;
+  const finish=()=>{
+    if(done) return; done=true;
+    document.removeEventListener('keydown', onKey);
+    if(!viewAlive() || play!==myPlay) return;   // left the trainer meanwhile
+    play.gated=false; engineBusy=false;
+    host.innerHTML='';
+    $('#hintBtn').disabled=$('#revealBtn').disabled=false;
+    cb();
+  };
+  const onKey=e=>{
+    if(!viewAlive()){ document.removeEventListener('keydown', onKey); return; }
+    if(e.key==='Enter' || e.key===' '){ e.preventDefault(); finish(); }
+  };
+  btn.addEventListener('click', finish);
+  document.addEventListener('keydown', onKey);
+  if(btn.focus) btn.focus({preventScroll:true});
+  if(btn.scrollIntoView) btn.scrollIntoView({block:'nearest', behavior:'smooth'});
+}
+const PIECE_WORD={p:'pawn',n:'knight',b:'bishop',r:'rook',q:'queen',k:'king'};
+// An opening move you missed: why the book move is the move, and what you
+// tried instead (and whether that is a habit from your real games).
+function missHTML(edge, step, tried){
+  let triedLine='';
+  if(tried && tried.piece){
+    triedLine=`You tried ${PIECE_WORD[tried.piece.toLowerCase()]||'a piece'} ${tried.from}→${tried.to}`+
+      (tried.habit ? ` — the move you played in ${tried.habit} of your real games here.` : '.');
+  }
+  return `<div class="gate-head">Why <b>${esc(moveLabel(edge,step))}</b> is the move</div>
+    ${triedLine?`<div class="gate-tried">${esc(triedLine)}</div>`:''}
+    ${explainHTML(edge, step, false)}`;
+}
+// A finished puzzle: the whole solution, move by move, with what it wins.
+function puzzleReviewHTML(card, clean){
+  const why=card.why||{}, base=plyBase(card.startFen), meta=card.meta||{};
+  const parts=[`<div class="gate-head">${clean?'Solved ✓ — here is why it works':'Here is why the solution works'}</div>`];
+  if(why.played){
+    const f=(why.played.facts||[]).join(', ').toLowerCase();
+    parts.push(`<div class="gate-tried">In your game you played <b>${esc(why.played.san)}</b>. `+
+      `That allowed <b>${esc(why.played.reply)}</b>${f?` — ${esc(f)}`:''}.</div>`);
+  }
+  card.edges.forEach((e,i)=>{
+    parts.push(explainHTML(e, i, false, {base, who: e.mine?'You':'They',
+      missed: play && play.missedSteps && play.missedSteps.has(i)}));
+  });
+  if(why.outcome) parts.push(`<div class="gate-outcome">${esc(why.outcome)}</div>`);
+  const ideas = (typeof themeIdeas==='function') ? themeIdeas(meta.themes||[]) : [];
+  if(ideas.length) parts.push(`<ul class="gate-ideas">${ideas.map(t=>`<li>${esc(t)}</li>`).join('')}</ul>`);
+  const L = card.isLesson && typeof LESSON_BY_ID!=='undefined' ? LESSON_BY_ID[card.lessonId] : null;
+  if(L && L.habit) parts.push(`<div class="gate-habit"><b>The habit:</b> ${esc(L.habit)}</div>`);
+  return parts.join('');
+}
+
 // Is the wrong move you just tried the one you keep playing in real games?
 // Returns how many games, or 0. Matched on piece + destination square, which
 // is all a click tells us -- enough to recognise a habit.

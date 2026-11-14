@@ -46,6 +46,9 @@ function boot() {
     for (let i = 0; i < 200; i++) {
       const s = peek();
       if (s.summary || (s.awaiting && s.edge && s.edge.mine)) return s;
+      // a "Got it" pause after a missed move: read it, move on
+      const g = w.document.getElementById('gotIt');
+      if (g) g.dispatchEvent(new w.MouseEvent('click', { bubbles: true }));
       await delay(40);
     }
     return peek();
@@ -77,6 +80,7 @@ function boot() {
   await playRight();
   await delay(200);
   ok(!!w.document.querySelector('#explain .ex-note'), 'the move\'s explanation is shown after playing it');
+  ok(!!w.document.getElementById('gotIt') && !peek().awaiting, '...and the line waits until you say "Got it"');
   await finish();
   const key = first.edge.key;
   ok(ev(`moveStatus(${JSON.stringify(key)})`) === 'trouble', 'the missed move is now a trouble spot');
