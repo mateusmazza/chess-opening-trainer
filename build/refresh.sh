@@ -23,6 +23,16 @@ export PATH="/opt/homebrew/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:${PA
 ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 cd "$ROOT" || exit 1
 
+# The 03:30 job runs while the Mac is asleep-capable. On Nov 15 it slept in
+# the middle of the Stockfish pass, the analysis stalled, and on wake the
+# engine handshake timed out, failing the whole refresh. caffeinate -i keeps
+# the machine awake until this script exits (lid closed on battery still
+# sleeps -- nothing can override that). Re-exec once under it.
+if [ -z "${REFRESH_CAFFEINATED:-}" ] && command -v caffeinate >/dev/null; then
+  export REFRESH_CAFFEINATED=1
+  exec caffeinate -i /bin/bash "$ROOT/build/refresh.sh" "$@"
+fi
+
 LOG_DIR="$ROOT/data/logs"
 mkdir -p "$LOG_DIR"
 LOG="$LOG_DIR/refresh-$(date +%Y-%m-%d).log"

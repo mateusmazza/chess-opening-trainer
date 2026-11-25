@@ -133,7 +133,19 @@ def analyze_one(task):
             pass                        # corrupt or outdated cache -> redo it
 
     path = find_engine(cfg["engine"].get("path"))
-    with chess.engine.SimpleEngine.popen_uci(path) as eng:
+    # Starting the engine can time out right after the machine wakes from
+    # sleep (python-chess allows 10s for the UCI handshake). One slow start
+    # used to fail the whole refresh, so give it a longer handshake and a
+    # couple of retries before giving up on this game.
+    for attempt in range(3):
+        try:
+            eng = chess.engine.SimpleEngine.popen_uci(path, timeout=60)
+            break
+        except (TimeoutError, chess.engine.EngineError):
+            if attempt == 2:
+                raise
+            time.sleep(5)
+    with eng:
         eng.configure({"Threads": 1, "Hash": max(64, cfg["engine"].get("hash_mb", 512) // 4)})
         return _analyze(eng, meta, cfg)
 
