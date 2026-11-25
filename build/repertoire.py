@@ -94,47 +94,6 @@ REPERTOIRE = [
         ],
     },
 
-    {
-        "id": "london", "color": "white", "tier": 1,
-        "role": "core", "weight": 1.0,
-        "match": ["d4 d5 Bf4",
-                   "d4 Nf6 Bf4",
-                   "d4 d5 Nf3 Nf6 Bf4",
-                   "d4 Nf6 Nf3 g6 Bf4",
-                   "d4 Nf6 Nf3 d5 Bf4"],
-        "name": "London System",
-        "summary": "A 1.d4 system: d4, Nf3, Bf4, e3, c3, Bd3 -- almost the same setup "
-                   "against anything Black does. Very low theory, super solid, and one "
-                   "of the most popular openings below 1200. Your reliable queen's-pawn "
-                   "weapon.",
-        "lines": [
-            # vs ...d5 with ...c5
-            "d4 d5 Nf3 Nf6 Bf4 c5 e3 Nc6 Nbd2 e6 c3",
-            # vs ...g6 (King's Indian setups)
-            "d4 Nf6 Nf3 g6 Bf4 Bg7 e3 d6 Be2 O-O",
-            # Poisoned-pawn try ...Qb6
-            "d4 Nf6 Nf3 d5 Bf4 c5 e3 Qb6 Nc3",
-        ],
-    },
-
-    {
-        "id": "queens_gambit", "color": "white", "tier": 1,
-        "role": "core", "weight": 1.0,
-        "match": ["d4 d5 c4"],
-        "name": "Queen's Gambit",
-        "summary": "1.d4 d5 2.c4 -- the most principled queen's-pawn opening. We offer "
-                   "the c-pawn to deflect Black's centre, then dominate with Nc3, Bg5, "
-                   "e3. A cornerstone opening every improving player should know.",
-        "lines": [
-            # Queen's Gambit Declined, main
-            "d4 d5 c4 e6 Nc3 Nf6 Bg5 Be7 e3 O-O Nf3 h6 Bh4 b6",
-            # Queen's Gambit Accepted
-            "d4 d5 c4 dxc4 Nf3 Nf6 e3 e6 Bxc4 c5 O-O a6",
-            # Slav move-order (2...c6) -> Meran
-            "d4 d5 c4 c6 Nf3 Nf6 Nc3 e6 e3 Nbd7 Bd3 dxc4 Bxc4 b5",
-        ],
-    },
-
     # ============================================================
     # TIER 2  --  INTERMEDIATE
     # ============================================================

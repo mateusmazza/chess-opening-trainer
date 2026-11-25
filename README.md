@@ -107,7 +107,7 @@ shows from your very first session.
 The trainer is built around a few well-established findings about how skills
 are learned, applied to the one thing you actually forget: a single move.
 
-* **Every move is explained.** Each of the 729 moves in the repertoire carries
+* **Every move is explained.** Each of the 669 moves in the repertoire carries
   a written note (`build/move_notes.json`: the plan behind it), facts computed
   from the board (develops, attacks, pins, clears castling — `build/explain.py`,
   pure geometry so never wrong), and, where there is one, the threat Stockfish
@@ -162,7 +162,7 @@ smooths out so picking it back up stays a quick 5–10 minutes.
 
 ## Your repertoire
 
-**21 courses · 82 variations · 360 book moves.** The set is not a fixed
+**19 courses · 76 variations · 331 book moves.** As White you open 1.e4 only. The set is not a fixed
 curriculum — it is assembled around your games, and re-weighted every refresh.
 
 ### Ordered by what it costs you
@@ -190,7 +190,6 @@ pinned courses still order among themselves on merit.
 | **Scandinavian** | White | 1…d5 |
 | **Alapin** (2.c3) | White | 1…c5 |
 | **French, Advance** | White | 1…e6 |
-| **London System**, **Queen's Gambit** | White | 1.d4 systems |
 | **Petrov** (Russian), **Caro-Kann** | Black | 1.e4 |
 | **Slav** | Black | 1.d4 |
 
